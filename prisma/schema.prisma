@@ -1,0 +1,203 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/lib/generated/client"  // Keep your current path
+}
+datasource db {
+  provider = "postgresql"
+}
+
+model Tenant {
+  id                String    @id @default(cuid())
+  name              String
+  slug              String    @unique
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+  users             User[]
+  contacts          Contact[]
+  companies         Company[]
+  pipelines         Pipeline[]
+  deals             Deal[]
+  activities        Activity[]
+  customFields      CustomField[]
+  customFieldValues CustomFieldValue[]
+}
+
+model User {
+  id            String     @id @default(cuid())
+  tenantId      String
+  email         String     @unique
+  passwordHash  String
+  name          String
+  role          String     // "admin" | "member"
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+  tenant        Tenant     @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  contacts      Contact[]  @relation("ContactOwner")
+  companies     Company[]  @relation("CompanyOwner")
+  deals         Deal[]     @relation("DealOwner")
+  assignedTasks Activity[] @relation("AssignedTasks")
+
+  @@index([tenantId])
+  @@index([email])
+}
+
+model Contact {
+  id          String    @id @default(cuid())
+  tenantId    String
+  ownerUserId String
+  firstName   String
+  lastName    String
+  email       String?
+  phone       String?
+  dataJsonb   Json?     @db.JsonB
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  tenant      Tenant    @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  owner       User      @relation("ContactOwner", fields: [ownerUserId], references: [id])
+  deals       Deal[]
+  activities  Activity[]
+
+  @@index([tenantId])
+  @@index([tenantId, ownerUserId])
+  @@index([email])
+}
+
+model Company {
+  id          String   @id @default(cuid())
+  tenantId    String
+  ownerUserId String
+  name        String
+  website     String?
+  phone       String?
+  dataJsonb   Json?    @db.JsonB
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  tenant      Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  owner       User     @relation("CompanyOwner", fields: [ownerUserId], references: [id])
+  deals       Deal[]
+
+  @@index([tenantId])
+  @@index([tenantId, ownerUserId])
+}
+
+model Pipeline {
+  id        String   @id @default(cuid())
+  tenantId  String
+  name      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  tenant    Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  stages    Stage[]
+  deals     Deal[]
+
+  @@index([tenantId])
+}
+
+model Stage {
+  id         String   @id @default(cuid())
+  pipelineId String
+  name       String
+  position   Int
+  isWon      Boolean  @default(false)
+  isLost     Boolean  @default(false)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  pipeline   Pipeline @relation(fields: [pipelineId], references: [id], onDelete: Cascade)
+  deals      Deal[]
+
+  @@index([pipelineId])
+  @@index([pipelineId, position])
+}
+
+model Deal {
+  id          String   @id @default(cuid())
+  tenantId    String
+  pipelineId  String
+  stageId     String
+  ownerUserId String
+  contactId   String?
+  companyId   String?
+  title       String
+  valueCents  Int      @default(0)
+  dataJsonb   Json?    @db.JsonB
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  tenant      Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  pipeline    Pipeline @relation(fields: [pipelineId], references: [id], onDelete: Cascade)
+  stage       Stage    @relation(fields: [stageId], references: [id])
+  owner       User     @relation("DealOwner", fields: [ownerUserId], references: [id])
+  contact     Contact? @relation(fields: [contactId], references: [id])
+  company     Company? @relation(fields: [companyId], references: [id])
+  activities  Activity[]
+
+  @@index([tenantId, stageId])
+  @@index([tenantId, pipelineId])
+  @@index([contactId])
+  @@index([companyId])
+}
+
+model Activity {
+  id             String    @id @default(cuid())
+  tenantId       String
+  dealId         String?
+  contactId      String?
+  assignedUserId String?
+  type           String    // "note" | "task" | "call"
+  body           String
+  status         String?   // "todo" | "in_progress" | "done" (only for tasks)
+  dueAt          DateTime?
+  completedAt    DateTime?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+  tenant         Tenant    @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  deal           Deal?     @relation(fields: [dealId], references: [id], onDelete: Cascade)
+  contact        Contact?  @relation(fields: [contactId], references: [id], onDelete: Cascade)
+  assignedUser   User?     @relation("AssignedTasks", fields: [assignedUserId], references: [id])
+
+  @@index([tenantId])
+  @@index([tenantId, dealId])
+  @@index([tenantId, contactId])
+  @@index([tenantId, type])
+  @@index([tenantId, assignedUserId])
+  @@index([status])
+  @@index([dueAt])
+}
+
+model CustomField {
+  id           String   @id @default(cuid())
+  tenantId     String
+  objectType   String   // "contact" | "company" | "deal"
+  key          String
+  label        String
+  fieldType    String   // "text" | "number" | "date" | "select" | "textarea"
+  optionsJsonb Json?    @db.JsonB
+  required     Boolean  @default(false)
+  position     Int
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  tenant       Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  values       CustomFieldValue[]
+
+  @@unique([tenantId, objectType, key])
+  @@index([tenantId, objectType])
+}
+
+model CustomFieldValue {
+  id            String   @id @default(cuid())
+  tenantId      String
+  objectType    String
+  objectId      String
+  customFieldId String
+  valueJsonb    Json     @db.JsonB
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  tenant        Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  customField   CustomField @relation(fields: [customFieldId], references: [id], onDelete: Cascade)
+
+  @@unique([tenantId, objectType, objectId, customFieldId])
+  @@index([tenantId, objectType, objectId])
+  @@index([customFieldId])
+}
