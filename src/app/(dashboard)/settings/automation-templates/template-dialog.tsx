@@ -45,6 +45,7 @@ type AutomationTemplate = {
   sendTo: string;
   customEmail: string | null;
   enabled: boolean;
+  createdAt: Date;
 };
 
 interface TemplateDialogProps {
