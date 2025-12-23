@@ -1,4 +1,4 @@
-import { Activity, Deal, Contact, User } from "@prisma/client";
+import { Activity, Deal, Contact, User } from "@/lib/generated/client/client";
 
 export type ActivityWithRelations = Activity & {
   deal: { id: string; title: string } | null;
