@@ -27,7 +27,7 @@ export async function createCustomFieldAction(data: z.infer<typeof fieldSchema>)
   await prisma.customField.create({
     data: {
       ...validated,
-      optionsJsonb: validated.optionsJsonb || null,
+      optionsJsonb: validated.optionsJsonb || undefined,
       tenantId,
       position: (maxPosition?.position ?? -1) + 1,
     },
