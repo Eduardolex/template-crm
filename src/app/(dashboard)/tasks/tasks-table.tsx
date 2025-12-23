@@ -19,11 +19,13 @@ type Task = {
   assignedUser: { id: string; name: string } | null;
   contact: { id: string; firstName: string; lastName: string } | null;
   deal: { id: string; title: string } | null;
+  automationTemplate: { id: string; name: string } | null;
 };
 
 type User = { id: string; name: string };
 type Contact = { id: string; firstName: string; lastName: string };
 type Deal = { id: string; title: string };
+type AutomationTemplate = { id: string; name: string; enabled: boolean };
 
 const statusConfig = {
   todo: {
@@ -48,11 +50,13 @@ export function TasksTable({
   users,
   contacts,
   deals,
+  automationTemplates,
 }: {
   tasks: Task[];
   users: User[];
   contacts: Contact[];
   deals: Deal[];
+  automationTemplates: AutomationTemplate[];
 }) {
   const [deleting, setDeleting] = useState<string | null>(null);
   const [updatingStatus, setUpdatingStatus] = useState<string | null>(null);
@@ -163,6 +167,7 @@ export function TasksTable({
                       users={users}
                       contacts={contacts}
                       deals={deals}
+                      automationTemplates={automationTemplates}
                     >
                       <Button variant="ghost" size="sm">
                         <Pencil className="h-4 w-4" />

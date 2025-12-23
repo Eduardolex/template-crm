@@ -30,6 +30,7 @@ export type ActivityMinAggregateOutputType = {
   dealId: string | null
   contactId: string | null
   assignedUserId: string | null
+  automationTemplateId: string | null
   type: string | null
   body: string | null
   status: string | null
@@ -45,6 +46,7 @@ export type ActivityMaxAggregateOutputType = {
   dealId: string | null
   contactId: string | null
   assignedUserId: string | null
+  automationTemplateId: string | null
   type: string | null
   body: string | null
   status: string | null
@@ -60,6 +62,7 @@ export type ActivityCountAggregateOutputType = {
   dealId: number
   contactId: number
   assignedUserId: number
+  automationTemplateId: number
   type: number
   body: number
   status: number
@@ -77,6 +80,7 @@ export type ActivityMinAggregateInputType = {
   dealId?: true
   contactId?: true
   assignedUserId?: true
+  automationTemplateId?: true
   type?: true
   body?: true
   status?: true
@@ -92,6 +96,7 @@ export type ActivityMaxAggregateInputType = {
   dealId?: true
   contactId?: true
   assignedUserId?: true
+  automationTemplateId?: true
   type?: true
   body?: true
   status?: true
@@ -107,6 +112,7 @@ export type ActivityCountAggregateInputType = {
   dealId?: true
   contactId?: true
   assignedUserId?: true
+  automationTemplateId?: true
   type?: true
   body?: true
   status?: true
@@ -195,6 +201,7 @@ export type ActivityGroupByOutputType = {
   dealId: string | null
   contactId: string | null
   assignedUserId: string | null
+  automationTemplateId: string | null
   type: string
   body: string
   status: string | null
@@ -231,6 +238,7 @@ export type ActivityWhereInput = {
   dealId?: Prisma.StringNullableFilter<"Activity"> | string | null
   contactId?: Prisma.StringNullableFilter<"Activity"> | string | null
   assignedUserId?: Prisma.StringNullableFilter<"Activity"> | string | null
+  automationTemplateId?: Prisma.StringNullableFilter<"Activity"> | string | null
   type?: Prisma.StringFilter<"Activity"> | string
   body?: Prisma.StringFilter<"Activity"> | string
   status?: Prisma.StringNullableFilter<"Activity"> | string | null
@@ -242,6 +250,7 @@ export type ActivityWhereInput = {
   deal?: Prisma.XOR<Prisma.DealNullableScalarRelationFilter, Prisma.DealWhereInput> | null
   contact?: Prisma.XOR<Prisma.ContactNullableScalarRelationFilter, Prisma.ContactWhereInput> | null
   assignedUser?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
+  automationTemplate?: Prisma.XOR<Prisma.AutomationTemplateNullableScalarRelationFilter, Prisma.AutomationTemplateWhereInput> | null
 }
 
 export type ActivityOrderByWithRelationInput = {
@@ -250,6 +259,7 @@ export type ActivityOrderByWithRelationInput = {
   dealId?: Prisma.SortOrderInput | Prisma.SortOrder
   contactId?: Prisma.SortOrderInput | Prisma.SortOrder
   assignedUserId?: Prisma.SortOrderInput | Prisma.SortOrder
+  automationTemplateId?: Prisma.SortOrderInput | Prisma.SortOrder
   type?: Prisma.SortOrder
   body?: Prisma.SortOrder
   status?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -261,6 +271,7 @@ export type ActivityOrderByWithRelationInput = {
   deal?: Prisma.DealOrderByWithRelationInput
   contact?: Prisma.ContactOrderByWithRelationInput
   assignedUser?: Prisma.UserOrderByWithRelationInput
+  automationTemplate?: Prisma.AutomationTemplateOrderByWithRelationInput
 }
 
 export type ActivityWhereUniqueInput = Prisma.AtLeast<{
@@ -272,6 +283,7 @@ export type ActivityWhereUniqueInput = Prisma.AtLeast<{
   dealId?: Prisma.StringNullableFilter<"Activity"> | string | null
   contactId?: Prisma.StringNullableFilter<"Activity"> | string | null
   assignedUserId?: Prisma.StringNullableFilter<"Activity"> | string | null
+  automationTemplateId?: Prisma.StringNullableFilter<"Activity"> | string | null
   type?: Prisma.StringFilter<"Activity"> | string
   body?: Prisma.StringFilter<"Activity"> | string
   status?: Prisma.StringNullableFilter<"Activity"> | string | null
@@ -283,6 +295,7 @@ export type ActivityWhereUniqueInput = Prisma.AtLeast<{
   deal?: Prisma.XOR<Prisma.DealNullableScalarRelationFilter, Prisma.DealWhereInput> | null
   contact?: Prisma.XOR<Prisma.ContactNullableScalarRelationFilter, Prisma.ContactWhereInput> | null
   assignedUser?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
+  automationTemplate?: Prisma.XOR<Prisma.AutomationTemplateNullableScalarRelationFilter, Prisma.AutomationTemplateWhereInput> | null
 }, "id">
 
 export type ActivityOrderByWithAggregationInput = {
@@ -291,6 +304,7 @@ export type ActivityOrderByWithAggregationInput = {
   dealId?: Prisma.SortOrderInput | Prisma.SortOrder
   contactId?: Prisma.SortOrderInput | Prisma.SortOrder
   assignedUserId?: Prisma.SortOrderInput | Prisma.SortOrder
+  automationTemplateId?: Prisma.SortOrderInput | Prisma.SortOrder
   type?: Prisma.SortOrder
   body?: Prisma.SortOrder
   status?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -312,6 +326,7 @@ export type ActivityScalarWhereWithAggregatesInput = {
   dealId?: Prisma.StringNullableWithAggregatesFilter<"Activity"> | string | null
   contactId?: Prisma.StringNullableWithAggregatesFilter<"Activity"> | string | null
   assignedUserId?: Prisma.StringNullableWithAggregatesFilter<"Activity"> | string | null
+  automationTemplateId?: Prisma.StringNullableWithAggregatesFilter<"Activity"> | string | null
   type?: Prisma.StringWithAggregatesFilter<"Activity"> | string
   body?: Prisma.StringWithAggregatesFilter<"Activity"> | string
   status?: Prisma.StringNullableWithAggregatesFilter<"Activity"> | string | null
@@ -334,6 +349,7 @@ export type ActivityCreateInput = {
   deal?: Prisma.DealCreateNestedOneWithoutActivitiesInput
   contact?: Prisma.ContactCreateNestedOneWithoutActivitiesInput
   assignedUser?: Prisma.UserCreateNestedOneWithoutAssignedTasksInput
+  automationTemplate?: Prisma.AutomationTemplateCreateNestedOneWithoutActivitiesInput
 }
 
 export type ActivityUncheckedCreateInput = {
@@ -342,6 +358,7 @@ export type ActivityUncheckedCreateInput = {
   dealId?: string | null
   contactId?: string | null
   assignedUserId?: string | null
+  automationTemplateId?: string | null
   type: string
   body: string
   status?: string | null
@@ -364,6 +381,7 @@ export type ActivityUpdateInput = {
   deal?: Prisma.DealUpdateOneWithoutActivitiesNestedInput
   contact?: Prisma.ContactUpdateOneWithoutActivitiesNestedInput
   assignedUser?: Prisma.UserUpdateOneWithoutAssignedTasksNestedInput
+  automationTemplate?: Prisma.AutomationTemplateUpdateOneWithoutActivitiesNestedInput
 }
 
 export type ActivityUncheckedUpdateInput = {
@@ -372,6 +390,7 @@ export type ActivityUncheckedUpdateInput = {
   dealId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contactId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   assignedUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  automationTemplateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.StringFieldUpdateOperationsInput | string
   body?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -387,6 +406,7 @@ export type ActivityCreateManyInput = {
   dealId?: string | null
   contactId?: string | null
   assignedUserId?: string | null
+  automationTemplateId?: string | null
   type: string
   body: string
   status?: string | null
@@ -413,6 +433,7 @@ export type ActivityUncheckedUpdateManyInput = {
   dealId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contactId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   assignedUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  automationTemplateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.StringFieldUpdateOperationsInput | string
   body?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -438,6 +459,7 @@ export type ActivityCountOrderByAggregateInput = {
   dealId?: Prisma.SortOrder
   contactId?: Prisma.SortOrder
   assignedUserId?: Prisma.SortOrder
+  automationTemplateId?: Prisma.SortOrder
   type?: Prisma.SortOrder
   body?: Prisma.SortOrder
   status?: Prisma.SortOrder
@@ -453,6 +475,7 @@ export type ActivityMaxOrderByAggregateInput = {
   dealId?: Prisma.SortOrder
   contactId?: Prisma.SortOrder
   assignedUserId?: Prisma.SortOrder
+  automationTemplateId?: Prisma.SortOrder
   type?: Prisma.SortOrder
   body?: Prisma.SortOrder
   status?: Prisma.SortOrder
@@ -468,6 +491,7 @@ export type ActivityMinOrderByAggregateInput = {
   dealId?: Prisma.SortOrder
   contactId?: Prisma.SortOrder
   assignedUserId?: Prisma.SortOrder
+  automationTemplateId?: Prisma.SortOrder
   type?: Prisma.SortOrder
   body?: Prisma.SortOrder
   status?: Prisma.SortOrder
@@ -649,6 +673,48 @@ export type NullableDateTimeFieldUpdateOperationsInput = {
   set?: Date | string | null
 }
 
+export type ActivityCreateNestedManyWithoutAutomationTemplateInput = {
+  create?: Prisma.XOR<Prisma.ActivityCreateWithoutAutomationTemplateInput, Prisma.ActivityUncheckedCreateWithoutAutomationTemplateInput> | Prisma.ActivityCreateWithoutAutomationTemplateInput[] | Prisma.ActivityUncheckedCreateWithoutAutomationTemplateInput[]
+  connectOrCreate?: Prisma.ActivityCreateOrConnectWithoutAutomationTemplateInput | Prisma.ActivityCreateOrConnectWithoutAutomationTemplateInput[]
+  createMany?: Prisma.ActivityCreateManyAutomationTemplateInputEnvelope
+  connect?: Prisma.ActivityWhereUniqueInput | Prisma.ActivityWhereUniqueInput[]
+}
+
+export type ActivityUncheckedCreateNestedManyWithoutAutomationTemplateInput = {
+  create?: Prisma.XOR<Prisma.ActivityCreateWithoutAutomationTemplateInput, Prisma.ActivityUncheckedCreateWithoutAutomationTemplateInput> | Prisma.ActivityCreateWithoutAutomationTemplateInput[] | Prisma.ActivityUncheckedCreateWithoutAutomationTemplateInput[]
+  connectOrCreate?: Prisma.ActivityCreateOrConnectWithoutAutomationTemplateInput | Prisma.ActivityCreateOrConnectWithoutAutomationTemplateInput[]
+  createMany?: Prisma.ActivityCreateManyAutomationTemplateInputEnvelope
+  connect?: Prisma.ActivityWhereUniqueInput | Prisma.ActivityWhereUniqueInput[]
+}
+
+export type ActivityUpdateManyWithoutAutomationTemplateNestedInput = {
+  create?: Prisma.XOR<Prisma.ActivityCreateWithoutAutomationTemplateInput, Prisma.ActivityUncheckedCreateWithoutAutomationTemplateInput> | Prisma.ActivityCreateWithoutAutomationTemplateInput[] | Prisma.ActivityUncheckedCreateWithoutAutomationTemplateInput[]
+  connectOrCreate?: Prisma.ActivityCreateOrConnectWithoutAutomationTemplateInput | Prisma.ActivityCreateOrConnectWithoutAutomationTemplateInput[]
+  upsert?: Prisma.ActivityUpsertWithWhereUniqueWithoutAutomationTemplateInput | Prisma.ActivityUpsertWithWhereUniqueWithoutAutomationTemplateInput[]
+  createMany?: Prisma.ActivityCreateManyAutomationTemplateInputEnvelope
+  set?: Prisma.ActivityWhereUniqueInput | Prisma.ActivityWhereUniqueInput[]
+  disconnect?: Prisma.ActivityWhereUniqueInput | Prisma.ActivityWhereUniqueInput[]
+  delete?: Prisma.ActivityWhereUniqueInput | Prisma.ActivityWhereUniqueInput[]
+  connect?: Prisma.ActivityWhereUniqueInput | Prisma.ActivityWhereUniqueInput[]
+  update?: Prisma.ActivityUpdateWithWhereUniqueWithoutAutomationTemplateInput | Prisma.ActivityUpdateWithWhereUniqueWithoutAutomationTemplateInput[]
+  updateMany?: Prisma.ActivityUpdateManyWithWhereWithoutAutomationTemplateInput | Prisma.ActivityUpdateManyWithWhereWithoutAutomationTemplateInput[]
+  deleteMany?: Prisma.ActivityScalarWhereInput | Prisma.ActivityScalarWhereInput[]
+}
+
+export type ActivityUncheckedUpdateManyWithoutAutomationTemplateNestedInput = {
+  create?: Prisma.XOR<Prisma.ActivityCreateWithoutAutomationTemplateInput, Prisma.ActivityUncheckedCreateWithoutAutomationTemplateInput> | Prisma.ActivityCreateWithoutAutomationTemplateInput[] | Prisma.ActivityUncheckedCreateWithoutAutomationTemplateInput[]
+  connectOrCreate?: Prisma.ActivityCreateOrConnectWithoutAutomationTemplateInput | Prisma.ActivityCreateOrConnectWithoutAutomationTemplateInput[]
+  upsert?: Prisma.ActivityUpsertWithWhereUniqueWithoutAutomationTemplateInput | Prisma.ActivityUpsertWithWhereUniqueWithoutAutomationTemplateInput[]
+  createMany?: Prisma.ActivityCreateManyAutomationTemplateInputEnvelope
+  set?: Prisma.ActivityWhereUniqueInput | Prisma.ActivityWhereUniqueInput[]
+  disconnect?: Prisma.ActivityWhereUniqueInput | Prisma.ActivityWhereUniqueInput[]
+  delete?: Prisma.ActivityWhereUniqueInput | Prisma.ActivityWhereUniqueInput[]
+  connect?: Prisma.ActivityWhereUniqueInput | Prisma.ActivityWhereUniqueInput[]
+  update?: Prisma.ActivityUpdateWithWhereUniqueWithoutAutomationTemplateInput | Prisma.ActivityUpdateWithWhereUniqueWithoutAutomationTemplateInput[]
+  updateMany?: Prisma.ActivityUpdateManyWithWhereWithoutAutomationTemplateInput | Prisma.ActivityUpdateManyWithWhereWithoutAutomationTemplateInput[]
+  deleteMany?: Prisma.ActivityScalarWhereInput | Prisma.ActivityScalarWhereInput[]
+}
+
 export type ActivityCreateWithoutTenantInput = {
   id?: string
   type: string
@@ -661,6 +727,7 @@ export type ActivityCreateWithoutTenantInput = {
   deal?: Prisma.DealCreateNestedOneWithoutActivitiesInput
   contact?: Prisma.ContactCreateNestedOneWithoutActivitiesInput
   assignedUser?: Prisma.UserCreateNestedOneWithoutAssignedTasksInput
+  automationTemplate?: Prisma.AutomationTemplateCreateNestedOneWithoutActivitiesInput
 }
 
 export type ActivityUncheckedCreateWithoutTenantInput = {
@@ -668,6 +735,7 @@ export type ActivityUncheckedCreateWithoutTenantInput = {
   dealId?: string | null
   contactId?: string | null
   assignedUserId?: string | null
+  automationTemplateId?: string | null
   type: string
   body: string
   status?: string | null
@@ -712,6 +780,7 @@ export type ActivityScalarWhereInput = {
   dealId?: Prisma.StringNullableFilter<"Activity"> | string | null
   contactId?: Prisma.StringNullableFilter<"Activity"> | string | null
   assignedUserId?: Prisma.StringNullableFilter<"Activity"> | string | null
+  automationTemplateId?: Prisma.StringNullableFilter<"Activity"> | string | null
   type?: Prisma.StringFilter<"Activity"> | string
   body?: Prisma.StringFilter<"Activity"> | string
   status?: Prisma.StringNullableFilter<"Activity"> | string | null
@@ -733,6 +802,7 @@ export type ActivityCreateWithoutAssignedUserInput = {
   tenant: Prisma.TenantCreateNestedOneWithoutActivitiesInput
   deal?: Prisma.DealCreateNestedOneWithoutActivitiesInput
   contact?: Prisma.ContactCreateNestedOneWithoutActivitiesInput
+  automationTemplate?: Prisma.AutomationTemplateCreateNestedOneWithoutActivitiesInput
 }
 
 export type ActivityUncheckedCreateWithoutAssignedUserInput = {
@@ -740,6 +810,7 @@ export type ActivityUncheckedCreateWithoutAssignedUserInput = {
   tenantId: string
   dealId?: string | null
   contactId?: string | null
+  automationTemplateId?: string | null
   type: string
   body: string
   status?: string | null
@@ -787,6 +858,7 @@ export type ActivityCreateWithoutContactInput = {
   tenant: Prisma.TenantCreateNestedOneWithoutActivitiesInput
   deal?: Prisma.DealCreateNestedOneWithoutActivitiesInput
   assignedUser?: Prisma.UserCreateNestedOneWithoutAssignedTasksInput
+  automationTemplate?: Prisma.AutomationTemplateCreateNestedOneWithoutActivitiesInput
 }
 
 export type ActivityUncheckedCreateWithoutContactInput = {
@@ -794,6 +866,7 @@ export type ActivityUncheckedCreateWithoutContactInput = {
   tenantId: string
   dealId?: string | null
   assignedUserId?: string | null
+  automationTemplateId?: string | null
   type: string
   body: string
   status?: string | null
@@ -841,6 +914,7 @@ export type ActivityCreateWithoutDealInput = {
   tenant: Prisma.TenantCreateNestedOneWithoutActivitiesInput
   contact?: Prisma.ContactCreateNestedOneWithoutActivitiesInput
   assignedUser?: Prisma.UserCreateNestedOneWithoutAssignedTasksInput
+  automationTemplate?: Prisma.AutomationTemplateCreateNestedOneWithoutActivitiesInput
 }
 
 export type ActivityUncheckedCreateWithoutDealInput = {
@@ -848,6 +922,7 @@ export type ActivityUncheckedCreateWithoutDealInput = {
   tenantId: string
   contactId?: string | null
   assignedUserId?: string | null
+  automationTemplateId?: string | null
   type: string
   body: string
   status?: string | null
@@ -883,11 +958,68 @@ export type ActivityUpdateManyWithWhereWithoutDealInput = {
   data: Prisma.XOR<Prisma.ActivityUpdateManyMutationInput, Prisma.ActivityUncheckedUpdateManyWithoutDealInput>
 }
 
+export type ActivityCreateWithoutAutomationTemplateInput = {
+  id?: string
+  type: string
+  body: string
+  status?: string | null
+  dueAt?: Date | string | null
+  completedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  tenant: Prisma.TenantCreateNestedOneWithoutActivitiesInput
+  deal?: Prisma.DealCreateNestedOneWithoutActivitiesInput
+  contact?: Prisma.ContactCreateNestedOneWithoutActivitiesInput
+  assignedUser?: Prisma.UserCreateNestedOneWithoutAssignedTasksInput
+}
+
+export type ActivityUncheckedCreateWithoutAutomationTemplateInput = {
+  id?: string
+  tenantId: string
+  dealId?: string | null
+  contactId?: string | null
+  assignedUserId?: string | null
+  type: string
+  body: string
+  status?: string | null
+  dueAt?: Date | string | null
+  completedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type ActivityCreateOrConnectWithoutAutomationTemplateInput = {
+  where: Prisma.ActivityWhereUniqueInput
+  create: Prisma.XOR<Prisma.ActivityCreateWithoutAutomationTemplateInput, Prisma.ActivityUncheckedCreateWithoutAutomationTemplateInput>
+}
+
+export type ActivityCreateManyAutomationTemplateInputEnvelope = {
+  data: Prisma.ActivityCreateManyAutomationTemplateInput | Prisma.ActivityCreateManyAutomationTemplateInput[]
+  skipDuplicates?: boolean
+}
+
+export type ActivityUpsertWithWhereUniqueWithoutAutomationTemplateInput = {
+  where: Prisma.ActivityWhereUniqueInput
+  update: Prisma.XOR<Prisma.ActivityUpdateWithoutAutomationTemplateInput, Prisma.ActivityUncheckedUpdateWithoutAutomationTemplateInput>
+  create: Prisma.XOR<Prisma.ActivityCreateWithoutAutomationTemplateInput, Prisma.ActivityUncheckedCreateWithoutAutomationTemplateInput>
+}
+
+export type ActivityUpdateWithWhereUniqueWithoutAutomationTemplateInput = {
+  where: Prisma.ActivityWhereUniqueInput
+  data: Prisma.XOR<Prisma.ActivityUpdateWithoutAutomationTemplateInput, Prisma.ActivityUncheckedUpdateWithoutAutomationTemplateInput>
+}
+
+export type ActivityUpdateManyWithWhereWithoutAutomationTemplateInput = {
+  where: Prisma.ActivityScalarWhereInput
+  data: Prisma.XOR<Prisma.ActivityUpdateManyMutationInput, Prisma.ActivityUncheckedUpdateManyWithoutAutomationTemplateInput>
+}
+
 export type ActivityCreateManyTenantInput = {
   id?: string
   dealId?: string | null
   contactId?: string | null
   assignedUserId?: string | null
+  automationTemplateId?: string | null
   type: string
   body: string
   status?: string | null
@@ -909,6 +1041,7 @@ export type ActivityUpdateWithoutTenantInput = {
   deal?: Prisma.DealUpdateOneWithoutActivitiesNestedInput
   contact?: Prisma.ContactUpdateOneWithoutActivitiesNestedInput
   assignedUser?: Prisma.UserUpdateOneWithoutAssignedTasksNestedInput
+  automationTemplate?: Prisma.AutomationTemplateUpdateOneWithoutActivitiesNestedInput
 }
 
 export type ActivityUncheckedUpdateWithoutTenantInput = {
@@ -916,6 +1049,7 @@ export type ActivityUncheckedUpdateWithoutTenantInput = {
   dealId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contactId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   assignedUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  automationTemplateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.StringFieldUpdateOperationsInput | string
   body?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -930,6 +1064,7 @@ export type ActivityUncheckedUpdateManyWithoutTenantInput = {
   dealId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contactId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   assignedUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  automationTemplateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.StringFieldUpdateOperationsInput | string
   body?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -944,6 +1079,7 @@ export type ActivityCreateManyAssignedUserInput = {
   tenantId: string
   dealId?: string | null
   contactId?: string | null
+  automationTemplateId?: string | null
   type: string
   body: string
   status?: string | null
@@ -965,6 +1101,7 @@ export type ActivityUpdateWithoutAssignedUserInput = {
   tenant?: Prisma.TenantUpdateOneRequiredWithoutActivitiesNestedInput
   deal?: Prisma.DealUpdateOneWithoutActivitiesNestedInput
   contact?: Prisma.ContactUpdateOneWithoutActivitiesNestedInput
+  automationTemplate?: Prisma.AutomationTemplateUpdateOneWithoutActivitiesNestedInput
 }
 
 export type ActivityUncheckedUpdateWithoutAssignedUserInput = {
@@ -972,6 +1109,7 @@ export type ActivityUncheckedUpdateWithoutAssignedUserInput = {
   tenantId?: Prisma.StringFieldUpdateOperationsInput | string
   dealId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contactId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  automationTemplateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.StringFieldUpdateOperationsInput | string
   body?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -986,6 +1124,7 @@ export type ActivityUncheckedUpdateManyWithoutAssignedUserInput = {
   tenantId?: Prisma.StringFieldUpdateOperationsInput | string
   dealId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contactId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  automationTemplateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.StringFieldUpdateOperationsInput | string
   body?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1000,6 +1139,7 @@ export type ActivityCreateManyContactInput = {
   tenantId: string
   dealId?: string | null
   assignedUserId?: string | null
+  automationTemplateId?: string | null
   type: string
   body: string
   status?: string | null
@@ -1021,6 +1161,7 @@ export type ActivityUpdateWithoutContactInput = {
   tenant?: Prisma.TenantUpdateOneRequiredWithoutActivitiesNestedInput
   deal?: Prisma.DealUpdateOneWithoutActivitiesNestedInput
   assignedUser?: Prisma.UserUpdateOneWithoutAssignedTasksNestedInput
+  automationTemplate?: Prisma.AutomationTemplateUpdateOneWithoutActivitiesNestedInput
 }
 
 export type ActivityUncheckedUpdateWithoutContactInput = {
@@ -1028,6 +1169,7 @@ export type ActivityUncheckedUpdateWithoutContactInput = {
   tenantId?: Prisma.StringFieldUpdateOperationsInput | string
   dealId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   assignedUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  automationTemplateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.StringFieldUpdateOperationsInput | string
   body?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1042,6 +1184,7 @@ export type ActivityUncheckedUpdateManyWithoutContactInput = {
   tenantId?: Prisma.StringFieldUpdateOperationsInput | string
   dealId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   assignedUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  automationTemplateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.StringFieldUpdateOperationsInput | string
   body?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1056,6 +1199,7 @@ export type ActivityCreateManyDealInput = {
   tenantId: string
   contactId?: string | null
   assignedUserId?: string | null
+  automationTemplateId?: string | null
   type: string
   body: string
   status?: string | null
@@ -1077,6 +1221,7 @@ export type ActivityUpdateWithoutDealInput = {
   tenant?: Prisma.TenantUpdateOneRequiredWithoutActivitiesNestedInput
   contact?: Prisma.ContactUpdateOneWithoutActivitiesNestedInput
   assignedUser?: Prisma.UserUpdateOneWithoutAssignedTasksNestedInput
+  automationTemplate?: Prisma.AutomationTemplateUpdateOneWithoutActivitiesNestedInput
 }
 
 export type ActivityUncheckedUpdateWithoutDealInput = {
@@ -1084,6 +1229,7 @@ export type ActivityUncheckedUpdateWithoutDealInput = {
   tenantId?: Prisma.StringFieldUpdateOperationsInput | string
   contactId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   assignedUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  automationTemplateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.StringFieldUpdateOperationsInput | string
   body?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1096,6 +1242,67 @@ export type ActivityUncheckedUpdateWithoutDealInput = {
 export type ActivityUncheckedUpdateManyWithoutDealInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   tenantId?: Prisma.StringFieldUpdateOperationsInput | string
+  contactId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  assignedUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  automationTemplateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  type?: Prisma.StringFieldUpdateOperationsInput | string
+  body?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dueAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type ActivityCreateManyAutomationTemplateInput = {
+  id?: string
+  tenantId: string
+  dealId?: string | null
+  contactId?: string | null
+  assignedUserId?: string | null
+  type: string
+  body: string
+  status?: string | null
+  dueAt?: Date | string | null
+  completedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type ActivityUpdateWithoutAutomationTemplateInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.StringFieldUpdateOperationsInput | string
+  body?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dueAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  tenant?: Prisma.TenantUpdateOneRequiredWithoutActivitiesNestedInput
+  deal?: Prisma.DealUpdateOneWithoutActivitiesNestedInput
+  contact?: Prisma.ContactUpdateOneWithoutActivitiesNestedInput
+  assignedUser?: Prisma.UserUpdateOneWithoutAssignedTasksNestedInput
+}
+
+export type ActivityUncheckedUpdateWithoutAutomationTemplateInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantId?: Prisma.StringFieldUpdateOperationsInput | string
+  dealId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  assignedUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  type?: Prisma.StringFieldUpdateOperationsInput | string
+  body?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dueAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type ActivityUncheckedUpdateManyWithoutAutomationTemplateInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantId?: Prisma.StringFieldUpdateOperationsInput | string
+  dealId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contactId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   assignedUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1115,6 +1322,7 @@ export type ActivitySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   dealId?: boolean
   contactId?: boolean
   assignedUserId?: boolean
+  automationTemplateId?: boolean
   type?: boolean
   body?: boolean
   status?: boolean
@@ -1126,6 +1334,7 @@ export type ActivitySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   deal?: boolean | Prisma.Activity$dealArgs<ExtArgs>
   contact?: boolean | Prisma.Activity$contactArgs<ExtArgs>
   assignedUser?: boolean | Prisma.Activity$assignedUserArgs<ExtArgs>
+  automationTemplate?: boolean | Prisma.Activity$automationTemplateArgs<ExtArgs>
 }, ExtArgs["result"]["activity"]>
 
 export type ActivitySelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1134,6 +1343,7 @@ export type ActivitySelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   dealId?: boolean
   contactId?: boolean
   assignedUserId?: boolean
+  automationTemplateId?: boolean
   type?: boolean
   body?: boolean
   status?: boolean
@@ -1145,6 +1355,7 @@ export type ActivitySelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   deal?: boolean | Prisma.Activity$dealArgs<ExtArgs>
   contact?: boolean | Prisma.Activity$contactArgs<ExtArgs>
   assignedUser?: boolean | Prisma.Activity$assignedUserArgs<ExtArgs>
+  automationTemplate?: boolean | Prisma.Activity$automationTemplateArgs<ExtArgs>
 }, ExtArgs["result"]["activity"]>
 
 export type ActivitySelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1153,6 +1364,7 @@ export type ActivitySelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   dealId?: boolean
   contactId?: boolean
   assignedUserId?: boolean
+  automationTemplateId?: boolean
   type?: boolean
   body?: boolean
   status?: boolean
@@ -1164,6 +1376,7 @@ export type ActivitySelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   deal?: boolean | Prisma.Activity$dealArgs<ExtArgs>
   contact?: boolean | Prisma.Activity$contactArgs<ExtArgs>
   assignedUser?: boolean | Prisma.Activity$assignedUserArgs<ExtArgs>
+  automationTemplate?: boolean | Prisma.Activity$automationTemplateArgs<ExtArgs>
 }, ExtArgs["result"]["activity"]>
 
 export type ActivitySelectScalar = {
@@ -1172,6 +1385,7 @@ export type ActivitySelectScalar = {
   dealId?: boolean
   contactId?: boolean
   assignedUserId?: boolean
+  automationTemplateId?: boolean
   type?: boolean
   body?: boolean
   status?: boolean
@@ -1181,24 +1395,27 @@ export type ActivitySelectScalar = {
   updatedAt?: boolean
 }
 
-export type ActivityOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "tenantId" | "dealId" | "contactId" | "assignedUserId" | "type" | "body" | "status" | "dueAt" | "completedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["activity"]>
+export type ActivityOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "tenantId" | "dealId" | "contactId" | "assignedUserId" | "automationTemplateId" | "type" | "body" | "status" | "dueAt" | "completedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["activity"]>
 export type ActivityInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
   deal?: boolean | Prisma.Activity$dealArgs<ExtArgs>
   contact?: boolean | Prisma.Activity$contactArgs<ExtArgs>
   assignedUser?: boolean | Prisma.Activity$assignedUserArgs<ExtArgs>
+  automationTemplate?: boolean | Prisma.Activity$automationTemplateArgs<ExtArgs>
 }
 export type ActivityIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
   deal?: boolean | Prisma.Activity$dealArgs<ExtArgs>
   contact?: boolean | Prisma.Activity$contactArgs<ExtArgs>
   assignedUser?: boolean | Prisma.Activity$assignedUserArgs<ExtArgs>
+  automationTemplate?: boolean | Prisma.Activity$automationTemplateArgs<ExtArgs>
 }
 export type ActivityIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
   deal?: boolean | Prisma.Activity$dealArgs<ExtArgs>
   contact?: boolean | Prisma.Activity$contactArgs<ExtArgs>
   assignedUser?: boolean | Prisma.Activity$assignedUserArgs<ExtArgs>
+  automationTemplate?: boolean | Prisma.Activity$automationTemplateArgs<ExtArgs>
 }
 
 export type $ActivityPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1208,6 +1425,7 @@ export type $ActivityPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     deal: Prisma.$DealPayload<ExtArgs> | null
     contact: Prisma.$ContactPayload<ExtArgs> | null
     assignedUser: Prisma.$UserPayload<ExtArgs> | null
+    automationTemplate: Prisma.$AutomationTemplatePayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1215,6 +1433,7 @@ export type $ActivityPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     dealId: string | null
     contactId: string | null
     assignedUserId: string | null
+    automationTemplateId: string | null
     type: string
     body: string
     status: string | null
@@ -1620,6 +1839,7 @@ export interface Prisma__ActivityClient<T, Null = never, ExtArgs extends runtime
   deal<T extends Prisma.Activity$dealArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Activity$dealArgs<ExtArgs>>): Prisma.Prisma__DealClient<runtime.Types.Result.GetResult<Prisma.$DealPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   contact<T extends Prisma.Activity$contactArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Activity$contactArgs<ExtArgs>>): Prisma.Prisma__ContactClient<runtime.Types.Result.GetResult<Prisma.$ContactPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   assignedUser<T extends Prisma.Activity$assignedUserArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Activity$assignedUserArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  automationTemplate<T extends Prisma.Activity$automationTemplateArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Activity$automationTemplateArgs<ExtArgs>>): Prisma.Prisma__AutomationTemplateClient<runtime.Types.Result.GetResult<Prisma.$AutomationTemplatePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1654,6 +1874,7 @@ export interface ActivityFieldRefs {
   readonly dealId: Prisma.FieldRef<"Activity", 'String'>
   readonly contactId: Prisma.FieldRef<"Activity", 'String'>
   readonly assignedUserId: Prisma.FieldRef<"Activity", 'String'>
+  readonly automationTemplateId: Prisma.FieldRef<"Activity", 'String'>
   readonly type: Prisma.FieldRef<"Activity", 'String'>
   readonly body: Prisma.FieldRef<"Activity", 'String'>
   readonly status: Prisma.FieldRef<"Activity", 'String'>
@@ -2111,6 +2332,25 @@ export type Activity$assignedUserArgs<ExtArgs extends runtime.Types.Extensions.I
    */
   include?: Prisma.UserInclude<ExtArgs> | null
   where?: Prisma.UserWhereInput
+}
+
+/**
+ * Activity.automationTemplate
+ */
+export type Activity$automationTemplateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the AutomationTemplate
+   */
+  select?: Prisma.AutomationTemplateSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the AutomationTemplate
+   */
+  omit?: Prisma.AutomationTemplateOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AutomationTemplateInclude<ExtArgs> | null
+  where?: Prisma.AutomationTemplateWhereInput
 }
 
 /**

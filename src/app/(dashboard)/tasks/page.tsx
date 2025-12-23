@@ -6,7 +6,7 @@ import { Plus } from "lucide-react";
 import { TaskDialog } from "./task-dialog";
 
 async function getTasksData(tenantId: string) {
-  const [tasks, users, contacts, deals] = await Promise.all([
+  const [tasks, users, contacts, deals, automationTemplates] = await Promise.all([
     prisma.activity.findMany({
       where: {
         tenantId,
@@ -16,6 +16,7 @@ async function getTasksData(tenantId: string) {
         assignedUser: true,
         contact: true,
         deal: true,
+        automationTemplate: true,
       },
       orderBy: [
         { status: "asc" },
@@ -34,14 +35,19 @@ async function getTasksData(tenantId: string) {
       where: { tenantId },
       select: { id: true, title: true },
     }),
+    prisma.automationTemplate.findMany({
+      where: { tenantId },
+      select: { id: true, name: true, enabled: true },
+      orderBy: { name: "asc" },
+    }),
   ]);
 
-  return { tasks, users, contacts, deals };
+  return { tasks, users, contacts, deals, automationTemplates };
 }
 
 export default async function TasksPage() {
   const { tenantId } = await getTenantContext();
-  const { tasks, users, contacts, deals } = await getTasksData(tenantId);
+  const { tasks, users, contacts, deals, automationTemplates } = await getTasksData(tenantId);
 
   return (
     <div className="space-y-4">
@@ -50,7 +56,12 @@ export default async function TasksPage() {
           <h1 className="text-3xl font-bold">Tasks</h1>
           <p className="text-slate-600">Manage your tasks and to-dos</p>
         </div>
-        <TaskDialog users={users} contacts={contacts} deals={deals}>
+        <TaskDialog
+          users={users}
+          contacts={contacts}
+          deals={deals}
+          automationTemplates={automationTemplates}
+        >
           <Button>
             <Plus className="mr-2 h-4 w-4" />
             New Task
@@ -62,6 +73,7 @@ export default async function TasksPage() {
         users={users}
         contacts={contacts}
         deals={deals}
+        automationTemplates={automationTemplates}
       />
     </div>
   );

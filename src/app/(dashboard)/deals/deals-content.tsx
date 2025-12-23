@@ -26,6 +26,10 @@ interface DealsContentProps {
   contacts: Contact[];
   companies: Company[];
   view: string;
+  dealLabel?: string;
+  dealsLabel?: string;
+  contactLabel?: string;
+  companyLabel?: string;
 }
 
 export function DealsContent({
@@ -34,6 +38,10 @@ export function DealsContent({
   contacts,
   companies,
   view,
+  dealLabel = "Deal",
+  dealsLabel = "Deals",
+  contactLabel = "Contact",
+  companyLabel = "Company",
 }: DealsContentProps) {
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -72,7 +80,7 @@ export function DealsContent({
         <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
         <Input
           type="text"
-          placeholder="Search deals by title, contact, company, or value..."
+          placeholder={`Search ${dealsLabel.toLowerCase()} by title, ${contactLabel.toLowerCase()}, ${companyLabel.toLowerCase()}, or value...`}
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           className="pl-10"
@@ -83,7 +91,7 @@ export function DealsContent({
       {filteredDeals.length === 0 && deals.length > 0 && (
         <div className="rounded-lg border border-dashed p-8 text-center">
           <p className="text-slate-600">
-            No deals match your search &quot;{searchQuery}&quot;. Try a different
+            No {dealsLabel.toLowerCase()} match your search &quot;{searchQuery}&quot;. Try a different
             search term.
           </p>
         </div>
@@ -97,15 +105,19 @@ export function DealsContent({
             stages={stages}
             contacts={contacts}
             companies={companies}
+            dealLabel={dealLabel}
+            dealsLabel={dealsLabel}
+            contactLabel={contactLabel}
+            companyLabel={companyLabel}
           />
         ) : (
-          <DealsKanban deals={filteredDeals} stages={stages} />
+          <DealsKanban deals={filteredDeals} stages={stages} dealLabel={dealLabel} dealsLabel={dealsLabel} />
         ))}
 
       {/* No Deals at All */}
       {deals.length === 0 && (
         <div className="rounded-lg border border-dashed p-8 text-center">
-          <p className="text-slate-600">No deals yet. Create your first one!</p>
+          <p className="text-slate-600">No {dealsLabel.toLowerCase()} yet. Create your first one!</p>
         </div>
       )}
     </div>

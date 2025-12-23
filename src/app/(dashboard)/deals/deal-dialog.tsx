@@ -22,12 +22,18 @@ export function DealDialog({
   stages,
   contacts,
   companies,
+  dealLabel,
+  contactLabel = "Contact",
+  companyLabel = "Company",
   children,
 }: {
   deal?: Deal;
   stages: Stage[];
   contacts: Contact[];
   companies: Company[];
+  dealLabel: string;
+  contactLabel?: string;
+  companyLabel?: string;
   children: React.ReactNode;
 }) {
   const [open, setOpen] = useState(false);
@@ -41,7 +47,7 @@ export function DealDialog({
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent className="max-w-2xl">
         <DialogHeader>
-          <DialogTitle>{deal ? "Edit Deal" : "New Deal"}</DialogTitle>
+          <DialogTitle>{deal ? `Edit ${dealLabel}` : `New ${dealLabel}`}</DialogTitle>
         </DialogHeader>
         <DealForm
           deal={deal}
@@ -49,6 +55,9 @@ export function DealDialog({
           contacts={contacts}
           companies={companies}
           onSuccess={handleSuccess}
+          dealLabel={dealLabel}
+          contactLabel={contactLabel}
+          companyLabel={companyLabel}
         />
       </DialogContent>
     </Dialog>

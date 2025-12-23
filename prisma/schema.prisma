@@ -10,19 +10,29 @@ datasource db {
 }
 
 model Tenant {
-  id                String    @id @default(cuid())
-  name              String
-  slug              String    @unique
-  createdAt         DateTime  @default(now())
-  updatedAt         DateTime  @updatedAt
-  users             User[]
-  contacts          Contact[]
-  companies         Company[]
-  pipelines         Pipeline[]
-  deals             Deal[]
-  activities        Activity[]
-  customFields      CustomField[]
-  customFieldValues CustomFieldValue[]
+  id                      String               @id @default(cuid())
+  name                    String
+  slug                    String               @unique
+  logoUrl                 String?
+  colorScheme             String               @default("professional-blue")
+  customColors            Json?                @db.JsonB
+  dealsLabel              String               @default("Deals")
+  dealsSingularLabel      String               @default("Deal")
+  contactsLabel           String               @default("Contacts")
+  contactsSingularLabel   String               @default("Contact")
+  companiesLabel          String               @default("Companies")
+  companiesSingularLabel  String               @default("Company")
+  createdAt               DateTime             @default(now())
+  updatedAt               DateTime             @updatedAt
+  users               User[]
+  contacts            Contact[]
+  companies           Company[]
+  pipelines           Pipeline[]
+  deals               Deal[]
+  activities          Activity[]
+  customFields        CustomField[]
+  customFieldValues   CustomFieldValue[]
+  automationTemplates AutomationTemplate[]
 }
 
 model User {
@@ -140,28 +150,31 @@ model Deal {
 }
 
 model Activity {
-  id             String    @id @default(cuid())
-  tenantId       String
-  dealId         String?
-  contactId      String?
-  assignedUserId String?
-  type           String    // "note" | "task" | "call"
-  body           String
-  status         String?   // "todo" | "in_progress" | "done" (only for tasks)
-  dueAt          DateTime?
-  completedAt    DateTime?
-  createdAt      DateTime  @default(now())
-  updatedAt      DateTime  @updatedAt
-  tenant         Tenant    @relation(fields: [tenantId], references: [id], onDelete: Cascade)
-  deal           Deal?     @relation(fields: [dealId], references: [id], onDelete: Cascade)
-  contact        Contact?  @relation(fields: [contactId], references: [id], onDelete: Cascade)
-  assignedUser   User?     @relation("AssignedTasks", fields: [assignedUserId], references: [id])
+  id                   String              @id @default(cuid())
+  tenantId             String
+  dealId               String?
+  contactId            String?
+  assignedUserId       String?
+  automationTemplateId String?
+  type                 String              // "note" | "task" | "call"
+  body                 String
+  status               String?             // "todo" | "in_progress" | "done" (only for tasks)
+  dueAt                DateTime?
+  completedAt          DateTime?
+  createdAt            DateTime            @default(now())
+  updatedAt            DateTime            @updatedAt
+  tenant               Tenant              @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  deal                 Deal?               @relation(fields: [dealId], references: [id], onDelete: Cascade)
+  contact              Contact?            @relation(fields: [contactId], references: [id], onDelete: Cascade)
+  assignedUser         User?               @relation("AssignedTasks", fields: [assignedUserId], references: [id])
+  automationTemplate   AutomationTemplate? @relation(fields: [automationTemplateId], references: [id], onDelete: SetNull)
 
   @@index([tenantId])
   @@index([tenantId, dealId])
   @@index([tenantId, contactId])
   @@index([tenantId, type])
   @@index([tenantId, assignedUserId])
+  @@index([automationTemplateId])
   @@index([status])
   @@index([dueAt])
 }
@@ -200,4 +213,20 @@ model CustomFieldValue {
   @@unique([tenantId, objectType, objectId, customFieldId])
   @@index([tenantId, objectType, objectId])
   @@index([customFieldId])
+}
+
+model AutomationTemplate {
+  id              String     @id @default(cuid())
+  tenantId        String
+  name            String
+  messageTemplate String     @db.Text
+  sendTo          String     // "contact" | "custom"
+  customEmail     String?
+  enabled         Boolean    @default(true)
+  createdAt       DateTime   @default(now())
+  updatedAt       DateTime   @updatedAt
+  tenant          Tenant     @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  activities      Activity[]
+
+  @@index([tenantId])
 }

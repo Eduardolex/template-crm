@@ -14,9 +14,11 @@ type Contact = {
 
 export function ContactDialog({
   contact,
+  contactLabel,
   children,
 }: {
   contact?: Contact;
+  contactLabel: string;
   children: React.ReactNode;
 }) {
   const [open, setOpen] = useState(false);
@@ -26,7 +28,7 @@ export function ContactDialog({
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>{contact ? "Edit Contact" : "New Contact"}</DialogTitle>
+          <DialogTitle>{contact ? `Edit ${contactLabel}` : `New ${contactLabel}`}</DialogTitle>
         </DialogHeader>
         <ContactForm contact={contact} onSuccess={() => setOpen(false)} />
       </DialogContent>

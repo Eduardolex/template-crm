@@ -393,7 +393,8 @@ export const ModelName = {
   Deal: 'Deal',
   Activity: 'Activity',
   CustomField: 'CustomField',
-  CustomFieldValue: 'CustomFieldValue'
+  CustomFieldValue: 'CustomFieldValue',
+  AutomationTemplate: 'AutomationTemplate'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -409,7 +410,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "tenant" | "user" | "contact" | "company" | "pipeline" | "stage" | "deal" | "activity" | "customField" | "customFieldValue"
+    modelProps: "tenant" | "user" | "contact" | "company" | "pipeline" | "stage" | "deal" | "activity" | "customField" | "customFieldValue" | "automationTemplate"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1153,6 +1154,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    AutomationTemplate: {
+      payload: Prisma.$AutomationTemplatePayload<ExtArgs>
+      fields: Prisma.AutomationTemplateFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.AutomationTemplateFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AutomationTemplatePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.AutomationTemplateFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AutomationTemplatePayload>
+        }
+        findFirst: {
+          args: Prisma.AutomationTemplateFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AutomationTemplatePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.AutomationTemplateFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AutomationTemplatePayload>
+        }
+        findMany: {
+          args: Prisma.AutomationTemplateFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AutomationTemplatePayload>[]
+        }
+        create: {
+          args: Prisma.AutomationTemplateCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AutomationTemplatePayload>
+        }
+        createMany: {
+          args: Prisma.AutomationTemplateCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.AutomationTemplateCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AutomationTemplatePayload>[]
+        }
+        delete: {
+          args: Prisma.AutomationTemplateDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AutomationTemplatePayload>
+        }
+        update: {
+          args: Prisma.AutomationTemplateUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AutomationTemplatePayload>
+        }
+        deleteMany: {
+          args: Prisma.AutomationTemplateDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.AutomationTemplateUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.AutomationTemplateUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AutomationTemplatePayload>[]
+        }
+        upsert: {
+          args: Prisma.AutomationTemplateUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AutomationTemplatePayload>
+        }
+        aggregate: {
+          args: Prisma.AutomationTemplateAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateAutomationTemplate>
+        }
+        groupBy: {
+          args: Prisma.AutomationTemplateGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AutomationTemplateGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.AutomationTemplateCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AutomationTemplateCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -1196,6 +1271,15 @@ export const TenantScalarFieldEnum = {
   id: 'id',
   name: 'name',
   slug: 'slug',
+  logoUrl: 'logoUrl',
+  colorScheme: 'colorScheme',
+  customColors: 'customColors',
+  dealsLabel: 'dealsLabel',
+  dealsSingularLabel: 'dealsSingularLabel',
+  contactsLabel: 'contactsLabel',
+  contactsSingularLabel: 'contactsSingularLabel',
+  companiesLabel: 'companiesLabel',
+  companiesSingularLabel: 'companiesSingularLabel',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -1297,6 +1381,7 @@ export const ActivityScalarFieldEnum = {
   dealId: 'dealId',
   contactId: 'contactId',
   assignedUserId: 'assignedUserId',
+  automationTemplateId: 'automationTemplateId',
   type: 'type',
   body: 'body',
   status: 'status',
@@ -1338,6 +1423,21 @@ export const CustomFieldValueScalarFieldEnum = {
 } as const
 
 export type CustomFieldValueScalarFieldEnum = (typeof CustomFieldValueScalarFieldEnum)[keyof typeof CustomFieldValueScalarFieldEnum]
+
+
+export const AutomationTemplateScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  name: 'name',
+  messageTemplate: 'messageTemplate',
+  sendTo: 'sendTo',
+  customEmail: 'customEmail',
+  enabled: 'enabled',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type AutomationTemplateScalarFieldEnum = (typeof AutomationTemplateScalarFieldEnum)[keyof typeof AutomationTemplateScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -1409,20 +1509,6 @@ export type ListStringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaMod
 
 
 /**
- * Reference to a field of type 'DateTime'
- */
-export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
-    
-
-
-/**
- * Reference to a field of type 'DateTime[]'
- */
-export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
-    
-
-
-/**
  * Reference to a field of type 'Json'
  */
 export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
@@ -1433,6 +1519,20 @@ export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'J
  * Reference to a field of type 'QueryMode'
  */
 export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
+    
+
+
+/**
+ * Reference to a field of type 'DateTime'
+ */
+export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
+    
+
+
+/**
+ * Reference to a field of type 'DateTime[]'
+ */
+export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
     
 
 
@@ -1575,6 +1675,7 @@ export type GlobalOmitConfig = {
   activity?: Prisma.ActivityOmit
   customField?: Prisma.CustomFieldOmit
   customFieldValue?: Prisma.CustomFieldValueOmit
+  automationTemplate?: Prisma.AutomationTemplateOmit
 }
 
 /* Types for Logging */

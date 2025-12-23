@@ -15,11 +15,11 @@ type Contact = {
   owner: { name: string };
 };
 
-export function ContactsTable({ contacts }: { contacts: Contact[] }) {
+export function ContactsTable({ contacts, contactLabel = "Contact" }: { contacts: Contact[]; contactLabel?: string }) {
   const [deleting, setDeleting] = useState<string | null>(null);
 
   async function handleDelete(id: string) {
-    if (!confirm("Delete this contact?")) return;
+    if (!confirm(`Delete this ${contactLabel.toLowerCase()}?`)) return;
     setDeleting(id);
     await deleteContactAction(id);
     setDeleting(null);
@@ -46,7 +46,7 @@ export function ContactsTable({ contacts }: { contacts: Contact[] }) {
     const link = document.createElement("a");
     const url = URL.createObjectURL(blob);
     link.setAttribute("href", url);
-    link.setAttribute("download", `contacts-${new Date().toISOString().split("T")[0]}.csv`);
+    link.setAttribute("download", `${contactLabel.toLowerCase()}-${new Date().toISOString().split("T")[0]}.csv`);
     link.style.visibility = "hidden";
     document.body.appendChild(link);
     link.click();
@@ -56,7 +56,7 @@ export function ContactsTable({ contacts }: { contacts: Contact[] }) {
   if (contacts.length === 0) {
     return (
       <div className="rounded-lg border border-dashed p-8 text-center">
-        <p className="text-slate-600">No contacts yet. Create your first one!</p>
+        <p className="text-slate-600">No {contactLabel.toLowerCase()}s yet. Create your first one!</p>
       </div>
     );
   }
@@ -91,7 +91,7 @@ export function ContactsTable({ contacts }: { contacts: Contact[] }) {
               <td className="px-4 py-3 text-slate-600">{contact.owner.name}</td>
               <td className="px-4 py-3 text-right">
                 <div className="flex justify-end gap-2">
-                  <ContactDialog contact={contact}>
+                  <ContactDialog contact={contact} contactLabel={contactLabel}>
                     <Button variant="ghost" size="sm">
                       <Pencil className="h-4 w-4" />
                     </Button>

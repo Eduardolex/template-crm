@@ -20,7 +20,7 @@ type Deal = {
   company: { name: string } | null;
 };
 
-export function DealCard({ deal, isDragging }: { deal: Deal; isDragging?: boolean }) {
+export function DealCard({ deal, isDragging, dealLabel = "deal" }: { deal: Deal; isDragging?: boolean; dealLabel?: string }) {
   const [contextMenuOpen, setContextMenuOpen] = useState(false);
   const [menuPosition, setMenuPosition] = useState({ x: 0, y: 0 });
   const {
@@ -46,7 +46,7 @@ export function DealCard({ deal, isDragging }: { deal: Deal; isDragging?: boolea
   };
 
   const handleDelete = async () => {
-    if (confirm(`Delete deal "${deal.title}"?`)) {
+    if (confirm(`Delete ${dealLabel.toLowerCase()} "${deal.title}"?`)) {
       await deleteDealAction(deal.id);
       setContextMenuOpen(false);
     }
@@ -94,7 +94,7 @@ export function DealCard({ deal, isDragging }: { deal: Deal; isDragging?: boolea
         <DropdownMenuContent>
           <DropdownMenuItem onClick={handleDelete} className="text-red-600 cursor-pointer">
             <Trash2 className="mr-2 h-4 w-4" />
-            Delete Deal
+            Delete {dealLabel}
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>

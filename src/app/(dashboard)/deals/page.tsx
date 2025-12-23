@@ -1,4 +1,4 @@
-import { getTenantContext } from "@/lib/db/tenant-context";
+import { getTenantContext, getEntityLabels } from "@/lib/db/tenant-context";
 import { prisma } from "@/lib/prisma";
 import { DealsContent } from "./deals-content";
 import { Button } from "@/components/ui/button";
@@ -40,6 +40,7 @@ export default async function DealsPage(props: {
 }) {
   const searchParams = await props.searchParams;
   const { tenantId } = await getTenantContext();
+  const labels = await getEntityLabels();
   const { deals, stages, contacts, companies } = await getDealsData(tenantId);
   const view = searchParams.view || "kanban";
 
@@ -47,7 +48,7 @@ export default async function DealsPage(props: {
     <div className="space-y-4">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold">Deals</h1>
+          <h1 className="text-3xl font-bold">{labels.deals.plural}</h1>
           <p className="text-slate-600">Manage your sales pipeline</p>
         </div>
         <div className="flex gap-2">
@@ -69,10 +70,17 @@ export default async function DealsPage(props: {
               <LayoutList className="h-4 w-4" />
             </Link>
           </div>
-          <DealDialog stages={stages} contacts={contacts} companies={companies}>
+          <DealDialog
+            stages={stages}
+            contacts={contacts}
+            companies={companies}
+            dealLabel={labels.deals.singular}
+            contactLabel={labels.contacts.singular}
+            companyLabel={labels.companies.singular}
+          >
             <Button>
               <Plus className="mr-2 h-4 w-4" />
-              New Deal
+              New {labels.deals.singular}
             </Button>
           </DealDialog>
         </div>
@@ -84,6 +92,10 @@ export default async function DealsPage(props: {
         contacts={contacts}
         companies={companies}
         view={view}
+        dealLabel={labels.deals.singular}
+        dealsLabel={labels.deals.plural}
+        contactLabel={labels.contacts.singular}
+        companyLabel={labels.companies.singular}
       />
     </div>
   );

@@ -29,12 +29,18 @@ export function DealForm({
   contacts,
   companies,
   onSuccess,
+  dealLabel = "Deal",
+  contactLabel = "Contact",
+  companyLabel = "Company",
 }: {
   deal?: Deal;
   stages: Stage[];
   contacts: Contact[];
   companies: Company[];
   onSuccess: () => void;
+  dealLabel?: string;
+  contactLabel?: string;
+  companyLabel?: string;
 }) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -90,7 +96,7 @@ export function DealForm({
       )}
       <div className="grid grid-cols-2 gap-4">
         <div className="space-y-2">
-          <Label htmlFor="title">Deal Title *</Label>
+          <Label htmlFor="title">{dealLabel} Title *</Label>
           <Input
             id="title"
             name="title"
@@ -130,7 +136,7 @@ export function DealForm({
       </div>
       <div className="grid grid-cols-2 gap-4">
         <div className="space-y-2">
-          <Label>Contact</Label>
+          <Label>{contactLabel}</Label>
           <Select value={contactId || undefined} onValueChange={(value) => setContactId(value)} disabled={loading}>
             <SelectTrigger>
               <SelectValue placeholder="None" />
@@ -145,7 +151,7 @@ export function DealForm({
           </Select>
         </div>
         <div className="space-y-2">
-          <Label>Company</Label>
+          <Label>{companyLabel}</Label>
           <Select value={companyId || undefined} onValueChange={(value) => setCompanyId(value)} disabled={loading}>
             <SelectTrigger>
               <SelectValue placeholder="None" />

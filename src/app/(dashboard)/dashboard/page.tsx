@@ -1,4 +1,4 @@
-import { getTenantContext } from "@/lib/db/tenant-context";
+import { getTenantContext, getEntityLabels } from "@/lib/db/tenant-context";
 import { prisma } from "@/lib/prisma";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Users, Building2, Briefcase, TrendingUp } from "lucide-react";
@@ -41,32 +41,33 @@ async function getDashboardData(tenantId: string) {
 
 export default async function DashboardPage() {
   const { tenantId } = await getTenantContext();
+  const labels = await getEntityLabels();
   const data = await getDashboardData(tenantId);
 
   const stats = [
     {
-      name: "Total Contacts",
+      name: `Total ${labels.contacts.plural}`,
       value: data.contactCount.toLocaleString(),
       icon: Users,
       color: "text-blue-600",
       bg: "bg-blue-50",
     },
     {
-      name: "Total Companies",
+      name: `Total ${labels.companies.plural}`,
       value: data.companyCount.toLocaleString(),
       icon: Building2,
       color: "text-purple-600",
       bg: "bg-purple-50",
     },
     {
-      name: "Active Deals",
+      name: `Active ${labels.deals.plural}`,
       value: data.dealCount.toLocaleString(),
       icon: Briefcase,
       color: "text-green-600",
       bg: "bg-green-50",
     },
     {
-      name: "Total Deal Value",
+      name: `Total ${labels.deals.singular} Value`,
       value: `$${data.totalValue.toLocaleString()}`,
       icon: TrendingUp,
       color: "text-orange-600",
@@ -106,7 +107,7 @@ export default async function DashboardPage() {
           </CardHeader>
           <CardContent className="space-y-2">
             <p className="text-sm text-slate-600">
-              Get started by adding your first contact or creating a new deal.
+              Get started by adding your first {labels.contacts.singular.toLowerCase()} or creating a new {labels.deals.singular.toLowerCase()}.
             </p>
           </CardContent>
         </Card>
@@ -122,11 +123,11 @@ export default async function DashboardPage() {
 
         <Card>
           <CardHeader>
-            <CardTitle>Deal Pipeline</CardTitle>
+            <CardTitle>{labels.deals.singular} Pipeline</CardTitle>
           </CardHeader>
           <CardContent>
             <p className="text-sm text-slate-600">
-              {data.dealCount} active deals worth ${data.totalValue.toLocaleString()}
+              {data.dealCount} active {labels.deals.plural.toLowerCase()} worth ${data.totalValue.toLocaleString()}
             </p>
           </CardContent>
         </Card>

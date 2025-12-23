@@ -14,11 +14,11 @@ type Company = {
   owner: { name: string };
 };
 
-export function CompaniesTable({ companies }: { companies: Company[] }) {
+export function CompaniesTable({ companies, companyLabel = "Company" }: { companies: Company[]; companyLabel?: string }) {
   const [deleting, setDeleting] = useState<string | null>(null);
 
   async function handleDelete(id: string) {
-    if (!confirm("Delete this company?")) return;
+    if (!confirm(`Delete this ${companyLabel.toLowerCase()}?`)) return;
     setDeleting(id);
     await deleteCompanyAction(id);
     setDeleting(null);
@@ -44,7 +44,7 @@ export function CompaniesTable({ companies }: { companies: Company[] }) {
     const link = document.createElement("a");
     const url = URL.createObjectURL(blob);
     link.setAttribute("href", url);
-    link.setAttribute("download", `companies-${new Date().toISOString().split("T")[0]}.csv`);
+    link.setAttribute("download", `${companyLabel.toLowerCase()}-${new Date().toISOString().split("T")[0]}.csv`);
     link.style.visibility = "hidden";
     document.body.appendChild(link);
     link.click();
@@ -54,7 +54,7 @@ export function CompaniesTable({ companies }: { companies: Company[] }) {
   if (companies.length === 0) {
     return (
       <div className="rounded-lg border border-dashed p-8 text-center">
-        <p className="text-slate-600">No companies yet. Create your first one!</p>
+        <p className="text-slate-600">No {companyLabel.toLowerCase()}s yet. Create your first one!</p>
       </div>
     );
   }
@@ -87,7 +87,7 @@ export function CompaniesTable({ companies }: { companies: Company[] }) {
               <td className="px-4 py-3 text-slate-600">{company.owner.name}</td>
               <td className="px-4 py-3 text-right">
                 <div className="flex justify-end gap-2">
-                  <CompanyDialog company={company}>
+                  <CompanyDialog company={company} companyLabel={companyLabel}>
                     <Button variant="ghost" size="sm">
                       <Pencil className="h-4 w-4" />
                     </Button>

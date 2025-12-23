@@ -26,23 +26,27 @@ type Task = {
   assignedUser: { id: string } | null;
   contact: { id: string } | null;
   deal: { id: string } | null;
+  automationTemplate: { id: string } | null;
 };
 
 type User = { id: string; name: string };
 type Contact = { id: string; firstName: string; lastName: string };
 type Deal = { id: string; title: string };
+type AutomationTemplate = { id: string; name: string; enabled: boolean };
 
 export function TaskForm({
   task,
   users,
   contacts,
   deals,
+  automationTemplates,
   onSuccess,
 }: {
   task?: Task;
   users: User[];
   contacts: Contact[];
   deals: Deal[];
+  automationTemplates: AutomationTemplate[];
   onSuccess: () => void;
 }) {
   const [loading, setLoading] = useState(false);
@@ -53,6 +57,9 @@ export function TaskForm({
   );
   const [contactId, setContactId] = useState(task?.contact?.id || "");
   const [dealId, setDealId] = useState(task?.deal?.id || "");
+  const [automationTemplateId, setAutomationTemplateId] = useState(
+    task?.automationTemplate?.id || ""
+  );
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -67,6 +74,7 @@ export function TaskForm({
       assignedUserId: assignedUserId || undefined,
       contactId: contactId || undefined,
       dealId: dealId || undefined,
+      automationTemplateId: automationTemplateId || undefined,
     };
 
     try {
@@ -228,6 +236,51 @@ export function TaskForm({
             </Select>
           </div>
         </div>
+      </div>
+
+      {/* Automation Template Section */}
+      <div className="space-y-2 border-t pt-4">
+        <div className="flex items-center justify-between">
+          <Label className="text-sm font-medium">
+            Automation (Optional)
+          </Label>
+          {automationTemplateId && (
+            <button
+              type="button"
+              onClick={() => setAutomationTemplateId("")}
+              className="text-xs text-slate-500 hover:text-slate-700"
+              disabled={loading}
+            >
+              Clear
+            </button>
+          )}
+        </div>
+        <p className="text-xs text-slate-500">
+          When this task is marked as done, automatically send a follow-up message
+        </p>
+        <Select
+          value={automationTemplateId || undefined}
+          onValueChange={setAutomationTemplateId}
+          disabled={loading}
+        >
+          <SelectTrigger>
+            <SelectValue placeholder="No automation" />
+          </SelectTrigger>
+          <SelectContent>
+            {automationTemplates
+              .filter((template) => template.enabled)
+              .map((template) => (
+                <SelectItem key={template.id} value={template.id}>
+                  {template.name}
+                </SelectItem>
+              ))}
+          </SelectContent>
+        </Select>
+        {automationTemplates.filter((t) => t.enabled).length === 0 && (
+          <p className="text-xs text-amber-600">
+            No automation templates available. Create one in Settings → Automation Templates.
+          </p>
+        )}
       </div>
 
       <div className="flex justify-end gap-2">

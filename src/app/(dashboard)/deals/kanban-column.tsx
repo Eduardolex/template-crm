@@ -12,7 +12,7 @@ type Deal = {
 
 type Stage = { id: string; name: string };
 
-export function KanbanColumn({ stage, deals }: { stage: Stage; deals: Deal[] }) {
+export function KanbanColumn({ stage, deals, dealLabel = "deal", dealsLabel = "deals" }: { stage: Stage; deals: Deal[]; dealLabel?: string; dealsLabel?: string }) {
   const { setNodeRef, isOver } = useDroppable({
     id: stage.id,
   });
@@ -25,7 +25,7 @@ export function KanbanColumn({ stage, deals }: { stage: Stage; deals: Deal[] }) 
         <div className="border-b bg-slate-50 px-4 py-3">
           <h3 className="font-medium">{stage.name}</h3>
           <p className="text-sm text-slate-600">
-            {deals.length} deals · ${(totalValue / 100).toLocaleString()}
+            {deals.length} {dealsLabel.toLowerCase()} · ${(totalValue / 100).toLocaleString()}
           </p>
         </div>
         <div
@@ -36,11 +36,11 @@ export function KanbanColumn({ stage, deals }: { stage: Stage; deals: Deal[] }) 
         >
           <SortableContext items={deals.map((d) => d.id)} strategy={verticalListSortingStrategy}>
             {deals.map((deal) => (
-              <DealCard key={deal.id} deal={deal} />
+              <DealCard key={deal.id} deal={deal} dealLabel={dealLabel} />
             ))}
           </SortableContext>
           {deals.length === 0 && (
-            <p className="py-8 text-center text-sm text-slate-400">No deals</p>
+            <p className="py-8 text-center text-sm text-slate-400">No {dealsLabel.toLowerCase()}</p>
           )}
         </div>
       </div>

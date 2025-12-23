@@ -60,7 +60,8 @@ export const ModelName = {
   Deal: 'Deal',
   Activity: 'Activity',
   CustomField: 'CustomField',
-  CustomFieldValue: 'CustomFieldValue'
+  CustomFieldValue: 'CustomFieldValue',
+  AutomationTemplate: 'AutomationTemplate'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -83,6 +84,15 @@ export const TenantScalarFieldEnum = {
   id: 'id',
   name: 'name',
   slug: 'slug',
+  logoUrl: 'logoUrl',
+  colorScheme: 'colorScheme',
+  customColors: 'customColors',
+  dealsLabel: 'dealsLabel',
+  dealsSingularLabel: 'dealsSingularLabel',
+  contactsLabel: 'contactsLabel',
+  contactsSingularLabel: 'contactsSingularLabel',
+  companiesLabel: 'companiesLabel',
+  companiesSingularLabel: 'companiesSingularLabel',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -184,6 +194,7 @@ export const ActivityScalarFieldEnum = {
   dealId: 'dealId',
   contactId: 'contactId',
   assignedUserId: 'assignedUserId',
+  automationTemplateId: 'automationTemplateId',
   type: 'type',
   body: 'body',
   status: 'status',
@@ -225,6 +236,21 @@ export const CustomFieldValueScalarFieldEnum = {
 } as const
 
 export type CustomFieldValueScalarFieldEnum = (typeof CustomFieldValueScalarFieldEnum)[keyof typeof CustomFieldValueScalarFieldEnum]
+
+
+export const AutomationTemplateScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  name: 'name',
+  messageTemplate: 'messageTemplate',
+  sendTo: 'sendTo',
+  customEmail: 'customEmail',
+  enabled: 'enabled',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type AutomationTemplateScalarFieldEnum = (typeof AutomationTemplateScalarFieldEnum)[keyof typeof AutomationTemplateScalarFieldEnum]
 
 
 export const SortOrder = {

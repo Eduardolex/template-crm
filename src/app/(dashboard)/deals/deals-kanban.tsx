@@ -25,7 +25,7 @@ type Deal = {
 
 type Stage = { id: string; name: string; position: number };
 
-export function DealsKanban({ deals, stages }: { deals: Deal[]; stages: Stage[] }) {
+export function DealsKanban({ deals, stages, dealLabel = "deal", dealsLabel = "deals" }: { deals: Deal[]; stages: Stage[]; dealLabel?: string; dealsLabel?: string }) {
   const [activeId, setActiveId] = useState<string | null>(null);
   const [optimisticDeals, setOptimisticDeals] = useState(deals);
 
@@ -84,12 +84,12 @@ export function DealsKanban({ deals, stages }: { deals: Deal[]; stages: Stage[] 
     >
       <div className="flex gap-4 overflow-x-auto pb-4">
         {dealsByStage.map(({ stage, deals }) => (
-          <KanbanColumn key={stage.id} stage={stage} deals={deals} />
+          <KanbanColumn key={stage.id} stage={stage} deals={deals} dealLabel={dealLabel} dealsLabel={dealsLabel} />
         ))}
       </div>
 
       <DragOverlay>
-        {activeDeal ? <DealCard deal={activeDeal} isDragging /> : null}
+        {activeDeal ? <DealCard deal={activeDeal} isDragging dealLabel={dealLabel} /> : null}
       </DragOverlay>
     </DndContext>
   );

@@ -28,6 +28,14 @@ export type TenantMinAggregateOutputType = {
   id: string | null
   name: string | null
   slug: string | null
+  logoUrl: string | null
+  colorScheme: string | null
+  dealsLabel: string | null
+  dealsSingularLabel: string | null
+  contactsLabel: string | null
+  contactsSingularLabel: string | null
+  companiesLabel: string | null
+  companiesSingularLabel: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -36,6 +44,14 @@ export type TenantMaxAggregateOutputType = {
   id: string | null
   name: string | null
   slug: string | null
+  logoUrl: string | null
+  colorScheme: string | null
+  dealsLabel: string | null
+  dealsSingularLabel: string | null
+  contactsLabel: string | null
+  contactsSingularLabel: string | null
+  companiesLabel: string | null
+  companiesSingularLabel: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -44,6 +60,15 @@ export type TenantCountAggregateOutputType = {
   id: number
   name: number
   slug: number
+  logoUrl: number
+  colorScheme: number
+  customColors: number
+  dealsLabel: number
+  dealsSingularLabel: number
+  contactsLabel: number
+  contactsSingularLabel: number
+  companiesLabel: number
+  companiesSingularLabel: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -54,6 +79,14 @@ export type TenantMinAggregateInputType = {
   id?: true
   name?: true
   slug?: true
+  logoUrl?: true
+  colorScheme?: true
+  dealsLabel?: true
+  dealsSingularLabel?: true
+  contactsLabel?: true
+  contactsSingularLabel?: true
+  companiesLabel?: true
+  companiesSingularLabel?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -62,6 +95,14 @@ export type TenantMaxAggregateInputType = {
   id?: true
   name?: true
   slug?: true
+  logoUrl?: true
+  colorScheme?: true
+  dealsLabel?: true
+  dealsSingularLabel?: true
+  contactsLabel?: true
+  contactsSingularLabel?: true
+  companiesLabel?: true
+  companiesSingularLabel?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -70,6 +111,15 @@ export type TenantCountAggregateInputType = {
   id?: true
   name?: true
   slug?: true
+  logoUrl?: true
+  colorScheme?: true
+  customColors?: true
+  dealsLabel?: true
+  dealsSingularLabel?: true
+  contactsLabel?: true
+  contactsSingularLabel?: true
+  companiesLabel?: true
+  companiesSingularLabel?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -151,6 +201,15 @@ export type TenantGroupByOutputType = {
   id: string
   name: string
   slug: string
+  logoUrl: string | null
+  colorScheme: string
+  customColors: runtime.JsonValue | null
+  dealsLabel: string
+  dealsSingularLabel: string
+  contactsLabel: string
+  contactsSingularLabel: string
+  companiesLabel: string
+  companiesSingularLabel: string
   createdAt: Date
   updatedAt: Date
   _count: TenantCountAggregateOutputType | null
@@ -180,6 +239,15 @@ export type TenantWhereInput = {
   id?: Prisma.StringFilter<"Tenant"> | string
   name?: Prisma.StringFilter<"Tenant"> | string
   slug?: Prisma.StringFilter<"Tenant"> | string
+  logoUrl?: Prisma.StringNullableFilter<"Tenant"> | string | null
+  colorScheme?: Prisma.StringFilter<"Tenant"> | string
+  customColors?: Prisma.JsonNullableFilter<"Tenant">
+  dealsLabel?: Prisma.StringFilter<"Tenant"> | string
+  dealsSingularLabel?: Prisma.StringFilter<"Tenant"> | string
+  contactsLabel?: Prisma.StringFilter<"Tenant"> | string
+  contactsSingularLabel?: Prisma.StringFilter<"Tenant"> | string
+  companiesLabel?: Prisma.StringFilter<"Tenant"> | string
+  companiesSingularLabel?: Prisma.StringFilter<"Tenant"> | string
   createdAt?: Prisma.DateTimeFilter<"Tenant"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Tenant"> | Date | string
   users?: Prisma.UserListRelationFilter
@@ -190,12 +258,22 @@ export type TenantWhereInput = {
   activities?: Prisma.ActivityListRelationFilter
   customFields?: Prisma.CustomFieldListRelationFilter
   customFieldValues?: Prisma.CustomFieldValueListRelationFilter
+  automationTemplates?: Prisma.AutomationTemplateListRelationFilter
 }
 
 export type TenantOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   slug?: Prisma.SortOrder
+  logoUrl?: Prisma.SortOrderInput | Prisma.SortOrder
+  colorScheme?: Prisma.SortOrder
+  customColors?: Prisma.SortOrderInput | Prisma.SortOrder
+  dealsLabel?: Prisma.SortOrder
+  dealsSingularLabel?: Prisma.SortOrder
+  contactsLabel?: Prisma.SortOrder
+  contactsSingularLabel?: Prisma.SortOrder
+  companiesLabel?: Prisma.SortOrder
+  companiesSingularLabel?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   users?: Prisma.UserOrderByRelationAggregateInput
@@ -206,6 +284,7 @@ export type TenantOrderByWithRelationInput = {
   activities?: Prisma.ActivityOrderByRelationAggregateInput
   customFields?: Prisma.CustomFieldOrderByRelationAggregateInput
   customFieldValues?: Prisma.CustomFieldValueOrderByRelationAggregateInput
+  automationTemplates?: Prisma.AutomationTemplateOrderByRelationAggregateInput
 }
 
 export type TenantWhereUniqueInput = Prisma.AtLeast<{
@@ -215,6 +294,15 @@ export type TenantWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.TenantWhereInput[]
   NOT?: Prisma.TenantWhereInput | Prisma.TenantWhereInput[]
   name?: Prisma.StringFilter<"Tenant"> | string
+  logoUrl?: Prisma.StringNullableFilter<"Tenant"> | string | null
+  colorScheme?: Prisma.StringFilter<"Tenant"> | string
+  customColors?: Prisma.JsonNullableFilter<"Tenant">
+  dealsLabel?: Prisma.StringFilter<"Tenant"> | string
+  dealsSingularLabel?: Prisma.StringFilter<"Tenant"> | string
+  contactsLabel?: Prisma.StringFilter<"Tenant"> | string
+  contactsSingularLabel?: Prisma.StringFilter<"Tenant"> | string
+  companiesLabel?: Prisma.StringFilter<"Tenant"> | string
+  companiesSingularLabel?: Prisma.StringFilter<"Tenant"> | string
   createdAt?: Prisma.DateTimeFilter<"Tenant"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Tenant"> | Date | string
   users?: Prisma.UserListRelationFilter
@@ -225,12 +313,22 @@ export type TenantWhereUniqueInput = Prisma.AtLeast<{
   activities?: Prisma.ActivityListRelationFilter
   customFields?: Prisma.CustomFieldListRelationFilter
   customFieldValues?: Prisma.CustomFieldValueListRelationFilter
+  automationTemplates?: Prisma.AutomationTemplateListRelationFilter
 }, "id" | "slug">
 
 export type TenantOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   slug?: Prisma.SortOrder
+  logoUrl?: Prisma.SortOrderInput | Prisma.SortOrder
+  colorScheme?: Prisma.SortOrder
+  customColors?: Prisma.SortOrderInput | Prisma.SortOrder
+  dealsLabel?: Prisma.SortOrder
+  dealsSingularLabel?: Prisma.SortOrder
+  contactsLabel?: Prisma.SortOrder
+  contactsSingularLabel?: Prisma.SortOrder
+  companiesLabel?: Prisma.SortOrder
+  companiesSingularLabel?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.TenantCountOrderByAggregateInput
@@ -245,6 +343,15 @@ export type TenantScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"Tenant"> | string
   name?: Prisma.StringWithAggregatesFilter<"Tenant"> | string
   slug?: Prisma.StringWithAggregatesFilter<"Tenant"> | string
+  logoUrl?: Prisma.StringNullableWithAggregatesFilter<"Tenant"> | string | null
+  colorScheme?: Prisma.StringWithAggregatesFilter<"Tenant"> | string
+  customColors?: Prisma.JsonNullableWithAggregatesFilter<"Tenant">
+  dealsLabel?: Prisma.StringWithAggregatesFilter<"Tenant"> | string
+  dealsSingularLabel?: Prisma.StringWithAggregatesFilter<"Tenant"> | string
+  contactsLabel?: Prisma.StringWithAggregatesFilter<"Tenant"> | string
+  contactsSingularLabel?: Prisma.StringWithAggregatesFilter<"Tenant"> | string
+  companiesLabel?: Prisma.StringWithAggregatesFilter<"Tenant"> | string
+  companiesSingularLabel?: Prisma.StringWithAggregatesFilter<"Tenant"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Tenant"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Tenant"> | Date | string
 }
@@ -253,6 +360,15 @@ export type TenantCreateInput = {
   id?: string
   name: string
   slug: string
+  logoUrl?: string | null
+  colorScheme?: string
+  customColors?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  dealsLabel?: string
+  dealsSingularLabel?: string
+  contactsLabel?: string
+  contactsSingularLabel?: string
+  companiesLabel?: string
+  companiesSingularLabel?: string
   createdAt?: Date | string
   updatedAt?: Date | string
   users?: Prisma.UserCreateNestedManyWithoutTenantInput
@@ -263,12 +379,22 @@ export type TenantCreateInput = {
   activities?: Prisma.ActivityCreateNestedManyWithoutTenantInput
   customFields?: Prisma.CustomFieldCreateNestedManyWithoutTenantInput
   customFieldValues?: Prisma.CustomFieldValueCreateNestedManyWithoutTenantInput
+  automationTemplates?: Prisma.AutomationTemplateCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateInput = {
   id?: string
   name: string
   slug: string
+  logoUrl?: string | null
+  colorScheme?: string
+  customColors?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  dealsLabel?: string
+  dealsSingularLabel?: string
+  contactsLabel?: string
+  contactsSingularLabel?: string
+  companiesLabel?: string
+  companiesSingularLabel?: string
   createdAt?: Date | string
   updatedAt?: Date | string
   users?: Prisma.UserUncheckedCreateNestedManyWithoutTenantInput
@@ -279,12 +405,22 @@ export type TenantUncheckedCreateInput = {
   activities?: Prisma.ActivityUncheckedCreateNestedManyWithoutTenantInput
   customFields?: Prisma.CustomFieldUncheckedCreateNestedManyWithoutTenantInput
   customFieldValues?: Prisma.CustomFieldValueUncheckedCreateNestedManyWithoutTenantInput
+  automationTemplates?: Prisma.AutomationTemplateUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  colorScheme?: Prisma.StringFieldUpdateOperationsInput | string
+  customColors?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  dealsLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  dealsSingularLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  contactsLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  contactsSingularLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  companiesLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  companiesSingularLabel?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   users?: Prisma.UserUpdateManyWithoutTenantNestedInput
@@ -295,12 +431,22 @@ export type TenantUpdateInput = {
   activities?: Prisma.ActivityUpdateManyWithoutTenantNestedInput
   customFields?: Prisma.CustomFieldUpdateManyWithoutTenantNestedInput
   customFieldValues?: Prisma.CustomFieldValueUpdateManyWithoutTenantNestedInput
+  automationTemplates?: Prisma.AutomationTemplateUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  colorScheme?: Prisma.StringFieldUpdateOperationsInput | string
+  customColors?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  dealsLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  dealsSingularLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  contactsLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  contactsSingularLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  companiesLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  companiesSingularLabel?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   users?: Prisma.UserUncheckedUpdateManyWithoutTenantNestedInput
@@ -311,12 +457,22 @@ export type TenantUncheckedUpdateInput = {
   activities?: Prisma.ActivityUncheckedUpdateManyWithoutTenantNestedInput
   customFields?: Prisma.CustomFieldUncheckedUpdateManyWithoutTenantNestedInput
   customFieldValues?: Prisma.CustomFieldValueUncheckedUpdateManyWithoutTenantNestedInput
+  automationTemplates?: Prisma.AutomationTemplateUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateManyInput = {
   id?: string
   name: string
   slug: string
+  logoUrl?: string | null
+  colorScheme?: string
+  customColors?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  dealsLabel?: string
+  dealsSingularLabel?: string
+  contactsLabel?: string
+  contactsSingularLabel?: string
+  companiesLabel?: string
+  companiesSingularLabel?: string
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -325,6 +481,15 @@ export type TenantUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  colorScheme?: Prisma.StringFieldUpdateOperationsInput | string
+  customColors?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  dealsLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  dealsSingularLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  contactsLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  contactsSingularLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  companiesLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  companiesSingularLabel?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -333,6 +498,15 @@ export type TenantUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  colorScheme?: Prisma.StringFieldUpdateOperationsInput | string
+  customColors?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  dealsLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  dealsSingularLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  contactsLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  contactsSingularLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  companiesLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  companiesSingularLabel?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -341,6 +515,15 @@ export type TenantCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   slug?: Prisma.SortOrder
+  logoUrl?: Prisma.SortOrder
+  colorScheme?: Prisma.SortOrder
+  customColors?: Prisma.SortOrder
+  dealsLabel?: Prisma.SortOrder
+  dealsSingularLabel?: Prisma.SortOrder
+  contactsLabel?: Prisma.SortOrder
+  contactsSingularLabel?: Prisma.SortOrder
+  companiesLabel?: Prisma.SortOrder
+  companiesSingularLabel?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -349,6 +532,14 @@ export type TenantMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   slug?: Prisma.SortOrder
+  logoUrl?: Prisma.SortOrder
+  colorScheme?: Prisma.SortOrder
+  dealsLabel?: Prisma.SortOrder
+  dealsSingularLabel?: Prisma.SortOrder
+  contactsLabel?: Prisma.SortOrder
+  contactsSingularLabel?: Prisma.SortOrder
+  companiesLabel?: Prisma.SortOrder
+  companiesSingularLabel?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -357,6 +548,14 @@ export type TenantMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   slug?: Prisma.SortOrder
+  logoUrl?: Prisma.SortOrder
+  colorScheme?: Prisma.SortOrder
+  dealsLabel?: Prisma.SortOrder
+  dealsSingularLabel?: Prisma.SortOrder
+  contactsLabel?: Prisma.SortOrder
+  contactsSingularLabel?: Prisma.SortOrder
+  companiesLabel?: Prisma.SortOrder
+  companiesSingularLabel?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -368,6 +567,10 @@ export type TenantScalarRelationFilter = {
 
 export type StringFieldUpdateOperationsInput = {
   set?: string
+}
+
+export type NullableStringFieldUpdateOperationsInput = {
+  set?: string | null
 }
 
 export type DateTimeFieldUpdateOperationsInput = {
@@ -486,10 +689,33 @@ export type TenantUpdateOneRequiredWithoutCustomFieldValuesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.TenantUpdateToOneWithWhereWithoutCustomFieldValuesInput, Prisma.TenantUpdateWithoutCustomFieldValuesInput>, Prisma.TenantUncheckedUpdateWithoutCustomFieldValuesInput>
 }
 
+export type TenantCreateNestedOneWithoutAutomationTemplatesInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutAutomationTemplatesInput, Prisma.TenantUncheckedCreateWithoutAutomationTemplatesInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutAutomationTemplatesInput
+  connect?: Prisma.TenantWhereUniqueInput
+}
+
+export type TenantUpdateOneRequiredWithoutAutomationTemplatesNestedInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutAutomationTemplatesInput, Prisma.TenantUncheckedCreateWithoutAutomationTemplatesInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutAutomationTemplatesInput
+  upsert?: Prisma.TenantUpsertWithoutAutomationTemplatesInput
+  connect?: Prisma.TenantWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TenantUpdateToOneWithWhereWithoutAutomationTemplatesInput, Prisma.TenantUpdateWithoutAutomationTemplatesInput>, Prisma.TenantUncheckedUpdateWithoutAutomationTemplatesInput>
+}
+
 export type TenantCreateWithoutUsersInput = {
   id?: string
   name: string
   slug: string
+  logoUrl?: string | null
+  colorScheme?: string
+  customColors?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  dealsLabel?: string
+  dealsSingularLabel?: string
+  contactsLabel?: string
+  contactsSingularLabel?: string
+  companiesLabel?: string
+  companiesSingularLabel?: string
   createdAt?: Date | string
   updatedAt?: Date | string
   contacts?: Prisma.ContactCreateNestedManyWithoutTenantInput
@@ -499,12 +725,22 @@ export type TenantCreateWithoutUsersInput = {
   activities?: Prisma.ActivityCreateNestedManyWithoutTenantInput
   customFields?: Prisma.CustomFieldCreateNestedManyWithoutTenantInput
   customFieldValues?: Prisma.CustomFieldValueCreateNestedManyWithoutTenantInput
+  automationTemplates?: Prisma.AutomationTemplateCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutUsersInput = {
   id?: string
   name: string
   slug: string
+  logoUrl?: string | null
+  colorScheme?: string
+  customColors?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  dealsLabel?: string
+  dealsSingularLabel?: string
+  contactsLabel?: string
+  contactsSingularLabel?: string
+  companiesLabel?: string
+  companiesSingularLabel?: string
   createdAt?: Date | string
   updatedAt?: Date | string
   contacts?: Prisma.ContactUncheckedCreateNestedManyWithoutTenantInput
@@ -514,6 +750,7 @@ export type TenantUncheckedCreateWithoutUsersInput = {
   activities?: Prisma.ActivityUncheckedCreateNestedManyWithoutTenantInput
   customFields?: Prisma.CustomFieldUncheckedCreateNestedManyWithoutTenantInput
   customFieldValues?: Prisma.CustomFieldValueUncheckedCreateNestedManyWithoutTenantInput
+  automationTemplates?: Prisma.AutomationTemplateUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutUsersInput = {
@@ -536,6 +773,15 @@ export type TenantUpdateWithoutUsersInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  colorScheme?: Prisma.StringFieldUpdateOperationsInput | string
+  customColors?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  dealsLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  dealsSingularLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  contactsLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  contactsSingularLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  companiesLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  companiesSingularLabel?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   contacts?: Prisma.ContactUpdateManyWithoutTenantNestedInput
@@ -545,12 +791,22 @@ export type TenantUpdateWithoutUsersInput = {
   activities?: Prisma.ActivityUpdateManyWithoutTenantNestedInput
   customFields?: Prisma.CustomFieldUpdateManyWithoutTenantNestedInput
   customFieldValues?: Prisma.CustomFieldValueUpdateManyWithoutTenantNestedInput
+  automationTemplates?: Prisma.AutomationTemplateUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutUsersInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  colorScheme?: Prisma.StringFieldUpdateOperationsInput | string
+  customColors?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  dealsLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  dealsSingularLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  contactsLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  contactsSingularLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  companiesLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  companiesSingularLabel?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   contacts?: Prisma.ContactUncheckedUpdateManyWithoutTenantNestedInput
@@ -560,12 +816,22 @@ export type TenantUncheckedUpdateWithoutUsersInput = {
   activities?: Prisma.ActivityUncheckedUpdateManyWithoutTenantNestedInput
   customFields?: Prisma.CustomFieldUncheckedUpdateManyWithoutTenantNestedInput
   customFieldValues?: Prisma.CustomFieldValueUncheckedUpdateManyWithoutTenantNestedInput
+  automationTemplates?: Prisma.AutomationTemplateUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutContactsInput = {
   id?: string
   name: string
   slug: string
+  logoUrl?: string | null
+  colorScheme?: string
+  customColors?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  dealsLabel?: string
+  dealsSingularLabel?: string
+  contactsLabel?: string
+  contactsSingularLabel?: string
+  companiesLabel?: string
+  companiesSingularLabel?: string
   createdAt?: Date | string
   updatedAt?: Date | string
   users?: Prisma.UserCreateNestedManyWithoutTenantInput
@@ -575,12 +841,22 @@ export type TenantCreateWithoutContactsInput = {
   activities?: Prisma.ActivityCreateNestedManyWithoutTenantInput
   customFields?: Prisma.CustomFieldCreateNestedManyWithoutTenantInput
   customFieldValues?: Prisma.CustomFieldValueCreateNestedManyWithoutTenantInput
+  automationTemplates?: Prisma.AutomationTemplateCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutContactsInput = {
   id?: string
   name: string
   slug: string
+  logoUrl?: string | null
+  colorScheme?: string
+  customColors?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  dealsLabel?: string
+  dealsSingularLabel?: string
+  contactsLabel?: string
+  contactsSingularLabel?: string
+  companiesLabel?: string
+  companiesSingularLabel?: string
   createdAt?: Date | string
   updatedAt?: Date | string
   users?: Prisma.UserUncheckedCreateNestedManyWithoutTenantInput
@@ -590,6 +866,7 @@ export type TenantUncheckedCreateWithoutContactsInput = {
   activities?: Prisma.ActivityUncheckedCreateNestedManyWithoutTenantInput
   customFields?: Prisma.CustomFieldUncheckedCreateNestedManyWithoutTenantInput
   customFieldValues?: Prisma.CustomFieldValueUncheckedCreateNestedManyWithoutTenantInput
+  automationTemplates?: Prisma.AutomationTemplateUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutContactsInput = {
@@ -612,6 +889,15 @@ export type TenantUpdateWithoutContactsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  colorScheme?: Prisma.StringFieldUpdateOperationsInput | string
+  customColors?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  dealsLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  dealsSingularLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  contactsLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  contactsSingularLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  companiesLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  companiesSingularLabel?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   users?: Prisma.UserUpdateManyWithoutTenantNestedInput
@@ -621,12 +907,22 @@ export type TenantUpdateWithoutContactsInput = {
   activities?: Prisma.ActivityUpdateManyWithoutTenantNestedInput
   customFields?: Prisma.CustomFieldUpdateManyWithoutTenantNestedInput
   customFieldValues?: Prisma.CustomFieldValueUpdateManyWithoutTenantNestedInput
+  automationTemplates?: Prisma.AutomationTemplateUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutContactsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  colorScheme?: Prisma.StringFieldUpdateOperationsInput | string
+  customColors?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  dealsLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  dealsSingularLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  contactsLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  contactsSingularLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  companiesLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  companiesSingularLabel?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   users?: Prisma.UserUncheckedUpdateManyWithoutTenantNestedInput
@@ -636,12 +932,22 @@ export type TenantUncheckedUpdateWithoutContactsInput = {
   activities?: Prisma.ActivityUncheckedUpdateManyWithoutTenantNestedInput
   customFields?: Prisma.CustomFieldUncheckedUpdateManyWithoutTenantNestedInput
   customFieldValues?: Prisma.CustomFieldValueUncheckedUpdateManyWithoutTenantNestedInput
+  automationTemplates?: Prisma.AutomationTemplateUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutCompaniesInput = {
   id?: string
   name: string
   slug: string
+  logoUrl?: string | null
+  colorScheme?: string
+  customColors?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  dealsLabel?: string
+  dealsSingularLabel?: string
+  contactsLabel?: string
+  contactsSingularLabel?: string
+  companiesLabel?: string
+  companiesSingularLabel?: string
   createdAt?: Date | string
   updatedAt?: Date | string
   users?: Prisma.UserCreateNestedManyWithoutTenantInput
@@ -651,12 +957,22 @@ export type TenantCreateWithoutCompaniesInput = {
   activities?: Prisma.ActivityCreateNestedManyWithoutTenantInput
   customFields?: Prisma.CustomFieldCreateNestedManyWithoutTenantInput
   customFieldValues?: Prisma.CustomFieldValueCreateNestedManyWithoutTenantInput
+  automationTemplates?: Prisma.AutomationTemplateCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutCompaniesInput = {
   id?: string
   name: string
   slug: string
+  logoUrl?: string | null
+  colorScheme?: string
+  customColors?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  dealsLabel?: string
+  dealsSingularLabel?: string
+  contactsLabel?: string
+  contactsSingularLabel?: string
+  companiesLabel?: string
+  companiesSingularLabel?: string
   createdAt?: Date | string
   updatedAt?: Date | string
   users?: Prisma.UserUncheckedCreateNestedManyWithoutTenantInput
@@ -666,6 +982,7 @@ export type TenantUncheckedCreateWithoutCompaniesInput = {
   activities?: Prisma.ActivityUncheckedCreateNestedManyWithoutTenantInput
   customFields?: Prisma.CustomFieldUncheckedCreateNestedManyWithoutTenantInput
   customFieldValues?: Prisma.CustomFieldValueUncheckedCreateNestedManyWithoutTenantInput
+  automationTemplates?: Prisma.AutomationTemplateUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutCompaniesInput = {
@@ -688,6 +1005,15 @@ export type TenantUpdateWithoutCompaniesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  colorScheme?: Prisma.StringFieldUpdateOperationsInput | string
+  customColors?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  dealsLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  dealsSingularLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  contactsLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  contactsSingularLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  companiesLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  companiesSingularLabel?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   users?: Prisma.UserUpdateManyWithoutTenantNestedInput
@@ -697,12 +1023,22 @@ export type TenantUpdateWithoutCompaniesInput = {
   activities?: Prisma.ActivityUpdateManyWithoutTenantNestedInput
   customFields?: Prisma.CustomFieldUpdateManyWithoutTenantNestedInput
   customFieldValues?: Prisma.CustomFieldValueUpdateManyWithoutTenantNestedInput
+  automationTemplates?: Prisma.AutomationTemplateUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutCompaniesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  colorScheme?: Prisma.StringFieldUpdateOperationsInput | string
+  customColors?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  dealsLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  dealsSingularLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  contactsLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  contactsSingularLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  companiesLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  companiesSingularLabel?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   users?: Prisma.UserUncheckedUpdateManyWithoutTenantNestedInput
@@ -712,12 +1048,22 @@ export type TenantUncheckedUpdateWithoutCompaniesInput = {
   activities?: Prisma.ActivityUncheckedUpdateManyWithoutTenantNestedInput
   customFields?: Prisma.CustomFieldUncheckedUpdateManyWithoutTenantNestedInput
   customFieldValues?: Prisma.CustomFieldValueUncheckedUpdateManyWithoutTenantNestedInput
+  automationTemplates?: Prisma.AutomationTemplateUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutPipelinesInput = {
   id?: string
   name: string
   slug: string
+  logoUrl?: string | null
+  colorScheme?: string
+  customColors?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  dealsLabel?: string
+  dealsSingularLabel?: string
+  contactsLabel?: string
+  contactsSingularLabel?: string
+  companiesLabel?: string
+  companiesSingularLabel?: string
   createdAt?: Date | string
   updatedAt?: Date | string
   users?: Prisma.UserCreateNestedManyWithoutTenantInput
@@ -727,12 +1073,22 @@ export type TenantCreateWithoutPipelinesInput = {
   activities?: Prisma.ActivityCreateNestedManyWithoutTenantInput
   customFields?: Prisma.CustomFieldCreateNestedManyWithoutTenantInput
   customFieldValues?: Prisma.CustomFieldValueCreateNestedManyWithoutTenantInput
+  automationTemplates?: Prisma.AutomationTemplateCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutPipelinesInput = {
   id?: string
   name: string
   slug: string
+  logoUrl?: string | null
+  colorScheme?: string
+  customColors?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  dealsLabel?: string
+  dealsSingularLabel?: string
+  contactsLabel?: string
+  contactsSingularLabel?: string
+  companiesLabel?: string
+  companiesSingularLabel?: string
   createdAt?: Date | string
   updatedAt?: Date | string
   users?: Prisma.UserUncheckedCreateNestedManyWithoutTenantInput
@@ -742,6 +1098,7 @@ export type TenantUncheckedCreateWithoutPipelinesInput = {
   activities?: Prisma.ActivityUncheckedCreateNestedManyWithoutTenantInput
   customFields?: Prisma.CustomFieldUncheckedCreateNestedManyWithoutTenantInput
   customFieldValues?: Prisma.CustomFieldValueUncheckedCreateNestedManyWithoutTenantInput
+  automationTemplates?: Prisma.AutomationTemplateUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutPipelinesInput = {
@@ -764,6 +1121,15 @@ export type TenantUpdateWithoutPipelinesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  colorScheme?: Prisma.StringFieldUpdateOperationsInput | string
+  customColors?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  dealsLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  dealsSingularLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  contactsLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  contactsSingularLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  companiesLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  companiesSingularLabel?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   users?: Prisma.UserUpdateManyWithoutTenantNestedInput
@@ -773,12 +1139,22 @@ export type TenantUpdateWithoutPipelinesInput = {
   activities?: Prisma.ActivityUpdateManyWithoutTenantNestedInput
   customFields?: Prisma.CustomFieldUpdateManyWithoutTenantNestedInput
   customFieldValues?: Prisma.CustomFieldValueUpdateManyWithoutTenantNestedInput
+  automationTemplates?: Prisma.AutomationTemplateUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutPipelinesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  colorScheme?: Prisma.StringFieldUpdateOperationsInput | string
+  customColors?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  dealsLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  dealsSingularLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  contactsLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  contactsSingularLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  companiesLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  companiesSingularLabel?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   users?: Prisma.UserUncheckedUpdateManyWithoutTenantNestedInput
@@ -788,12 +1164,22 @@ export type TenantUncheckedUpdateWithoutPipelinesInput = {
   activities?: Prisma.ActivityUncheckedUpdateManyWithoutTenantNestedInput
   customFields?: Prisma.CustomFieldUncheckedUpdateManyWithoutTenantNestedInput
   customFieldValues?: Prisma.CustomFieldValueUncheckedUpdateManyWithoutTenantNestedInput
+  automationTemplates?: Prisma.AutomationTemplateUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutDealsInput = {
   id?: string
   name: string
   slug: string
+  logoUrl?: string | null
+  colorScheme?: string
+  customColors?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  dealsLabel?: string
+  dealsSingularLabel?: string
+  contactsLabel?: string
+  contactsSingularLabel?: string
+  companiesLabel?: string
+  companiesSingularLabel?: string
   createdAt?: Date | string
   updatedAt?: Date | string
   users?: Prisma.UserCreateNestedManyWithoutTenantInput
@@ -803,12 +1189,22 @@ export type TenantCreateWithoutDealsInput = {
   activities?: Prisma.ActivityCreateNestedManyWithoutTenantInput
   customFields?: Prisma.CustomFieldCreateNestedManyWithoutTenantInput
   customFieldValues?: Prisma.CustomFieldValueCreateNestedManyWithoutTenantInput
+  automationTemplates?: Prisma.AutomationTemplateCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutDealsInput = {
   id?: string
   name: string
   slug: string
+  logoUrl?: string | null
+  colorScheme?: string
+  customColors?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  dealsLabel?: string
+  dealsSingularLabel?: string
+  contactsLabel?: string
+  contactsSingularLabel?: string
+  companiesLabel?: string
+  companiesSingularLabel?: string
   createdAt?: Date | string
   updatedAt?: Date | string
   users?: Prisma.UserUncheckedCreateNestedManyWithoutTenantInput
@@ -818,6 +1214,7 @@ export type TenantUncheckedCreateWithoutDealsInput = {
   activities?: Prisma.ActivityUncheckedCreateNestedManyWithoutTenantInput
   customFields?: Prisma.CustomFieldUncheckedCreateNestedManyWithoutTenantInput
   customFieldValues?: Prisma.CustomFieldValueUncheckedCreateNestedManyWithoutTenantInput
+  automationTemplates?: Prisma.AutomationTemplateUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutDealsInput = {
@@ -840,6 +1237,15 @@ export type TenantUpdateWithoutDealsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  colorScheme?: Prisma.StringFieldUpdateOperationsInput | string
+  customColors?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  dealsLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  dealsSingularLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  contactsLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  contactsSingularLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  companiesLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  companiesSingularLabel?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   users?: Prisma.UserUpdateManyWithoutTenantNestedInput
@@ -849,12 +1255,22 @@ export type TenantUpdateWithoutDealsInput = {
   activities?: Prisma.ActivityUpdateManyWithoutTenantNestedInput
   customFields?: Prisma.CustomFieldUpdateManyWithoutTenantNestedInput
   customFieldValues?: Prisma.CustomFieldValueUpdateManyWithoutTenantNestedInput
+  automationTemplates?: Prisma.AutomationTemplateUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutDealsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  colorScheme?: Prisma.StringFieldUpdateOperationsInput | string
+  customColors?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  dealsLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  dealsSingularLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  contactsLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  contactsSingularLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  companiesLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  companiesSingularLabel?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   users?: Prisma.UserUncheckedUpdateManyWithoutTenantNestedInput
@@ -864,12 +1280,22 @@ export type TenantUncheckedUpdateWithoutDealsInput = {
   activities?: Prisma.ActivityUncheckedUpdateManyWithoutTenantNestedInput
   customFields?: Prisma.CustomFieldUncheckedUpdateManyWithoutTenantNestedInput
   customFieldValues?: Prisma.CustomFieldValueUncheckedUpdateManyWithoutTenantNestedInput
+  automationTemplates?: Prisma.AutomationTemplateUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutActivitiesInput = {
   id?: string
   name: string
   slug: string
+  logoUrl?: string | null
+  colorScheme?: string
+  customColors?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  dealsLabel?: string
+  dealsSingularLabel?: string
+  contactsLabel?: string
+  contactsSingularLabel?: string
+  companiesLabel?: string
+  companiesSingularLabel?: string
   createdAt?: Date | string
   updatedAt?: Date | string
   users?: Prisma.UserCreateNestedManyWithoutTenantInput
@@ -879,12 +1305,22 @@ export type TenantCreateWithoutActivitiesInput = {
   deals?: Prisma.DealCreateNestedManyWithoutTenantInput
   customFields?: Prisma.CustomFieldCreateNestedManyWithoutTenantInput
   customFieldValues?: Prisma.CustomFieldValueCreateNestedManyWithoutTenantInput
+  automationTemplates?: Prisma.AutomationTemplateCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutActivitiesInput = {
   id?: string
   name: string
   slug: string
+  logoUrl?: string | null
+  colorScheme?: string
+  customColors?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  dealsLabel?: string
+  dealsSingularLabel?: string
+  contactsLabel?: string
+  contactsSingularLabel?: string
+  companiesLabel?: string
+  companiesSingularLabel?: string
   createdAt?: Date | string
   updatedAt?: Date | string
   users?: Prisma.UserUncheckedCreateNestedManyWithoutTenantInput
@@ -894,6 +1330,7 @@ export type TenantUncheckedCreateWithoutActivitiesInput = {
   deals?: Prisma.DealUncheckedCreateNestedManyWithoutTenantInput
   customFields?: Prisma.CustomFieldUncheckedCreateNestedManyWithoutTenantInput
   customFieldValues?: Prisma.CustomFieldValueUncheckedCreateNestedManyWithoutTenantInput
+  automationTemplates?: Prisma.AutomationTemplateUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutActivitiesInput = {
@@ -916,6 +1353,15 @@ export type TenantUpdateWithoutActivitiesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  colorScheme?: Prisma.StringFieldUpdateOperationsInput | string
+  customColors?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  dealsLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  dealsSingularLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  contactsLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  contactsSingularLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  companiesLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  companiesSingularLabel?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   users?: Prisma.UserUpdateManyWithoutTenantNestedInput
@@ -925,12 +1371,22 @@ export type TenantUpdateWithoutActivitiesInput = {
   deals?: Prisma.DealUpdateManyWithoutTenantNestedInput
   customFields?: Prisma.CustomFieldUpdateManyWithoutTenantNestedInput
   customFieldValues?: Prisma.CustomFieldValueUpdateManyWithoutTenantNestedInput
+  automationTemplates?: Prisma.AutomationTemplateUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutActivitiesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  colorScheme?: Prisma.StringFieldUpdateOperationsInput | string
+  customColors?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  dealsLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  dealsSingularLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  contactsLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  contactsSingularLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  companiesLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  companiesSingularLabel?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   users?: Prisma.UserUncheckedUpdateManyWithoutTenantNestedInput
@@ -940,12 +1396,22 @@ export type TenantUncheckedUpdateWithoutActivitiesInput = {
   deals?: Prisma.DealUncheckedUpdateManyWithoutTenantNestedInput
   customFields?: Prisma.CustomFieldUncheckedUpdateManyWithoutTenantNestedInput
   customFieldValues?: Prisma.CustomFieldValueUncheckedUpdateManyWithoutTenantNestedInput
+  automationTemplates?: Prisma.AutomationTemplateUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutCustomFieldsInput = {
   id?: string
   name: string
   slug: string
+  logoUrl?: string | null
+  colorScheme?: string
+  customColors?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  dealsLabel?: string
+  dealsSingularLabel?: string
+  contactsLabel?: string
+  contactsSingularLabel?: string
+  companiesLabel?: string
+  companiesSingularLabel?: string
   createdAt?: Date | string
   updatedAt?: Date | string
   users?: Prisma.UserCreateNestedManyWithoutTenantInput
@@ -955,12 +1421,22 @@ export type TenantCreateWithoutCustomFieldsInput = {
   deals?: Prisma.DealCreateNestedManyWithoutTenantInput
   activities?: Prisma.ActivityCreateNestedManyWithoutTenantInput
   customFieldValues?: Prisma.CustomFieldValueCreateNestedManyWithoutTenantInput
+  automationTemplates?: Prisma.AutomationTemplateCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutCustomFieldsInput = {
   id?: string
   name: string
   slug: string
+  logoUrl?: string | null
+  colorScheme?: string
+  customColors?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  dealsLabel?: string
+  dealsSingularLabel?: string
+  contactsLabel?: string
+  contactsSingularLabel?: string
+  companiesLabel?: string
+  companiesSingularLabel?: string
   createdAt?: Date | string
   updatedAt?: Date | string
   users?: Prisma.UserUncheckedCreateNestedManyWithoutTenantInput
@@ -970,6 +1446,7 @@ export type TenantUncheckedCreateWithoutCustomFieldsInput = {
   deals?: Prisma.DealUncheckedCreateNestedManyWithoutTenantInput
   activities?: Prisma.ActivityUncheckedCreateNestedManyWithoutTenantInput
   customFieldValues?: Prisma.CustomFieldValueUncheckedCreateNestedManyWithoutTenantInput
+  automationTemplates?: Prisma.AutomationTemplateUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutCustomFieldsInput = {
@@ -992,6 +1469,15 @@ export type TenantUpdateWithoutCustomFieldsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  colorScheme?: Prisma.StringFieldUpdateOperationsInput | string
+  customColors?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  dealsLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  dealsSingularLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  contactsLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  contactsSingularLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  companiesLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  companiesSingularLabel?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   users?: Prisma.UserUpdateManyWithoutTenantNestedInput
@@ -1001,12 +1487,22 @@ export type TenantUpdateWithoutCustomFieldsInput = {
   deals?: Prisma.DealUpdateManyWithoutTenantNestedInput
   activities?: Prisma.ActivityUpdateManyWithoutTenantNestedInput
   customFieldValues?: Prisma.CustomFieldValueUpdateManyWithoutTenantNestedInput
+  automationTemplates?: Prisma.AutomationTemplateUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutCustomFieldsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  colorScheme?: Prisma.StringFieldUpdateOperationsInput | string
+  customColors?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  dealsLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  dealsSingularLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  contactsLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  contactsSingularLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  companiesLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  companiesSingularLabel?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   users?: Prisma.UserUncheckedUpdateManyWithoutTenantNestedInput
@@ -1016,12 +1512,22 @@ export type TenantUncheckedUpdateWithoutCustomFieldsInput = {
   deals?: Prisma.DealUncheckedUpdateManyWithoutTenantNestedInput
   activities?: Prisma.ActivityUncheckedUpdateManyWithoutTenantNestedInput
   customFieldValues?: Prisma.CustomFieldValueUncheckedUpdateManyWithoutTenantNestedInput
+  automationTemplates?: Prisma.AutomationTemplateUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutCustomFieldValuesInput = {
   id?: string
   name: string
   slug: string
+  logoUrl?: string | null
+  colorScheme?: string
+  customColors?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  dealsLabel?: string
+  dealsSingularLabel?: string
+  contactsLabel?: string
+  contactsSingularLabel?: string
+  companiesLabel?: string
+  companiesSingularLabel?: string
   createdAt?: Date | string
   updatedAt?: Date | string
   users?: Prisma.UserCreateNestedManyWithoutTenantInput
@@ -1031,12 +1537,22 @@ export type TenantCreateWithoutCustomFieldValuesInput = {
   deals?: Prisma.DealCreateNestedManyWithoutTenantInput
   activities?: Prisma.ActivityCreateNestedManyWithoutTenantInput
   customFields?: Prisma.CustomFieldCreateNestedManyWithoutTenantInput
+  automationTemplates?: Prisma.AutomationTemplateCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutCustomFieldValuesInput = {
   id?: string
   name: string
   slug: string
+  logoUrl?: string | null
+  colorScheme?: string
+  customColors?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  dealsLabel?: string
+  dealsSingularLabel?: string
+  contactsLabel?: string
+  contactsSingularLabel?: string
+  companiesLabel?: string
+  companiesSingularLabel?: string
   createdAt?: Date | string
   updatedAt?: Date | string
   users?: Prisma.UserUncheckedCreateNestedManyWithoutTenantInput
@@ -1046,6 +1562,7 @@ export type TenantUncheckedCreateWithoutCustomFieldValuesInput = {
   deals?: Prisma.DealUncheckedCreateNestedManyWithoutTenantInput
   activities?: Prisma.ActivityUncheckedCreateNestedManyWithoutTenantInput
   customFields?: Prisma.CustomFieldUncheckedCreateNestedManyWithoutTenantInput
+  automationTemplates?: Prisma.AutomationTemplateUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutCustomFieldValuesInput = {
@@ -1068,6 +1585,15 @@ export type TenantUpdateWithoutCustomFieldValuesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  colorScheme?: Prisma.StringFieldUpdateOperationsInput | string
+  customColors?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  dealsLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  dealsSingularLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  contactsLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  contactsSingularLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  companiesLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  companiesSingularLabel?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   users?: Prisma.UserUpdateManyWithoutTenantNestedInput
@@ -1077,12 +1603,22 @@ export type TenantUpdateWithoutCustomFieldValuesInput = {
   deals?: Prisma.DealUpdateManyWithoutTenantNestedInput
   activities?: Prisma.ActivityUpdateManyWithoutTenantNestedInput
   customFields?: Prisma.CustomFieldUpdateManyWithoutTenantNestedInput
+  automationTemplates?: Prisma.AutomationTemplateUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutCustomFieldValuesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  colorScheme?: Prisma.StringFieldUpdateOperationsInput | string
+  customColors?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  dealsLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  dealsSingularLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  contactsLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  contactsSingularLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  companiesLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  companiesSingularLabel?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   users?: Prisma.UserUncheckedUpdateManyWithoutTenantNestedInput
@@ -1092,6 +1628,123 @@ export type TenantUncheckedUpdateWithoutCustomFieldValuesInput = {
   deals?: Prisma.DealUncheckedUpdateManyWithoutTenantNestedInput
   activities?: Prisma.ActivityUncheckedUpdateManyWithoutTenantNestedInput
   customFields?: Prisma.CustomFieldUncheckedUpdateManyWithoutTenantNestedInput
+  automationTemplates?: Prisma.AutomationTemplateUncheckedUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantCreateWithoutAutomationTemplatesInput = {
+  id?: string
+  name: string
+  slug: string
+  logoUrl?: string | null
+  colorScheme?: string
+  customColors?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  dealsLabel?: string
+  dealsSingularLabel?: string
+  contactsLabel?: string
+  contactsSingularLabel?: string
+  companiesLabel?: string
+  companiesSingularLabel?: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  users?: Prisma.UserCreateNestedManyWithoutTenantInput
+  contacts?: Prisma.ContactCreateNestedManyWithoutTenantInput
+  companies?: Prisma.CompanyCreateNestedManyWithoutTenantInput
+  pipelines?: Prisma.PipelineCreateNestedManyWithoutTenantInput
+  deals?: Prisma.DealCreateNestedManyWithoutTenantInput
+  activities?: Prisma.ActivityCreateNestedManyWithoutTenantInput
+  customFields?: Prisma.CustomFieldCreateNestedManyWithoutTenantInput
+  customFieldValues?: Prisma.CustomFieldValueCreateNestedManyWithoutTenantInput
+}
+
+export type TenantUncheckedCreateWithoutAutomationTemplatesInput = {
+  id?: string
+  name: string
+  slug: string
+  logoUrl?: string | null
+  colorScheme?: string
+  customColors?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  dealsLabel?: string
+  dealsSingularLabel?: string
+  contactsLabel?: string
+  contactsSingularLabel?: string
+  companiesLabel?: string
+  companiesSingularLabel?: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  users?: Prisma.UserUncheckedCreateNestedManyWithoutTenantInput
+  contacts?: Prisma.ContactUncheckedCreateNestedManyWithoutTenantInput
+  companies?: Prisma.CompanyUncheckedCreateNestedManyWithoutTenantInput
+  pipelines?: Prisma.PipelineUncheckedCreateNestedManyWithoutTenantInput
+  deals?: Prisma.DealUncheckedCreateNestedManyWithoutTenantInput
+  activities?: Prisma.ActivityUncheckedCreateNestedManyWithoutTenantInput
+  customFields?: Prisma.CustomFieldUncheckedCreateNestedManyWithoutTenantInput
+  customFieldValues?: Prisma.CustomFieldValueUncheckedCreateNestedManyWithoutTenantInput
+}
+
+export type TenantCreateOrConnectWithoutAutomationTemplatesInput = {
+  where: Prisma.TenantWhereUniqueInput
+  create: Prisma.XOR<Prisma.TenantCreateWithoutAutomationTemplatesInput, Prisma.TenantUncheckedCreateWithoutAutomationTemplatesInput>
+}
+
+export type TenantUpsertWithoutAutomationTemplatesInput = {
+  update: Prisma.XOR<Prisma.TenantUpdateWithoutAutomationTemplatesInput, Prisma.TenantUncheckedUpdateWithoutAutomationTemplatesInput>
+  create: Prisma.XOR<Prisma.TenantCreateWithoutAutomationTemplatesInput, Prisma.TenantUncheckedCreateWithoutAutomationTemplatesInput>
+  where?: Prisma.TenantWhereInput
+}
+
+export type TenantUpdateToOneWithWhereWithoutAutomationTemplatesInput = {
+  where?: Prisma.TenantWhereInput
+  data: Prisma.XOR<Prisma.TenantUpdateWithoutAutomationTemplatesInput, Prisma.TenantUncheckedUpdateWithoutAutomationTemplatesInput>
+}
+
+export type TenantUpdateWithoutAutomationTemplatesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  colorScheme?: Prisma.StringFieldUpdateOperationsInput | string
+  customColors?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  dealsLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  dealsSingularLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  contactsLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  contactsSingularLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  companiesLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  companiesSingularLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  users?: Prisma.UserUpdateManyWithoutTenantNestedInput
+  contacts?: Prisma.ContactUpdateManyWithoutTenantNestedInput
+  companies?: Prisma.CompanyUpdateManyWithoutTenantNestedInput
+  pipelines?: Prisma.PipelineUpdateManyWithoutTenantNestedInput
+  deals?: Prisma.DealUpdateManyWithoutTenantNestedInput
+  activities?: Prisma.ActivityUpdateManyWithoutTenantNestedInput
+  customFields?: Prisma.CustomFieldUpdateManyWithoutTenantNestedInput
+  customFieldValues?: Prisma.CustomFieldValueUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantUncheckedUpdateWithoutAutomationTemplatesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  colorScheme?: Prisma.StringFieldUpdateOperationsInput | string
+  customColors?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  dealsLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  dealsSingularLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  contactsLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  contactsSingularLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  companiesLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  companiesSingularLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  users?: Prisma.UserUncheckedUpdateManyWithoutTenantNestedInput
+  contacts?: Prisma.ContactUncheckedUpdateManyWithoutTenantNestedInput
+  companies?: Prisma.CompanyUncheckedUpdateManyWithoutTenantNestedInput
+  pipelines?: Prisma.PipelineUncheckedUpdateManyWithoutTenantNestedInput
+  deals?: Prisma.DealUncheckedUpdateManyWithoutTenantNestedInput
+  activities?: Prisma.ActivityUncheckedUpdateManyWithoutTenantNestedInput
+  customFields?: Prisma.CustomFieldUncheckedUpdateManyWithoutTenantNestedInput
+  customFieldValues?: Prisma.CustomFieldValueUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 
@@ -1108,6 +1761,7 @@ export type TenantCountOutputType = {
   activities: number
   customFields: number
   customFieldValues: number
+  automationTemplates: number
 }
 
 export type TenantCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1119,6 +1773,7 @@ export type TenantCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions
   activities?: boolean | TenantCountOutputTypeCountActivitiesArgs
   customFields?: boolean | TenantCountOutputTypeCountCustomFieldsArgs
   customFieldValues?: boolean | TenantCountOutputTypeCountCustomFieldValuesArgs
+  automationTemplates?: boolean | TenantCountOutputTypeCountAutomationTemplatesArgs
 }
 
 /**
@@ -1187,11 +1842,27 @@ export type TenantCountOutputTypeCountCustomFieldValuesArgs<ExtArgs extends runt
   where?: Prisma.CustomFieldValueWhereInput
 }
 
+/**
+ * TenantCountOutputType without action
+ */
+export type TenantCountOutputTypeCountAutomationTemplatesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AutomationTemplateWhereInput
+}
+
 
 export type TenantSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
   slug?: boolean
+  logoUrl?: boolean
+  colorScheme?: boolean
+  customColors?: boolean
+  dealsLabel?: boolean
+  dealsSingularLabel?: boolean
+  contactsLabel?: boolean
+  contactsSingularLabel?: boolean
+  companiesLabel?: boolean
+  companiesSingularLabel?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   users?: boolean | Prisma.Tenant$usersArgs<ExtArgs>
@@ -1202,6 +1873,7 @@ export type TenantSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   activities?: boolean | Prisma.Tenant$activitiesArgs<ExtArgs>
   customFields?: boolean | Prisma.Tenant$customFieldsArgs<ExtArgs>
   customFieldValues?: boolean | Prisma.Tenant$customFieldValuesArgs<ExtArgs>
+  automationTemplates?: boolean | Prisma.Tenant$automationTemplatesArgs<ExtArgs>
   _count?: boolean | Prisma.TenantCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["tenant"]>
 
@@ -1209,6 +1881,15 @@ export type TenantSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
   id?: boolean
   name?: boolean
   slug?: boolean
+  logoUrl?: boolean
+  colorScheme?: boolean
+  customColors?: boolean
+  dealsLabel?: boolean
+  dealsSingularLabel?: boolean
+  contactsLabel?: boolean
+  contactsSingularLabel?: boolean
+  companiesLabel?: boolean
+  companiesSingularLabel?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["tenant"]>
@@ -1217,6 +1898,15 @@ export type TenantSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
   id?: boolean
   name?: boolean
   slug?: boolean
+  logoUrl?: boolean
+  colorScheme?: boolean
+  customColors?: boolean
+  dealsLabel?: boolean
+  dealsSingularLabel?: boolean
+  contactsLabel?: boolean
+  contactsSingularLabel?: boolean
+  companiesLabel?: boolean
+  companiesSingularLabel?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["tenant"]>
@@ -1225,11 +1915,20 @@ export type TenantSelectScalar = {
   id?: boolean
   name?: boolean
   slug?: boolean
+  logoUrl?: boolean
+  colorScheme?: boolean
+  customColors?: boolean
+  dealsLabel?: boolean
+  dealsSingularLabel?: boolean
+  contactsLabel?: boolean
+  contactsSingularLabel?: boolean
+  companiesLabel?: boolean
+  companiesSingularLabel?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type TenantOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "slug" | "createdAt" | "updatedAt", ExtArgs["result"]["tenant"]>
+export type TenantOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "slug" | "logoUrl" | "colorScheme" | "customColors" | "dealsLabel" | "dealsSingularLabel" | "contactsLabel" | "contactsSingularLabel" | "companiesLabel" | "companiesSingularLabel" | "createdAt" | "updatedAt", ExtArgs["result"]["tenant"]>
 export type TenantInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   users?: boolean | Prisma.Tenant$usersArgs<ExtArgs>
   contacts?: boolean | Prisma.Tenant$contactsArgs<ExtArgs>
@@ -1239,6 +1938,7 @@ export type TenantInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   activities?: boolean | Prisma.Tenant$activitiesArgs<ExtArgs>
   customFields?: boolean | Prisma.Tenant$customFieldsArgs<ExtArgs>
   customFieldValues?: boolean | Prisma.Tenant$customFieldValuesArgs<ExtArgs>
+  automationTemplates?: boolean | Prisma.Tenant$automationTemplatesArgs<ExtArgs>
   _count?: boolean | Prisma.TenantCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type TenantIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -1255,11 +1955,21 @@ export type $TenantPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     activities: Prisma.$ActivityPayload<ExtArgs>[]
     customFields: Prisma.$CustomFieldPayload<ExtArgs>[]
     customFieldValues: Prisma.$CustomFieldValuePayload<ExtArgs>[]
+    automationTemplates: Prisma.$AutomationTemplatePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     name: string
     slug: string
+    logoUrl: string | null
+    colorScheme: string
+    customColors: runtime.JsonValue | null
+    dealsLabel: string
+    dealsSingularLabel: string
+    contactsLabel: string
+    contactsSingularLabel: string
+    companiesLabel: string
+    companiesSingularLabel: string
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["tenant"]>
@@ -1664,6 +2374,7 @@ export interface Prisma__TenantClient<T, Null = never, ExtArgs extends runtime.T
   activities<T extends Prisma.Tenant$activitiesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$activitiesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ActivityPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   customFields<T extends Prisma.Tenant$customFieldsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$customFieldsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CustomFieldPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   customFieldValues<T extends Prisma.Tenant$customFieldValuesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$customFieldValuesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CustomFieldValuePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  automationTemplates<T extends Prisma.Tenant$automationTemplatesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$automationTemplatesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AutomationTemplatePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1696,6 +2407,15 @@ export interface TenantFieldRefs {
   readonly id: Prisma.FieldRef<"Tenant", 'String'>
   readonly name: Prisma.FieldRef<"Tenant", 'String'>
   readonly slug: Prisma.FieldRef<"Tenant", 'String'>
+  readonly logoUrl: Prisma.FieldRef<"Tenant", 'String'>
+  readonly colorScheme: Prisma.FieldRef<"Tenant", 'String'>
+  readonly customColors: Prisma.FieldRef<"Tenant", 'Json'>
+  readonly dealsLabel: Prisma.FieldRef<"Tenant", 'String'>
+  readonly dealsSingularLabel: Prisma.FieldRef<"Tenant", 'String'>
+  readonly contactsLabel: Prisma.FieldRef<"Tenant", 'String'>
+  readonly contactsSingularLabel: Prisma.FieldRef<"Tenant", 'String'>
+  readonly companiesLabel: Prisma.FieldRef<"Tenant", 'String'>
+  readonly companiesSingularLabel: Prisma.FieldRef<"Tenant", 'String'>
   readonly createdAt: Prisma.FieldRef<"Tenant", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Tenant", 'DateTime'>
 }
@@ -2275,6 +2995,30 @@ export type Tenant$customFieldValuesArgs<ExtArgs extends runtime.Types.Extension
   take?: number
   skip?: number
   distinct?: Prisma.CustomFieldValueScalarFieldEnum | Prisma.CustomFieldValueScalarFieldEnum[]
+}
+
+/**
+ * Tenant.automationTemplates
+ */
+export type Tenant$automationTemplatesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the AutomationTemplate
+   */
+  select?: Prisma.AutomationTemplateSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the AutomationTemplate
+   */
+  omit?: Prisma.AutomationTemplateOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AutomationTemplateInclude<ExtArgs> | null
+  where?: Prisma.AutomationTemplateWhereInput
+  orderBy?: Prisma.AutomationTemplateOrderByWithRelationInput | Prisma.AutomationTemplateOrderByWithRelationInput[]
+  cursor?: Prisma.AutomationTemplateWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AutomationTemplateScalarFieldEnum | Prisma.AutomationTemplateScalarFieldEnum[]
 }
 
 /**

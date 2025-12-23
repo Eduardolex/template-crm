@@ -18,23 +18,27 @@ type Task = {
   assignedUser: { id: string } | null;
   contact: { id: string } | null;
   deal: { id: string } | null;
+  automationTemplate: { id: string } | null;
 };
 
 type User = { id: string; name: string };
 type Contact = { id: string; firstName: string; lastName: string };
 type Deal = { id: string; title: string };
+type AutomationTemplate = { id: string; name: string; enabled: boolean };
 
 export function TaskDialog({
   task,
   users,
   contacts,
   deals,
+  automationTemplates,
   children,
 }: {
   task?: Task;
   users: User[];
   contacts: Contact[];
   deals: Deal[];
+  automationTemplates: AutomationTemplate[];
   children: React.ReactNode;
 }) {
   const [open, setOpen] = useState(false);
@@ -51,6 +55,7 @@ export function TaskDialog({
           users={users}
           contacts={contacts}
           deals={deals}
+          automationTemplates={automationTemplates}
           onSuccess={() => setOpen(false)}
         />
       </DialogContent>

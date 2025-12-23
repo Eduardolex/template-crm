@@ -13,9 +13,11 @@ type Company = {
 
 export function CompanyDialog({
   company,
+  companyLabel,
   children,
 }: {
   company?: Company;
+  companyLabel: string;
   children: React.ReactNode;
 }) {
   const [open, setOpen] = useState(false);
@@ -25,7 +27,7 @@ export function CompanyDialog({
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>{company ? "Edit Company" : "New Company"}</DialogTitle>
+          <DialogTitle>{company ? `Edit ${companyLabel}` : `New ${companyLabel}`}</DialogTitle>
         </DialogHeader>
         <CompanyForm company={company} onSuccess={() => setOpen(false)} />
       </DialogContent>
