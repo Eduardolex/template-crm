@@ -112,7 +112,7 @@ export function TaskForm({
         />
       </div>
 
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div className="space-y-2">
           <Label>Status *</Label>
           <Select value={status} onValueChange={setStatus} disabled={loading}>
@@ -165,7 +165,7 @@ export function TaskForm({
         <Label className="text-sm text-slate-600">
           Optional: Link to Contact or Deal
         </Label>
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div className="space-y-2">
             <div className="flex items-center justify-between">
               <Label className="text-xs">Contact</Label>

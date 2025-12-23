@@ -20,7 +20,7 @@ export function KanbanColumn({ stage, deals, dealLabel = "deal", dealsLabel = "d
   const totalValue = deals.reduce((sum, d) => sum + d.valueCents, 0);
 
   return (
-    <div className="flex-shrink-0 w-80">
+    <div className="flex-shrink-0 w-[calc(100vw-3rem)] min-w-[280px] sm:w-80">
       <div className="rounded-lg border bg-white">
         <div className="border-b bg-slate-50 px-4 py-3">
           <h3 className="font-medium">{stage.name}</h3>

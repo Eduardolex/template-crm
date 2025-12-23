@@ -94,7 +94,7 @@ export function DealForm({
       {error && (
         <div className="rounded-md bg-red-50 p-3 text-sm text-red-800">{error}</div>
       )}
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div className="space-y-2">
           <Label htmlFor="title">{dealLabel} Title *</Label>
           <Input
@@ -134,7 +134,7 @@ export function DealForm({
           </SelectContent>
         </Select>
       </div>
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div className="space-y-2">
           <Label>{contactLabel}</Label>
           <Select value={contactId || undefined} onValueChange={(value) => setContactId(value)} disabled={loading}>

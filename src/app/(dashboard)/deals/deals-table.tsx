@@ -89,67 +89,76 @@ export function DealsTable({
 
   return (
     <div className="space-y-4">
+      {/* Export button - responsive */}
       <div className="flex justify-end">
         <Button onClick={exportToCSV} variant="outline">
-          <Download className="mr-2 h-4 w-4" />
-          Export to CSV
+          <Download className="h-4 w-4 mr-0 md:mr-2" />
+          <span className="hidden md:inline">Export to CSV</span>
         </Button>
       </div>
-      <div className="rounded-lg border bg-white">
-        <table className="w-full">
-        <thead className="border-b bg-slate-50">
-          <tr>
-            <th className="px-4 py-3 text-left text-sm font-medium">Title</th>
-            <th className="px-4 py-3 text-left text-sm font-medium">Value</th>
-            <th className="px-4 py-3 text-left text-sm font-medium">Stage</th>
-            <th className="px-4 py-3 text-left text-sm font-medium">Contact</th>
-            <th className="px-4 py-3 text-left text-sm font-medium">Company</th>
-            <th className="px-4 py-3 text-right text-sm font-medium">Actions</th>
-          </tr>
-        </thead>
-        <tbody className="divide-y">
-          {deals.map((deal) => (
-            <tr key={deal.id} className="hover:bg-slate-50">
-              <td className="px-4 py-3 font-medium">{deal.title}</td>
-              <td className="px-4 py-3">${(deal.valueCents / 100).toLocaleString()}</td>
-              <td className="px-4 py-3">
-                <Badge variant="outline">{deal.stage.name}</Badge>
-              </td>
-              <td className="px-4 py-3 text-slate-600">
-                {deal.contact
-                  ? `${deal.contact.firstName} ${deal.contact.lastName}`
-                  : "-"}
-              </td>
-              <td className="px-4 py-3 text-slate-600">{deal.company?.name || "-"}</td>
-              <td className="px-4 py-3 text-right">
-                <div className="flex justify-end gap-2">
-                  <DealDialog
-                    deal={deal}
-                    stages={stages}
-                    contacts={contacts}
-                    companies={companies}
-                    dealLabel={dealLabel}
-                    contactLabel={contactLabel}
-                    companyLabel={companyLabel}
-                  >
-                    <Button variant="ghost" size="sm">
-                      <Pencil className="h-4 w-4" />
-                    </Button>
-                  </DealDialog>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={() => handleDelete(deal.id)}
-                    disabled={deleting === deal.id}
-                  >
-                    <Trash2 className="h-4 w-4" />
-                  </Button>
-                </div>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+
+      <div className="rounded-lg border bg-white overflow-hidden">
+        {/* Scroll indicator - only on mobile */}
+        <div className="md:hidden bg-slate-50 px-4 py-2 text-xs text-slate-600 text-center border-b">
+          ← Swipe to see more →
+        </div>
+
+        <div className="overflow-x-auto">
+          <table className="w-full min-w-[640px]">
+            <thead className="border-b bg-slate-50">
+              <tr>
+                <th className="sticky left-0 bg-slate-50 z-10 px-4 py-3 text-left text-sm font-medium">Title</th>
+                <th className="px-4 py-3 text-left text-sm font-medium">Value</th>
+                <th className="px-4 py-3 text-left text-sm font-medium">Stage</th>
+                <th className="hidden sm:table-cell px-4 py-3 text-left text-sm font-medium">Contact</th>
+                <th className="hidden md:table-cell px-4 py-3 text-left text-sm font-medium">Company</th>
+                <th className="sticky right-0 bg-slate-50 z-10 px-4 py-3 text-right text-sm font-medium">Actions</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y">
+              {deals.map((deal) => (
+                <tr key={deal.id} className="hover:bg-slate-50">
+                  <td className="sticky left-0 bg-white hover:bg-slate-50 z-10 px-4 py-3 font-medium">{deal.title}</td>
+                  <td className="px-4 py-3">${(deal.valueCents / 100).toLocaleString()}</td>
+                  <td className="px-4 py-3">
+                    <Badge variant="outline">{deal.stage.name}</Badge>
+                  </td>
+                  <td className="hidden sm:table-cell px-4 py-3 text-slate-600">
+                    {deal.contact
+                      ? `${deal.contact.firstName} ${deal.contact.lastName}`
+                      : "-"}
+                  </td>
+                  <td className="hidden md:table-cell px-4 py-3 text-slate-600">{deal.company?.name || "-"}</td>
+                  <td className="sticky right-0 bg-white hover:bg-slate-50 z-10 px-4 py-3 text-right">
+                    <div className="flex justify-end gap-2">
+                      <DealDialog
+                        deal={deal}
+                        stages={stages}
+                        contacts={contacts}
+                        companies={companies}
+                        dealLabel={dealLabel}
+                        contactLabel={contactLabel}
+                        companyLabel={companyLabel}
+                      >
+                        <Button variant="ghost" size="sm">
+                          <Pencil className="h-4 w-4" />
+                        </Button>
+                      </DealDialog>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => handleDelete(deal.id)}
+                        disabled={deleting === deal.id}
+                      >
+                        <Trash2 className="h-4 w-4" />
+                      </Button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );

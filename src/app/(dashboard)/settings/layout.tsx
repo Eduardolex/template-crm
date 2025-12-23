@@ -1,9 +1,16 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { Sliders, Grid3x3, Zap, Users, Tag, Palette } from "lucide-react";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 const settingsTabs = [
   {
@@ -44,6 +51,10 @@ export default function SettingsLayout({
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
+  const router = useRouter();
+
+  const currentTab = settingsTabs.find((tab) => pathname.startsWith(tab.href));
+  const CurrentIcon = currentTab?.icon || Users;
 
   return (
     <div className="space-y-6">
@@ -54,7 +65,35 @@ export default function SettingsLayout({
         </p>
       </div>
 
-      <div className="border-b border-slate-200">
+      {/* Mobile dropdown */}
+      <div className="md:hidden">
+        <Select
+          value={currentTab?.href}
+          onValueChange={(value) => router.push(value)}
+        >
+          <SelectTrigger className="w-full">
+            <SelectValue>
+              <div className="flex items-center">
+                <CurrentIcon className="mr-2 h-5 w-5" />
+                {currentTab?.name || "Select a setting"}
+              </div>
+            </SelectValue>
+          </SelectTrigger>
+          <SelectContent>
+            {settingsTabs.map((tab) => (
+              <SelectItem key={tab.name} value={tab.href}>
+                <div className="flex items-center">
+                  <tab.icon className="mr-2 h-5 w-5" />
+                  {tab.name}
+                </div>
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </div>
+
+      {/* Desktop tabs */}
+      <div className="hidden md:block border-b border-slate-200">
         <nav className="-mb-px flex space-x-8">
           {settingsTabs.map((tab) => {
             const isActive = pathname.startsWith(tab.href);

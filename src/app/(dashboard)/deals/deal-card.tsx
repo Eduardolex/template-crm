@@ -9,7 +9,8 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Trash2 } from "lucide-react";
+import { Trash2, MoreVertical } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { deleteDealAction } from "@/lib/actions/deal-actions";
 
 type Deal = {
@@ -23,6 +24,7 @@ type Deal = {
 export function DealCard({ deal, isDragging, dealLabel = "deal" }: { deal: Deal; isDragging?: boolean; dealLabel?: string }) {
   const [contextMenuOpen, setContextMenuOpen] = useState(false);
   const [menuPosition, setMenuPosition] = useState({ x: 0, y: 0 });
+  const [dropdownOpen, setDropdownOpen] = useState(false);
   const {
     attributes,
     listeners,
@@ -49,6 +51,7 @@ export function DealCard({ deal, isDragging, dealLabel = "deal" }: { deal: Deal;
     if (confirm(`Delete ${dealLabel.toLowerCase()} "${deal.title}"?`)) {
       await deleteDealAction(deal.id);
       setContextMenuOpen(false);
+      setDropdownOpen(false);
     }
   };
 
@@ -61,22 +64,49 @@ export function DealCard({ deal, isDragging, dealLabel = "deal" }: { deal: Deal;
         {...listeners}
         onContextMenu={handleContextMenu}
         suppressHydrationWarning
-        className={`cursor-grab rounded-lg border bg-white p-3 shadow-sm hover:shadow-md ${
+        className={`group cursor-grab rounded-lg border bg-white p-3 shadow-sm hover:shadow-md ${
           isDragging ? "shadow-lg" : ""
         }`}
       >
-      <h4 className="font-medium">{deal.title}</h4>
-      <p className="text-sm font-semibold text-green-600">
-        ${(deal.valueCents / 100).toLocaleString()}
-      </p>
-      {deal.contact && (
-        <p className="text-xs text-slate-600">
-          {deal.contact.firstName} {deal.contact.lastName}
-        </p>
-      )}
-      {deal.company && (
-        <p className="text-xs text-slate-600">{deal.company.name}</p>
-      )}
+        <div className="flex items-start justify-between mb-2">
+          <div className="flex-1 min-w-0">
+            <h4 className="font-medium truncate">{deal.title}</h4>
+            <p className="text-sm font-semibold text-green-600">
+              ${(deal.valueCents / 100).toLocaleString()}
+            </p>
+          </div>
+
+          {/* 3-dot menu button - visible on mobile, hover on desktop */}
+          <DropdownMenu open={dropdownOpen} onOpenChange={setDropdownOpen}>
+            <DropdownMenuTrigger asChild>
+              <Button
+                variant="ghost"
+                size="sm"
+                className="md:opacity-0 md:group-hover:opacity-100 transition-opacity h-6 w-6 p-0 flex-shrink-0"
+                onClick={(e) => {
+                  e.stopPropagation();
+                }}
+              >
+                <MoreVertical className="h-4 w-4" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              <DropdownMenuItem onClick={handleDelete} className="text-red-600 cursor-pointer">
+                <Trash2 className="mr-2 h-4 w-4" />
+                Delete {dealLabel}
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </div>
+
+        {deal.contact && (
+          <p className="text-xs text-slate-600">
+            {deal.contact.firstName} {deal.contact.lastName}
+          </p>
+        )}
+        {deal.company && (
+          <p className="text-xs text-slate-600">{deal.company.name}</p>
+        )}
       </div>
 
       <DropdownMenu open={contextMenuOpen} onOpenChange={setContextMenuOpen}>

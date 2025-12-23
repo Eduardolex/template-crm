@@ -37,7 +37,9 @@ export function DealsKanban({ deals, stages, dealLabel = "deal", dealsLabel = "d
   const sensors = useSensors(
     useSensor(PointerSensor, {
       activationConstraint: {
-        distance: 8,
+        distance: 12,  // Increased from 8 for better touch detection
+        delay: 100,    // Delay for touch detection
+        tolerance: 5,
       },
     })
   );

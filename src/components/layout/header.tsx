@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { LogOut, User } from "lucide-react";
+import { MobileMenuButton } from "./mobile-menu-button";
 
 export function Header() {
   const { data: session } = useSession();
@@ -23,9 +24,12 @@ export function Header() {
     .toUpperCase() || "U";
 
   return (
-    <header className="flex h-16 items-center justify-between border-b bg-white px-6">
-      <div className="flex items-center">
-        <h2 className="text-lg font-semibold text-slate-900">
+    <header className="flex h-16 items-center justify-between border-b bg-white px-4 md:px-6">
+      <div className="flex items-center gap-3">
+        {/* Mobile hamburger menu */}
+        <MobileMenuButton />
+
+        <h2 className="text-sm md:text-lg font-semibold text-slate-900 truncate max-w-[120px] sm:max-w-none">
           {session?.user?.name}
         </h2>
       </div>

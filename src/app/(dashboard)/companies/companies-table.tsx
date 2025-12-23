@@ -61,51 +61,102 @@ export function CompaniesTable({ companies, companyLabel = "Company" }: { compan
 
   return (
     <div className="space-y-4">
+      {/* Export button - responsive */}
       <div className="flex justify-end">
         <Button onClick={exportToCSV} variant="outline">
-          <Download className="mr-2 h-4 w-4" />
-          Export to CSV
+          <Download className="h-4 w-4 mr-0 md:mr-2" />
+          <span className="hidden md:inline">Export to CSV</span>
         </Button>
       </div>
-      <div className="rounded-lg border bg-white">
+
+      {/* Desktop table view */}
+      <div className="hidden md:block rounded-lg border bg-white">
         <table className="w-full">
-        <thead className="border-b bg-slate-50">
-          <tr>
-            <th className="px-4 py-3 text-left text-sm font-medium">Name</th>
-            <th className="px-4 py-3 text-left text-sm font-medium">Website</th>
-            <th className="px-4 py-3 text-left text-sm font-medium">Phone</th>
-            <th className="px-4 py-3 text-left text-sm font-medium">Owner</th>
-            <th className="px-4 py-3 text-right text-sm font-medium">Actions</th>
-          </tr>
-        </thead>
-        <tbody className="divide-y">
-          {companies.map((company) => (
-            <tr key={company.id} className="hover:bg-slate-50">
-              <td className="px-4 py-3 font-medium">{company.name}</td>
-              <td className="px-4 py-3 text-slate-600">{company.website || "-"}</td>
-              <td className="px-4 py-3 text-slate-600">{company.phone || "-"}</td>
-              <td className="px-4 py-3 text-slate-600">{company.owner.name}</td>
-              <td className="px-4 py-3 text-right">
-                <div className="flex justify-end gap-2">
-                  <CompanyDialog company={company} companyLabel={companyLabel}>
-                    <Button variant="ghost" size="sm">
-                      <Pencil className="h-4 w-4" />
-                    </Button>
-                  </CompanyDialog>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={() => handleDelete(company.id)}
-                    disabled={deleting === company.id}
-                  >
-                    <Trash2 className="h-4 w-4" />
-                  </Button>
-                </div>
-              </td>
+          <thead className="border-b bg-slate-50">
+            <tr>
+              <th className="px-4 py-3 text-left text-sm font-medium">Name</th>
+              <th className="px-4 py-3 text-left text-sm font-medium">Website</th>
+              <th className="px-4 py-3 text-left text-sm font-medium">Phone</th>
+              <th className="px-4 py-3 text-left text-sm font-medium">Owner</th>
+              <th className="px-4 py-3 text-right text-sm font-medium">Actions</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody className="divide-y">
+            {companies.map((company) => (
+              <tr key={company.id} className="hover:bg-slate-50">
+                <td className="px-4 py-3 font-medium">{company.name}</td>
+                <td className="px-4 py-3 text-slate-600">{company.website || "-"}</td>
+                <td className="px-4 py-3 text-slate-600">{company.phone || "-"}</td>
+                <td className="px-4 py-3 text-slate-600">{company.owner.name}</td>
+                <td className="px-4 py-3 text-right">
+                  <div className="flex justify-end gap-2">
+                    <CompanyDialog company={company} companyLabel={companyLabel}>
+                      <Button variant="ghost" size="sm">
+                        <Pencil className="h-4 w-4" />
+                      </Button>
+                    </CompanyDialog>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => handleDelete(company.id)}
+                      disabled={deleting === company.id}
+                    >
+                      <Trash2 className="h-4 w-4" />
+                    </Button>
+                  </div>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      {/* Mobile card view */}
+      <div className="md:hidden space-y-3">
+        {companies.map((company) => (
+          <div key={company.id} className="rounded-lg border bg-white p-4">
+            <div className="flex items-start justify-between mb-2">
+              <div className="flex-1 min-w-0">
+                <h3 className="font-medium text-base truncate">{company.name}</h3>
+                {company.website && (
+                  <a
+                    href={company.website}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm text-blue-600 hover:underline truncate block"
+                  >
+                    {company.website}
+                  </a>
+                )}
+              </div>
+              <div className="flex gap-1 ml-2 flex-shrink-0">
+                <CompanyDialog company={company} companyLabel={companyLabel}>
+                  <Button variant="ghost" size="sm">
+                    <Pencil className="h-4 w-4" />
+                  </Button>
+                </CompanyDialog>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => handleDelete(company.id)}
+                  disabled={deleting === company.id}
+                >
+                  <Trash2 className="h-4 w-4" />
+                </Button>
+              </div>
+            </div>
+            <div className="grid grid-cols-2 gap-2 text-sm pt-2 border-t">
+              <div>
+                <span className="text-slate-500">Phone:</span>
+                <span className="ml-1 block truncate">{company.phone || "-"}</span>
+              </div>
+              <div>
+                <span className="text-slate-500">Owner:</span>
+                <span className="ml-1 block truncate">{company.owner.name}</span>
+              </div>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );
