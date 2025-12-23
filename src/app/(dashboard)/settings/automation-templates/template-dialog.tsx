@@ -33,7 +33,7 @@ const templateSchema = z.object({
   messageTemplate: z.string().min(1, "Message template is required"),
   sendTo: z.enum(["contact", "custom"]),
   customEmail: z.string().email().optional().nullable(),
-  enabled: z.boolean().default(true),
+  enabled: z.boolean(),
 });
 
 type TemplateFormData = z.infer<typeof templateSchema>;
