@@ -16,8 +16,8 @@ type Deal = {
   id: string;
   title: string;
   valueCents: number;
-  contact: { firstName: string; lastName: string } | null;
-  company: { name: string } | null;
+  contact: { id: string; firstName: string; lastName: string } | null;
+  company: { id: string; name: string } | null;
 };
 
 export function DealCard({ deal, isDragging, dealLabel = "deal" }: { deal: Deal; isDragging?: boolean; dealLabel?: string }) {

@@ -11,9 +11,9 @@ type Deal = {
   title: string;
   valueCents: number;
   stage: { id: string; name: string };
-  contact: { firstName: string; lastName: string } | null;
-  company: { name: string } | null;
-  owner: { name: string };
+  contact: { id: string; firstName: string; lastName: string } | null;
+  company: { id: string; name: string } | null;
+  owner: { id: string; name: string };
 };
 
 type Stage = { id: string; name: string; position: number };
