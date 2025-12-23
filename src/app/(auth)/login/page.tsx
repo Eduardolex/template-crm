@@ -81,16 +81,11 @@ export default function LoginPage() {
               />
             </div>
           </CardContent>
-          <CardFooter className="flex flex-col space-y-4">
+<CardFooter className="mt-6 flex flex-col space-y-4">
             <Button type="submit" className="w-full" disabled={isLoading}>
               {isLoading ? "Signing in..." : "Sign in"}
             </Button>
-            <p className="text-center text-sm text-slate-600">
-              Don&apos;t have an account?{" "}
-              <Link href="/signup" className="font-semibold text-blue-600 hover:underline">
-                Sign up
-              </Link>
-            </p>
+          
           </CardFooter>
         </form>
       </Card>
