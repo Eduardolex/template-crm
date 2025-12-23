@@ -49,6 +49,13 @@ type User = {
   name: string;
   email: string;
   role: string;
+  createdAt: Date;
+  _count: {
+    contacts: number;
+    companies: number;
+    deals: number;
+    assignedTasks: number;
+  };
 };
 
 interface UserDialogProps {
