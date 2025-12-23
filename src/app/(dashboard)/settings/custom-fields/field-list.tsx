@@ -21,7 +21,7 @@ export function FieldList({
   objectType,
 }: {
   fields: Field[];
-  objectType: string;
+  objectType: "contact" | "company" | "deal";
 }) {
   const [deleting, setDeleting] = useState<string | null>(null);
 
