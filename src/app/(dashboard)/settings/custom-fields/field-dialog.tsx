@@ -12,13 +12,13 @@ export function FieldDialog({
   objectType,
   children,
 }: {
-  objectType: string;
+  objectType: "contact" | "company" | "deal";
   children: React.ReactNode;
 }) {
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const [fieldType, setFieldType] = useState("text");
+  const [fieldType, setFieldType] = useState<"text" | "number" | "date" | "select">("text");
   const [options, setOptions] = useState("");
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
