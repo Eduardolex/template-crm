@@ -104,7 +104,7 @@ export async function createUserAction(data: CreateUserInput) {
   } catch (error) {
     console.error("Error creating user:", error);
     if (error instanceof z.ZodError) {
-      return { success: false, error: error.errors[0].message };
+      return { success: false, error: error.issues[0].message };
     }
     return { success: false, error: "Failed to create user" };
   }
@@ -185,7 +185,7 @@ export async function updateUserAction(id: string, data: UpdateUserInput) {
   } catch (error) {
     console.error("Error updating user:", error);
     if (error instanceof z.ZodError) {
-      return { success: false, error: error.errors[0].message };
+      return { success: false, error: error.issues[0].message };
     }
     return { success: false, error: "Failed to update user" };
   }

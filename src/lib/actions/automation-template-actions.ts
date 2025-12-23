@@ -49,7 +49,7 @@ export async function createAutomationTemplateAction(
   } catch (error) {
     console.error("Error creating automation template:", error);
     if (error instanceof z.ZodError) {
-      return { success: false, error: error.errors[0].message };
+      return { success: false, error: error.issues[0].message };
     }
     return { success: false, error: "Failed to create automation template" };
   }
@@ -90,7 +90,7 @@ export async function updateAutomationTemplateAction(
   } catch (error) {
     console.error("Error updating automation template:", error);
     if (error instanceof z.ZodError) {
-      return { success: false, error: error.errors[0].message };
+      return { success: false, error: error.issues[0].message };
     }
     return { success: false, error: "Failed to update automation template" };
   }
