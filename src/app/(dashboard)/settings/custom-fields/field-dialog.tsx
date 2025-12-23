@@ -88,7 +88,11 @@ export function FieldDialog({
           </div>
           <div className="space-y-2">
             <Label>Field Type *</Label>
-            <Select value={fieldType} onValueChange={setFieldType} disabled={loading}>
+            <Select
+              value={fieldType}
+              onValueChange={(value) => setFieldType(value as "text" | "number" | "date" | "select")}
+              disabled={loading}
+            >
               <SelectTrigger>
                 <SelectValue />
               </SelectTrigger>
