@@ -74,10 +74,6 @@ export default async function DealsPage(props: {
               <LayoutList className="h-4 w-4" />
             </Link>
           </div>
-          <Button data-testid="new-deal-button">
-            <Plus className="mr-2 h-4 w-4" />
-            New {labels.deals.singular} (Test)
-          </Button>
           <DealDialog
             stages={stages}
             contacts={contacts}

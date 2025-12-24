@@ -166,7 +166,8 @@ export function DealForm({
           </Select>
         </div>
       </div>
-      <CustomFieldsSection dealId={deal?.id} onChange={setCustomFieldValues} />
+      {/* Temporarily disabled - causing SSR issues on Vercel */}
+      {/* <CustomFieldsSection dealId={deal?.id} onChange={setCustomFieldValues} /> */}
       <div className="flex justify-end gap-2">
         <Button type="submit" disabled={loading}>
           {loading ? "Saving..." : deal ? "Update" : "Create"}
