@@ -22,7 +22,7 @@ export function DealDialog({
   stages,
   contacts,
   companies,
-  dealLabel,
+  dealLabel = "Deal",
   contactLabel = "Contact",
   companyLabel = "Company",
   children,
