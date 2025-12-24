@@ -6,8 +6,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { createDealAction, updateDealAction } from "@/lib/actions/deal-actions";
-import { CustomFieldsSection } from "./custom-fields-section";
-import { saveCustomFieldValuesAction } from "@/lib/actions/custom-field-actions";
+// import { CustomFieldsSection } from "./custom-fields-section";
+// import { saveCustomFieldValuesAction } from "@/lib/actions/custom-field-actions";
 
 
 type Deal = {
@@ -76,10 +76,10 @@ export function DealForm({
         dealId = result.dealId!;
       }
 
-      // Save custom field values
-      if (Object.keys(customFieldValues).length > 0) {
-        await saveCustomFieldValuesAction("deal", dealId, customFieldValues);
-      }
+      // Save custom field values (disabled)
+      // if (Object.keys(customFieldValues).length > 0) {
+      //   await saveCustomFieldValuesAction("deal", dealId, customFieldValues);
+      // }
 
       onSuccess();
     } catch (err: any) {
