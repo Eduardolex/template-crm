@@ -8,6 +8,13 @@ export type EntityLabels = {
   companies: { plural: string; singular: string };
 };
 
+// Default labels to use as fallback when database fetch fails
+const DEFAULT_LABELS: EntityLabels = {
+  deals: { plural: "Deals", singular: "Deal" },
+  contacts: { plural: "Contacts", singular: "Contact" },
+  companies: { plural: "Companies", singular: "Company" },
+};
+
 export async function getTenantContext() {
   const session = await getServerSession(authOptions);
 
@@ -43,40 +50,48 @@ export async function withTenant<T>(
 /**
  * Get entity labels for the current tenant
  * Returns both plural and singular forms
+ * Falls back to default labels if database fetch fails
  */
 export async function getEntityLabels(): Promise<EntityLabels> {
-  const { tenantId } = await getTenantContext();
+  try {
+    const { tenantId } = await getTenantContext();
 
-  const tenant = await prisma.tenant.findUnique({
-    where: { id: tenantId },
-    select: {
-      dealsLabel: true,
-      dealsSingularLabel: true,
-      contactsLabel: true,
-      contactsSingularLabel: true,
-      companiesLabel: true,
-      companiesSingularLabel: true,
-    },
-  });
+    const tenant = await prisma.tenant.findUnique({
+      where: { id: tenantId },
+      select: {
+        dealsLabel: true,
+        dealsSingularLabel: true,
+        contactsLabel: true,
+        contactsSingularLabel: true,
+        companiesLabel: true,
+        companiesSingularLabel: true,
+      },
+    });
 
-  if (!tenant) {
-    throw new Error("Tenant not found");
+    if (!tenant) {
+      console.error("[getEntityLabels] Tenant not found:", tenantId);
+      return DEFAULT_LABELS;
+    }
+
+    // Return labels with fallback to defaults for any null values
+    return {
+      deals: {
+        plural: tenant.dealsLabel || DEFAULT_LABELS.deals.plural,
+        singular: tenant.dealsSingularLabel || DEFAULT_LABELS.deals.singular,
+      },
+      contacts: {
+        plural: tenant.contactsLabel || DEFAULT_LABELS.contacts.plural,
+        singular: tenant.contactsSingularLabel || DEFAULT_LABELS.contacts.singular,
+      },
+      companies: {
+        plural: tenant.companiesLabel || DEFAULT_LABELS.companies.plural,
+        singular: tenant.companiesSingularLabel || DEFAULT_LABELS.companies.singular,
+      },
+    };
+  } catch (error) {
+    console.error("[getEntityLabels] Error fetching labels:", error);
+    return DEFAULT_LABELS;
   }
-
-  return {
-    deals: {
-      plural: tenant.dealsLabel,
-      singular: tenant.dealsSingularLabel,
-    },
-    contacts: {
-      plural: tenant.contactsLabel,
-      singular: tenant.contactsSingularLabel,
-    },
-    companies: {
-      plural: tenant.companiesLabel,
-      singular: tenant.companiesSingularLabel,
-    },
-  };
 }
 
 /**

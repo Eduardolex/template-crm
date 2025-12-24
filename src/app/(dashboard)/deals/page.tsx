@@ -7,32 +7,43 @@ import { DealDialog } from "./deal-dialog";
 import Link from "next/link";
 
 async function getDealsData(tenantId: string) {
-  const [deals, stages, contacts, companies] = await Promise.all([
-    prisma.deal.findMany({
-      where: { tenantId },
-      include: {
-        stage: true,
-        contact: true,
-        company: true,
-        owner: true,
-      },
-      orderBy: { createdAt: "desc" },
-    }),
-    prisma.stage.findMany({
-      where: { pipeline: { tenantId } },
-      orderBy: { position: "asc" },
-    }),
-    prisma.contact.findMany({
-      where: { tenantId },
-      select: { id: true, firstName: true, lastName: true },
-    }),
-    prisma.company.findMany({
-      where: { tenantId },
-      select: { id: true, name: true },
-    }),
-  ]);
+  try {
+    const [deals, stages, contacts, companies] = await Promise.all([
+      prisma.deal.findMany({
+        where: { tenantId },
+        include: {
+          stage: true,
+          contact: true,
+          company: true,
+          owner: true,
+        },
+        orderBy: { createdAt: "desc" },
+      }),
+      prisma.stage.findMany({
+        where: { pipeline: { tenantId } },
+        orderBy: { position: "asc" },
+      }),
+      prisma.contact.findMany({
+        where: { tenantId },
+        select: { id: true, firstName: true, lastName: true },
+      }),
+      prisma.company.findMany({
+        where: { tenantId },
+        select: { id: true, name: true },
+      }),
+    ]);
 
-  return { deals, stages, contacts, companies };
+    return { deals, stages, contacts, companies };
+  } catch (error) {
+    console.error("[getDealsData] Failed to fetch deals data:", error);
+    // Return empty arrays as fallback to prevent page crash
+    return {
+      deals: [],
+      stages: [],
+      contacts: [],
+      companies: [],
+    };
+  }
 }
 
 export default async function DealsPage(props: {
@@ -43,10 +54,6 @@ export default async function DealsPage(props: {
   const labels = await getEntityLabels();
   const { deals, stages, contacts, companies } = await getDealsData(tenantId);
   const view = searchParams.view || "kanban";
-
-  // Debug logging (remove after fixing)
-  console.log("DEBUG - Labels:", labels);
-  console.log("DEBUG - Stages count:", stages.length);
 
   return (
     <div className="space-y-4">
