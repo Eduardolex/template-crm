@@ -42,6 +42,12 @@ export function DealDialog({
     setOpen(false);
   };
 
+  // Don't render if no stages exist - the form can't work without them
+  if (!stages || stages.length === 0) {
+    console.error("[DealDialog] No stages available. Cannot create deals without pipeline stages.");
+    return null;
+  }
+
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{children}</DialogTrigger>
