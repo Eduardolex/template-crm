@@ -42,6 +42,9 @@ export function DealDialog({
     setOpen(false);
   };
 
+  // Debug: Temporarily simplify to isolate issue
+  console.log("DealDialog rendering - stages:", stages?.length, "contacts:", contacts?.length);
+
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{children}</DialogTrigger>
@@ -49,7 +52,10 @@ export function DealDialog({
         <DialogHeader>
           <DialogTitle>{deal ? `Edit ${dealLabel}` : `New ${dealLabel}`}</DialogTitle>
         </DialogHeader>
-        <DealForm
+        <div className="p-4">
+          <p>Dialog is working! Stages: {stages?.length}</p>
+        </div>
+        {/* <DealForm
           deal={deal}
           stages={stages}
           contacts={contacts}
@@ -58,7 +64,7 @@ export function DealDialog({
           dealLabel={dealLabel}
           contactLabel={contactLabel}
           companyLabel={companyLabel}
-        />
+        /> */}
       </DialogContent>
     </Dialog>
   );
