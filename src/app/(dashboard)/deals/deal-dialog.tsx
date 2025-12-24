@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { DealForm } from "./deal-form";
 
 type Deal = {
@@ -48,6 +48,9 @@ export function DealDialog({
       <DialogContent className="max-w-2xl">
         <DialogHeader>
           <DialogTitle>{deal ? `Edit ${dealLabel}` : `New ${dealLabel}`}</DialogTitle>
+          <DialogDescription>
+            {deal ? `Update the details for this ${dealLabel.toLowerCase()}.` : `Create a new ${dealLabel.toLowerCase()} in your pipeline.`}
+          </DialogDescription>
         </DialogHeader>
         <DealForm
           deal={deal}
