@@ -31,7 +31,7 @@ export function DealDialog({
   stages: Stage[];
   contacts: Contact[];
   companies: Company[];
-  dealLabel: string;
+  dealLabel?: string;
   contactLabel?: string;
   companyLabel?: string;
   children: React.ReactNode;
