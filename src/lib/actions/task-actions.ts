@@ -33,7 +33,7 @@ export async function createTaskAction(data: z.infer<typeof taskSchema>) {
     },
   });
 
-  revalidatePath("/tasks");
+  revalidatePath("/activities");
   return { success: true };
 }
 
@@ -57,7 +57,7 @@ export async function updateTaskAction(
     },
   });
 
-  revalidatePath("/tasks");
+  revalidatePath("/activities");
   return { success: true };
 }
 
@@ -68,7 +68,7 @@ export async function deleteTaskAction(id: string) {
     where: { id, tenantId },
   });
 
-  revalidatePath("/tasks");
+  revalidatePath("/activities");
   return { success: true };
 }
 
@@ -101,7 +101,7 @@ export async function updateTaskStatusAction(
     await triggerAutomation(task, task.automationTemplate, task.contact);
   }
 
-  revalidatePath("/tasks");
+  revalidatePath("/activities");
   return { success: true };
 }
 

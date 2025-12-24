@@ -22,7 +22,7 @@ const getNavigation = (labels: EntityLabels) => [
   { name: labels.contacts.plural, href: "/contacts", icon: Users },
   { name: labels.companies.plural, href: "/companies", icon: Building2 },
   { name: labels.deals.plural, href: "/deals", icon: Briefcase },
-  { name: "Tasks", href: "/tasks", icon: CheckSquare },
+  { name: "Activities", href: "/activities", icon: CheckSquare },
   { name: "Settings", href: "/settings", icon: Settings, adminOnly: true },
 ];
 
