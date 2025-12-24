@@ -7,10 +7,24 @@ async function main() {
   // Create tenant
   const tenant = await prisma.tenant.upsert({
     where: { slug: "demo" },
-    update: {},
+    update: {
+      // Update existing tenant with labels if missing
+      dealsLabel: "Deals",
+      dealsSingularLabel: "Deal",
+      contactsLabel: "Contacts",
+      contactsSingularLabel: "Contact",
+      companiesLabel: "Companies",
+      companiesSingularLabel: "Company",
+    },
     create: {
       name: "Demo Corp",
       slug: "demo",
+      dealsLabel: "Deals",
+      dealsSingularLabel: "Deal",
+      contactsLabel: "Contacts",
+      contactsSingularLabel: "Contact",
+      companiesLabel: "Companies",
+      companiesSingularLabel: "Company",
     },
   });
 

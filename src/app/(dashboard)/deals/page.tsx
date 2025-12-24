@@ -44,6 +44,10 @@ export default async function DealsPage(props: {
   const { deals, stages, contacts, companies } = await getDealsData(tenantId);
   const view = searchParams.view || "kanban";
 
+  // Debug logging (remove after fixing)
+  console.log("DEBUG - Labels:", labels);
+  console.log("DEBUG - Stages count:", stages.length);
+
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between">

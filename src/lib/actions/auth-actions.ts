@@ -52,6 +52,13 @@ export async function signupAction(data: z.infer<typeof signupSchema>) {
         data: {
           name: validated.tenantName,
           slug,
+          // Set default labels to ensure navigation works correctly
+          dealsLabel: "Deals",
+          dealsSingularLabel: "Deal",
+          contactsLabel: "Contacts",
+          contactsSingularLabel: "Contact",
+          companiesLabel: "Companies",
+          companiesSingularLabel: "Company",
         },
       });
 
