@@ -17,6 +17,7 @@ type Activity = {
   body: string;
   status: string | null;
   dueAt: Date | null;
+  createdAt: Date;
   assignedUser: { id: string; name: string } | null;
   contact: { id: string; firstName: string; lastName: string } | null;
   deal: { id: string; title: string } | null;

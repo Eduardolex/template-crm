@@ -14,12 +14,17 @@ import { NoteDialog } from "./note-dialog";
 import { deleteNoteAction } from "@/lib/actions/activity-actions";
 import { formatDistanceToNow } from "date-fns";
 
-type Note = {
+type Activity = {
   id: string;
+  type: string;
   body: string;
+  status: string | null;
+  dueAt: Date | null;
   createdAt: Date;
+  assignedUser: { id: string; name: string } | null;
   contact: { id: string; firstName: string; lastName: string } | null;
   deal: { id: string; title: string } | null;
+  automationTemplate: { id: string; name: string; enabled: boolean } | null;
 };
 
 type Contact = { id: string; firstName: string; lastName: string };
@@ -30,7 +35,7 @@ export function NotesTable({
   contacts,
   deals,
 }: {
-  notes: Note[];
+  notes: Activity[];
   contacts: Contact[];
   deals: Deal[];
 }) {

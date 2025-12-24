@@ -14,13 +14,17 @@ import { CallDialog } from "./call-dialog";
 import { deleteCallAction } from "@/lib/actions/activity-actions";
 import { formatDistanceToNow, format } from "date-fns";
 
-type Call = {
+type Activity = {
   id: string;
+  type: string;
   body: string;
+  status: string | null;
   dueAt: Date | null;
   createdAt: Date;
+  assignedUser: { id: string; name: string } | null;
   contact: { id: string; firstName: string; lastName: string } | null;
   deal: { id: string; title: string } | null;
+  automationTemplate: { id: string; name: string; enabled: boolean } | null;
 };
 
 type Contact = { id: string; firstName: string; lastName: string };
@@ -31,7 +35,7 @@ export function CallsTable({
   contacts,
   deals,
 }: {
-  calls: Call[];
+  calls: Activity[];
   contacts: Contact[];
   deals: Deal[];
 }) {
