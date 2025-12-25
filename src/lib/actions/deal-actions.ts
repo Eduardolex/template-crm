@@ -40,6 +40,9 @@ export async function createDealAction(data: z.infer<typeof dealSchema>) {
     },
   });
 
+  // Trigger stage automations
+  await triggerStageAutomations(deal.id, validated.stageId);
+
   revalidatePath("/deals", "page");
   return { success: true, dealId: deal.id };
 }
@@ -48,6 +51,13 @@ export async function updateDealAction(id: string, data: z.infer<typeof dealSche
   const { tenantId } = await getTenantContext();
   const validated = dealSchema.parse(data);
 
+  // Get current stage to check if it changed
+  const currentDeal = await prisma.deal.findUnique({
+    where: { id, tenantId },
+    select: { stageId: true },
+  });
+
+  // Update deal
   await prisma.deal.update({
     where: { id, tenantId },
     data: {
@@ -58,6 +68,11 @@ export async function updateDealAction(id: string, data: z.infer<typeof dealSche
       companyId: validated.companyId || null,
     },
   });
+
+  // Trigger automations only if stage changed
+  if (currentDeal && currentDeal.stageId !== validated.stageId) {
+    await triggerStageAutomations(id, validated.stageId);
+  }
 
   revalidatePath("/deals", "page");
   return { success: true };
@@ -82,6 +97,111 @@ export async function moveDealToStageAction(dealId: string, stageId: string) {
     data: { stageId },
   });
 
+  // Trigger stage automations
+  await triggerStageAutomations(dealId, stageId);
+
   revalidatePath("/deals", "page");
   return { success: true };
+}
+
+/**
+ * Trigger all automations assigned to a stage
+ */
+async function triggerStageAutomations(dealId: string, stageId: string) {
+  const { tenantId } = await getTenantContext();
+
+  // Fetch deal with all related data
+  const deal = await prisma.deal.findUnique({
+    where: { id: dealId, tenantId },
+    include: {
+      contact: true,
+      company: true,
+      stage: {
+        include: {
+          automations: {
+            include: {
+              automationTemplate: true,
+            },
+            orderBy: { position: 'asc' },
+          },
+        },
+      },
+    },
+  });
+
+  if (!deal) return;
+
+  // Trigger each enabled automation in order
+  for (const stageAutomation of deal.stage.automations) {
+    const template = stageAutomation.automationTemplate;
+    if (template.enabled) {
+      await triggerDealAutomation(deal, template, deal.contact, deal.company);
+    }
+  }
+}
+
+/**
+ * Trigger automation for a new deal
+ * In production, this would send an actual email via SendGrid, Resend, etc.
+ * For now, we'll log it and could add a notification
+ */
+async function triggerDealAutomation(
+  deal: any,
+  template: any,
+  contact: any,
+  company: any
+) {
+  try {
+    // Replace variables in the template
+    let message = template.messageTemplate;
+
+    // Replace contact name
+    if (contact) {
+      const contactName = `${contact.firstName} ${contact.lastName}`;
+      message = message.replace(/{contact_name}/g, contactName);
+    }
+
+    // Replace company name
+    if (company) {
+      message = message.replace(/{company_name}/g, company.name || "");
+    }
+
+    // Replace deal title and value
+    message = message.replace(/{deal_title}/g, deal.title || "");
+    message = message.replace(/{deal_value}/g, `$${(deal.valueCents / 100).toFixed(2)}`);
+
+    // Determine recipient
+    const recipient = template.sendTo === "contact"
+      ? contact?.email
+      : template.customEmail;
+
+    if (!recipient) {
+      console.warn("No recipient email found for automation template:", template.id);
+      return;
+    }
+
+    // TODO: In production, send actual email here
+    // Example: await sendEmail({ to: recipient, subject: "New Deal", body: message });
+
+    console.log("📧 Deal automation triggered:", {
+      templateName: template.name,
+      recipient,
+      message,
+      dealId: deal.id,
+    });
+
+    // Optional: Create an activity record to track that automation was sent
+    // await prisma.activity.create({
+    //   data: {
+    //     type: "note",
+    //     body: `Automation sent: ${template.name} to ${recipient}`,
+    //     tenantId: deal.tenantId,
+    //     dealId: deal.id,
+    //   },
+    // });
+
+  } catch (error) {
+    console.error("Error triggering deal automation:", error);
+    // Don't fail the deal creation if automation fails
+  }
 }

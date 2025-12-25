@@ -216,6 +216,7 @@ export type AutomationTemplateWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"AutomationTemplate"> | Date | string
   tenant?: Prisma.XOR<Prisma.TenantScalarRelationFilter, Prisma.TenantWhereInput>
   activities?: Prisma.ActivityListRelationFilter
+  stageAutomations?: Prisma.StageAutomationListRelationFilter
 }
 
 export type AutomationTemplateOrderByWithRelationInput = {
@@ -230,6 +231,7 @@ export type AutomationTemplateOrderByWithRelationInput = {
   updatedAt?: Prisma.SortOrder
   tenant?: Prisma.TenantOrderByWithRelationInput
   activities?: Prisma.ActivityOrderByRelationAggregateInput
+  stageAutomations?: Prisma.StageAutomationOrderByRelationAggregateInput
 }
 
 export type AutomationTemplateWhereUniqueInput = Prisma.AtLeast<{
@@ -247,6 +249,7 @@ export type AutomationTemplateWhereUniqueInput = Prisma.AtLeast<{
   updatedAt?: Prisma.DateTimeFilter<"AutomationTemplate"> | Date | string
   tenant?: Prisma.XOR<Prisma.TenantScalarRelationFilter, Prisma.TenantWhereInput>
   activities?: Prisma.ActivityListRelationFilter
+  stageAutomations?: Prisma.StageAutomationListRelationFilter
 }, "id">
 
 export type AutomationTemplateOrderByWithAggregationInput = {
@@ -290,6 +293,7 @@ export type AutomationTemplateCreateInput = {
   updatedAt?: Date | string
   tenant: Prisma.TenantCreateNestedOneWithoutAutomationTemplatesInput
   activities?: Prisma.ActivityCreateNestedManyWithoutAutomationTemplateInput
+  stageAutomations?: Prisma.StageAutomationCreateNestedManyWithoutAutomationTemplateInput
 }
 
 export type AutomationTemplateUncheckedCreateInput = {
@@ -303,6 +307,7 @@ export type AutomationTemplateUncheckedCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   activities?: Prisma.ActivityUncheckedCreateNestedManyWithoutAutomationTemplateInput
+  stageAutomations?: Prisma.StageAutomationUncheckedCreateNestedManyWithoutAutomationTemplateInput
 }
 
 export type AutomationTemplateUpdateInput = {
@@ -316,6 +321,7 @@ export type AutomationTemplateUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tenant?: Prisma.TenantUpdateOneRequiredWithoutAutomationTemplatesNestedInput
   activities?: Prisma.ActivityUpdateManyWithoutAutomationTemplateNestedInput
+  stageAutomations?: Prisma.StageAutomationUpdateManyWithoutAutomationTemplateNestedInput
 }
 
 export type AutomationTemplateUncheckedUpdateInput = {
@@ -329,6 +335,7 @@ export type AutomationTemplateUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   activities?: Prisma.ActivityUncheckedUpdateManyWithoutAutomationTemplateNestedInput
+  stageAutomations?: Prisma.StageAutomationUncheckedUpdateManyWithoutAutomationTemplateNestedInput
 }
 
 export type AutomationTemplateCreateManyInput = {
@@ -417,6 +424,11 @@ export type AutomationTemplateMinOrderByAggregateInput = {
   updatedAt?: Prisma.SortOrder
 }
 
+export type AutomationTemplateScalarRelationFilter = {
+  is?: Prisma.AutomationTemplateWhereInput
+  isNot?: Prisma.AutomationTemplateWhereInput
+}
+
 export type AutomationTemplateCreateNestedManyWithoutTenantInput = {
   create?: Prisma.XOR<Prisma.AutomationTemplateCreateWithoutTenantInput, Prisma.AutomationTemplateUncheckedCreateWithoutTenantInput> | Prisma.AutomationTemplateCreateWithoutTenantInput[] | Prisma.AutomationTemplateUncheckedCreateWithoutTenantInput[]
   connectOrCreate?: Prisma.AutomationTemplateCreateOrConnectWithoutTenantInput | Prisma.AutomationTemplateCreateOrConnectWithoutTenantInput[]
@@ -475,6 +487,20 @@ export type AutomationTemplateUpdateOneWithoutActivitiesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.AutomationTemplateUpdateToOneWithWhereWithoutActivitiesInput, Prisma.AutomationTemplateUpdateWithoutActivitiesInput>, Prisma.AutomationTemplateUncheckedUpdateWithoutActivitiesInput>
 }
 
+export type AutomationTemplateCreateNestedOneWithoutStageAutomationsInput = {
+  create?: Prisma.XOR<Prisma.AutomationTemplateCreateWithoutStageAutomationsInput, Prisma.AutomationTemplateUncheckedCreateWithoutStageAutomationsInput>
+  connectOrCreate?: Prisma.AutomationTemplateCreateOrConnectWithoutStageAutomationsInput
+  connect?: Prisma.AutomationTemplateWhereUniqueInput
+}
+
+export type AutomationTemplateUpdateOneRequiredWithoutStageAutomationsNestedInput = {
+  create?: Prisma.XOR<Prisma.AutomationTemplateCreateWithoutStageAutomationsInput, Prisma.AutomationTemplateUncheckedCreateWithoutStageAutomationsInput>
+  connectOrCreate?: Prisma.AutomationTemplateCreateOrConnectWithoutStageAutomationsInput
+  upsert?: Prisma.AutomationTemplateUpsertWithoutStageAutomationsInput
+  connect?: Prisma.AutomationTemplateWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.AutomationTemplateUpdateToOneWithWhereWithoutStageAutomationsInput, Prisma.AutomationTemplateUpdateWithoutStageAutomationsInput>, Prisma.AutomationTemplateUncheckedUpdateWithoutStageAutomationsInput>
+}
+
 export type AutomationTemplateCreateWithoutTenantInput = {
   id?: string
   name: string
@@ -485,6 +511,7 @@ export type AutomationTemplateCreateWithoutTenantInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   activities?: Prisma.ActivityCreateNestedManyWithoutAutomationTemplateInput
+  stageAutomations?: Prisma.StageAutomationCreateNestedManyWithoutAutomationTemplateInput
 }
 
 export type AutomationTemplateUncheckedCreateWithoutTenantInput = {
@@ -497,6 +524,7 @@ export type AutomationTemplateUncheckedCreateWithoutTenantInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   activities?: Prisma.ActivityUncheckedCreateNestedManyWithoutAutomationTemplateInput
+  stageAutomations?: Prisma.StageAutomationUncheckedCreateNestedManyWithoutAutomationTemplateInput
 }
 
 export type AutomationTemplateCreateOrConnectWithoutTenantInput = {
@@ -550,6 +578,7 @@ export type AutomationTemplateCreateWithoutActivitiesInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   tenant: Prisma.TenantCreateNestedOneWithoutAutomationTemplatesInput
+  stageAutomations?: Prisma.StageAutomationCreateNestedManyWithoutAutomationTemplateInput
 }
 
 export type AutomationTemplateUncheckedCreateWithoutActivitiesInput = {
@@ -562,6 +591,7 @@ export type AutomationTemplateUncheckedCreateWithoutActivitiesInput = {
   enabled?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  stageAutomations?: Prisma.StageAutomationUncheckedCreateNestedManyWithoutAutomationTemplateInput
 }
 
 export type AutomationTemplateCreateOrConnectWithoutActivitiesInput = {
@@ -590,6 +620,7 @@ export type AutomationTemplateUpdateWithoutActivitiesInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tenant?: Prisma.TenantUpdateOneRequiredWithoutAutomationTemplatesNestedInput
+  stageAutomations?: Prisma.StageAutomationUpdateManyWithoutAutomationTemplateNestedInput
 }
 
 export type AutomationTemplateUncheckedUpdateWithoutActivitiesInput = {
@@ -602,6 +633,75 @@ export type AutomationTemplateUncheckedUpdateWithoutActivitiesInput = {
   enabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  stageAutomations?: Prisma.StageAutomationUncheckedUpdateManyWithoutAutomationTemplateNestedInput
+}
+
+export type AutomationTemplateCreateWithoutStageAutomationsInput = {
+  id?: string
+  name: string
+  messageTemplate: string
+  sendTo: string
+  customEmail?: string | null
+  enabled?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  tenant: Prisma.TenantCreateNestedOneWithoutAutomationTemplatesInput
+  activities?: Prisma.ActivityCreateNestedManyWithoutAutomationTemplateInput
+}
+
+export type AutomationTemplateUncheckedCreateWithoutStageAutomationsInput = {
+  id?: string
+  tenantId: string
+  name: string
+  messageTemplate: string
+  sendTo: string
+  customEmail?: string | null
+  enabled?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  activities?: Prisma.ActivityUncheckedCreateNestedManyWithoutAutomationTemplateInput
+}
+
+export type AutomationTemplateCreateOrConnectWithoutStageAutomationsInput = {
+  where: Prisma.AutomationTemplateWhereUniqueInput
+  create: Prisma.XOR<Prisma.AutomationTemplateCreateWithoutStageAutomationsInput, Prisma.AutomationTemplateUncheckedCreateWithoutStageAutomationsInput>
+}
+
+export type AutomationTemplateUpsertWithoutStageAutomationsInput = {
+  update: Prisma.XOR<Prisma.AutomationTemplateUpdateWithoutStageAutomationsInput, Prisma.AutomationTemplateUncheckedUpdateWithoutStageAutomationsInput>
+  create: Prisma.XOR<Prisma.AutomationTemplateCreateWithoutStageAutomationsInput, Prisma.AutomationTemplateUncheckedCreateWithoutStageAutomationsInput>
+  where?: Prisma.AutomationTemplateWhereInput
+}
+
+export type AutomationTemplateUpdateToOneWithWhereWithoutStageAutomationsInput = {
+  where?: Prisma.AutomationTemplateWhereInput
+  data: Prisma.XOR<Prisma.AutomationTemplateUpdateWithoutStageAutomationsInput, Prisma.AutomationTemplateUncheckedUpdateWithoutStageAutomationsInput>
+}
+
+export type AutomationTemplateUpdateWithoutStageAutomationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  messageTemplate?: Prisma.StringFieldUpdateOperationsInput | string
+  sendTo?: Prisma.StringFieldUpdateOperationsInput | string
+  customEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  enabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  tenant?: Prisma.TenantUpdateOneRequiredWithoutAutomationTemplatesNestedInput
+  activities?: Prisma.ActivityUpdateManyWithoutAutomationTemplateNestedInput
+}
+
+export type AutomationTemplateUncheckedUpdateWithoutStageAutomationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  messageTemplate?: Prisma.StringFieldUpdateOperationsInput | string
+  sendTo?: Prisma.StringFieldUpdateOperationsInput | string
+  customEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  enabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  activities?: Prisma.ActivityUncheckedUpdateManyWithoutAutomationTemplateNestedInput
 }
 
 export type AutomationTemplateCreateManyTenantInput = {
@@ -625,6 +725,7 @@ export type AutomationTemplateUpdateWithoutTenantInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   activities?: Prisma.ActivityUpdateManyWithoutAutomationTemplateNestedInput
+  stageAutomations?: Prisma.StageAutomationUpdateManyWithoutAutomationTemplateNestedInput
 }
 
 export type AutomationTemplateUncheckedUpdateWithoutTenantInput = {
@@ -637,6 +738,7 @@ export type AutomationTemplateUncheckedUpdateWithoutTenantInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   activities?: Prisma.ActivityUncheckedUpdateManyWithoutAutomationTemplateNestedInput
+  stageAutomations?: Prisma.StageAutomationUncheckedUpdateManyWithoutAutomationTemplateNestedInput
 }
 
 export type AutomationTemplateUncheckedUpdateManyWithoutTenantInput = {
@@ -657,10 +759,12 @@ export type AutomationTemplateUncheckedUpdateManyWithoutTenantInput = {
 
 export type AutomationTemplateCountOutputType = {
   activities: number
+  stageAutomations: number
 }
 
 export type AutomationTemplateCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   activities?: boolean | AutomationTemplateCountOutputTypeCountActivitiesArgs
+  stageAutomations?: boolean | AutomationTemplateCountOutputTypeCountStageAutomationsArgs
 }
 
 /**
@@ -680,6 +784,13 @@ export type AutomationTemplateCountOutputTypeCountActivitiesArgs<ExtArgs extends
   where?: Prisma.ActivityWhereInput
 }
 
+/**
+ * AutomationTemplateCountOutputType without action
+ */
+export type AutomationTemplateCountOutputTypeCountStageAutomationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.StageAutomationWhereInput
+}
+
 
 export type AutomationTemplateSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -693,6 +804,7 @@ export type AutomationTemplateSelect<ExtArgs extends runtime.Types.Extensions.In
   updatedAt?: boolean
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
   activities?: boolean | Prisma.AutomationTemplate$activitiesArgs<ExtArgs>
+  stageAutomations?: boolean | Prisma.AutomationTemplate$stageAutomationsArgs<ExtArgs>
   _count?: boolean | Prisma.AutomationTemplateCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["automationTemplate"]>
 
@@ -738,6 +850,7 @@ export type AutomationTemplateOmit<ExtArgs extends runtime.Types.Extensions.Inte
 export type AutomationTemplateInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
   activities?: boolean | Prisma.AutomationTemplate$activitiesArgs<ExtArgs>
+  stageAutomations?: boolean | Prisma.AutomationTemplate$stageAutomationsArgs<ExtArgs>
   _count?: boolean | Prisma.AutomationTemplateCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type AutomationTemplateIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -752,6 +865,7 @@ export type $AutomationTemplatePayload<ExtArgs extends runtime.Types.Extensions.
   objects: {
     tenant: Prisma.$TenantPayload<ExtArgs>
     activities: Prisma.$ActivityPayload<ExtArgs>[]
+    stageAutomations: Prisma.$StageAutomationPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1159,6 +1273,7 @@ export interface Prisma__AutomationTemplateClient<T, Null = never, ExtArgs exten
   readonly [Symbol.toStringTag]: "PrismaPromise"
   tenant<T extends Prisma.TenantDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.TenantDefaultArgs<ExtArgs>>): Prisma.Prisma__TenantClient<runtime.Types.Result.GetResult<Prisma.$TenantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   activities<T extends Prisma.AutomationTemplate$activitiesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AutomationTemplate$activitiesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ActivityPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  stageAutomations<T extends Prisma.AutomationTemplate$stageAutomationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AutomationTemplate$stageAutomationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$StageAutomationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1614,6 +1729,30 @@ export type AutomationTemplate$activitiesArgs<ExtArgs extends runtime.Types.Exte
   take?: number
   skip?: number
   distinct?: Prisma.ActivityScalarFieldEnum | Prisma.ActivityScalarFieldEnum[]
+}
+
+/**
+ * AutomationTemplate.stageAutomations
+ */
+export type AutomationTemplate$stageAutomationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the StageAutomation
+   */
+  select?: Prisma.StageAutomationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the StageAutomation
+   */
+  omit?: Prisma.StageAutomationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.StageAutomationInclude<ExtArgs> | null
+  where?: Prisma.StageAutomationWhereInput
+  orderBy?: Prisma.StageAutomationOrderByWithRelationInput | Prisma.StageAutomationOrderByWithRelationInput[]
+  cursor?: Prisma.StageAutomationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.StageAutomationScalarFieldEnum | Prisma.StageAutomationScalarFieldEnum[]
 }
 
 /**

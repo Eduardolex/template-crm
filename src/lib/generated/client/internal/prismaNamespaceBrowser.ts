@@ -61,7 +61,8 @@ export const ModelName = {
   Activity: 'Activity',
   CustomField: 'CustomField',
   CustomFieldValue: 'CustomFieldValue',
-  AutomationTemplate: 'AutomationTemplate'
+  AutomationTemplate: 'AutomationTemplate',
+  StageAutomation: 'StageAutomation'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -251,6 +252,18 @@ export const AutomationTemplateScalarFieldEnum = {
 } as const
 
 export type AutomationTemplateScalarFieldEnum = (typeof AutomationTemplateScalarFieldEnum)[keyof typeof AutomationTemplateScalarFieldEnum]
+
+
+export const StageAutomationScalarFieldEnum = {
+  id: 'id',
+  stageId: 'stageId',
+  automationTemplateId: 'automationTemplateId',
+  position: 'position',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type StageAutomationScalarFieldEnum = (typeof StageAutomationScalarFieldEnum)[keyof typeof StageAutomationScalarFieldEnum]
 
 
 export const SortOrder = {

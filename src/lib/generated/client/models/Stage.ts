@@ -242,6 +242,7 @@ export type StageWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"Stage"> | Date | string
   pipeline?: Prisma.XOR<Prisma.PipelineScalarRelationFilter, Prisma.PipelineWhereInput>
   deals?: Prisma.DealListRelationFilter
+  automations?: Prisma.StageAutomationListRelationFilter
 }
 
 export type StageOrderByWithRelationInput = {
@@ -255,6 +256,7 @@ export type StageOrderByWithRelationInput = {
   updatedAt?: Prisma.SortOrder
   pipeline?: Prisma.PipelineOrderByWithRelationInput
   deals?: Prisma.DealOrderByRelationAggregateInput
+  automations?: Prisma.StageAutomationOrderByRelationAggregateInput
 }
 
 export type StageWhereUniqueInput = Prisma.AtLeast<{
@@ -271,6 +273,7 @@ export type StageWhereUniqueInput = Prisma.AtLeast<{
   updatedAt?: Prisma.DateTimeFilter<"Stage"> | Date | string
   pipeline?: Prisma.XOR<Prisma.PipelineScalarRelationFilter, Prisma.PipelineWhereInput>
   deals?: Prisma.DealListRelationFilter
+  automations?: Prisma.StageAutomationListRelationFilter
 }, "id">
 
 export type StageOrderByWithAggregationInput = {
@@ -313,6 +316,7 @@ export type StageCreateInput = {
   updatedAt?: Date | string
   pipeline: Prisma.PipelineCreateNestedOneWithoutStagesInput
   deals?: Prisma.DealCreateNestedManyWithoutStageInput
+  automations?: Prisma.StageAutomationCreateNestedManyWithoutStageInput
 }
 
 export type StageUncheckedCreateInput = {
@@ -325,6 +329,7 @@ export type StageUncheckedCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deals?: Prisma.DealUncheckedCreateNestedManyWithoutStageInput
+  automations?: Prisma.StageAutomationUncheckedCreateNestedManyWithoutStageInput
 }
 
 export type StageUpdateInput = {
@@ -337,6 +342,7 @@ export type StageUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   pipeline?: Prisma.PipelineUpdateOneRequiredWithoutStagesNestedInput
   deals?: Prisma.DealUpdateManyWithoutStageNestedInput
+  automations?: Prisma.StageAutomationUpdateManyWithoutStageNestedInput
 }
 
 export type StageUncheckedUpdateInput = {
@@ -349,6 +355,7 @@ export type StageUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deals?: Prisma.DealUncheckedUpdateManyWithoutStageNestedInput
+  automations?: Prisma.StageAutomationUncheckedUpdateManyWithoutStageNestedInput
 }
 
 export type StageCreateManyInput = {
@@ -507,6 +514,20 @@ export type StageUpdateOneRequiredWithoutDealsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.StageUpdateToOneWithWhereWithoutDealsInput, Prisma.StageUpdateWithoutDealsInput>, Prisma.StageUncheckedUpdateWithoutDealsInput>
 }
 
+export type StageCreateNestedOneWithoutAutomationsInput = {
+  create?: Prisma.XOR<Prisma.StageCreateWithoutAutomationsInput, Prisma.StageUncheckedCreateWithoutAutomationsInput>
+  connectOrCreate?: Prisma.StageCreateOrConnectWithoutAutomationsInput
+  connect?: Prisma.StageWhereUniqueInput
+}
+
+export type StageUpdateOneRequiredWithoutAutomationsNestedInput = {
+  create?: Prisma.XOR<Prisma.StageCreateWithoutAutomationsInput, Prisma.StageUncheckedCreateWithoutAutomationsInput>
+  connectOrCreate?: Prisma.StageCreateOrConnectWithoutAutomationsInput
+  upsert?: Prisma.StageUpsertWithoutAutomationsInput
+  connect?: Prisma.StageWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.StageUpdateToOneWithWhereWithoutAutomationsInput, Prisma.StageUpdateWithoutAutomationsInput>, Prisma.StageUncheckedUpdateWithoutAutomationsInput>
+}
+
 export type StageCreateWithoutPipelineInput = {
   id?: string
   name: string
@@ -516,6 +537,7 @@ export type StageCreateWithoutPipelineInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deals?: Prisma.DealCreateNestedManyWithoutStageInput
+  automations?: Prisma.StageAutomationCreateNestedManyWithoutStageInput
 }
 
 export type StageUncheckedCreateWithoutPipelineInput = {
@@ -527,6 +549,7 @@ export type StageUncheckedCreateWithoutPipelineInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deals?: Prisma.DealUncheckedCreateNestedManyWithoutStageInput
+  automations?: Prisma.StageAutomationUncheckedCreateNestedManyWithoutStageInput
 }
 
 export type StageCreateOrConnectWithoutPipelineInput = {
@@ -578,6 +601,7 @@ export type StageCreateWithoutDealsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   pipeline: Prisma.PipelineCreateNestedOneWithoutStagesInput
+  automations?: Prisma.StageAutomationCreateNestedManyWithoutStageInput
 }
 
 export type StageUncheckedCreateWithoutDealsInput = {
@@ -589,6 +613,7 @@ export type StageUncheckedCreateWithoutDealsInput = {
   isLost?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  automations?: Prisma.StageAutomationUncheckedCreateNestedManyWithoutStageInput
 }
 
 export type StageCreateOrConnectWithoutDealsInput = {
@@ -616,6 +641,7 @@ export type StageUpdateWithoutDealsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   pipeline?: Prisma.PipelineUpdateOneRequiredWithoutStagesNestedInput
+  automations?: Prisma.StageAutomationUpdateManyWithoutStageNestedInput
 }
 
 export type StageUncheckedUpdateWithoutDealsInput = {
@@ -627,6 +653,71 @@ export type StageUncheckedUpdateWithoutDealsInput = {
   isLost?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  automations?: Prisma.StageAutomationUncheckedUpdateManyWithoutStageNestedInput
+}
+
+export type StageCreateWithoutAutomationsInput = {
+  id?: string
+  name: string
+  position: number
+  isWon?: boolean
+  isLost?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  pipeline: Prisma.PipelineCreateNestedOneWithoutStagesInput
+  deals?: Prisma.DealCreateNestedManyWithoutStageInput
+}
+
+export type StageUncheckedCreateWithoutAutomationsInput = {
+  id?: string
+  pipelineId: string
+  name: string
+  position: number
+  isWon?: boolean
+  isLost?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deals?: Prisma.DealUncheckedCreateNestedManyWithoutStageInput
+}
+
+export type StageCreateOrConnectWithoutAutomationsInput = {
+  where: Prisma.StageWhereUniqueInput
+  create: Prisma.XOR<Prisma.StageCreateWithoutAutomationsInput, Prisma.StageUncheckedCreateWithoutAutomationsInput>
+}
+
+export type StageUpsertWithoutAutomationsInput = {
+  update: Prisma.XOR<Prisma.StageUpdateWithoutAutomationsInput, Prisma.StageUncheckedUpdateWithoutAutomationsInput>
+  create: Prisma.XOR<Prisma.StageCreateWithoutAutomationsInput, Prisma.StageUncheckedCreateWithoutAutomationsInput>
+  where?: Prisma.StageWhereInput
+}
+
+export type StageUpdateToOneWithWhereWithoutAutomationsInput = {
+  where?: Prisma.StageWhereInput
+  data: Prisma.XOR<Prisma.StageUpdateWithoutAutomationsInput, Prisma.StageUncheckedUpdateWithoutAutomationsInput>
+}
+
+export type StageUpdateWithoutAutomationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  position?: Prisma.IntFieldUpdateOperationsInput | number
+  isWon?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isLost?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  pipeline?: Prisma.PipelineUpdateOneRequiredWithoutStagesNestedInput
+  deals?: Prisma.DealUpdateManyWithoutStageNestedInput
+}
+
+export type StageUncheckedUpdateWithoutAutomationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  pipelineId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  position?: Prisma.IntFieldUpdateOperationsInput | number
+  isWon?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isLost?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deals?: Prisma.DealUncheckedUpdateManyWithoutStageNestedInput
 }
 
 export type StageCreateManyPipelineInput = {
@@ -648,6 +739,7 @@ export type StageUpdateWithoutPipelineInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deals?: Prisma.DealUpdateManyWithoutStageNestedInput
+  automations?: Prisma.StageAutomationUpdateManyWithoutStageNestedInput
 }
 
 export type StageUncheckedUpdateWithoutPipelineInput = {
@@ -659,6 +751,7 @@ export type StageUncheckedUpdateWithoutPipelineInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deals?: Prisma.DealUncheckedUpdateManyWithoutStageNestedInput
+  automations?: Prisma.StageAutomationUncheckedUpdateManyWithoutStageNestedInput
 }
 
 export type StageUncheckedUpdateManyWithoutPipelineInput = {
@@ -678,10 +771,12 @@ export type StageUncheckedUpdateManyWithoutPipelineInput = {
 
 export type StageCountOutputType = {
   deals: number
+  automations: number
 }
 
 export type StageCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   deals?: boolean | StageCountOutputTypeCountDealsArgs
+  automations?: boolean | StageCountOutputTypeCountAutomationsArgs
 }
 
 /**
@@ -701,6 +796,13 @@ export type StageCountOutputTypeCountDealsArgs<ExtArgs extends runtime.Types.Ext
   where?: Prisma.DealWhereInput
 }
 
+/**
+ * StageCountOutputType without action
+ */
+export type StageCountOutputTypeCountAutomationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.StageAutomationWhereInput
+}
+
 
 export type StageSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -713,6 +815,7 @@ export type StageSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   updatedAt?: boolean
   pipeline?: boolean | Prisma.PipelineDefaultArgs<ExtArgs>
   deals?: boolean | Prisma.Stage$dealsArgs<ExtArgs>
+  automations?: boolean | Prisma.Stage$automationsArgs<ExtArgs>
   _count?: boolean | Prisma.StageCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["stage"]>
 
@@ -755,6 +858,7 @@ export type StageOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = ru
 export type StageInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   pipeline?: boolean | Prisma.PipelineDefaultArgs<ExtArgs>
   deals?: boolean | Prisma.Stage$dealsArgs<ExtArgs>
+  automations?: boolean | Prisma.Stage$automationsArgs<ExtArgs>
   _count?: boolean | Prisma.StageCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type StageIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -769,6 +873,7 @@ export type $StagePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   objects: {
     pipeline: Prisma.$PipelinePayload<ExtArgs>
     deals: Prisma.$DealPayload<ExtArgs>[]
+    automations: Prisma.$StageAutomationPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1175,6 +1280,7 @@ export interface Prisma__StageClient<T, Null = never, ExtArgs extends runtime.Ty
   readonly [Symbol.toStringTag]: "PrismaPromise"
   pipeline<T extends Prisma.PipelineDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PipelineDefaultArgs<ExtArgs>>): Prisma.Prisma__PipelineClient<runtime.Types.Result.GetResult<Prisma.$PipelinePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   deals<T extends Prisma.Stage$dealsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Stage$dealsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DealPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  automations<T extends Prisma.Stage$automationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Stage$automationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$StageAutomationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1629,6 +1735,30 @@ export type Stage$dealsArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
   take?: number
   skip?: number
   distinct?: Prisma.DealScalarFieldEnum | Prisma.DealScalarFieldEnum[]
+}
+
+/**
+ * Stage.automations
+ */
+export type Stage$automationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the StageAutomation
+   */
+  select?: Prisma.StageAutomationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the StageAutomation
+   */
+  omit?: Prisma.StageAutomationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.StageAutomationInclude<ExtArgs> | null
+  where?: Prisma.StageAutomationWhereInput
+  orderBy?: Prisma.StageAutomationOrderByWithRelationInput | Prisma.StageAutomationOrderByWithRelationInput[]
+  cursor?: Prisma.StageAutomationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.StageAutomationScalarFieldEnum | Prisma.StageAutomationScalarFieldEnum[]
 }
 
 /**

@@ -19,7 +19,7 @@ export async function createStageAction(
   await requireAdmin();
   const validated = stageSchema.parse(data);
 
-  await prisma.stage.create({
+  const stage = await prisma.stage.create({
     data: {
       ...validated,
       pipelineId,
@@ -27,7 +27,7 @@ export async function createStageAction(
   });
 
   revalidatePath("/settings/pipeline");
-  return { success: true };
+  return { success: true, stageId: stage.id };
 }
 
 export async function updateStageAction(

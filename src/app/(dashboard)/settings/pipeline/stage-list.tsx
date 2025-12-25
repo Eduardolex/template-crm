@@ -7,20 +7,32 @@ import { StageDialog } from "./stage-dialog";
 import { deleteStageAction } from "@/lib/actions/pipeline-actions";
 import { Badge } from "@/components/ui/badge";
 
+type AutomationTemplate = {
+  id: string;
+  name: string;
+  enabled: boolean;
+};
+
 type Stage = {
   id: string;
   name: string;
   position: number;
   isWon: boolean;
   isLost: boolean;
+  automations?: Array<{
+    automationTemplateId: string;
+    automationTemplate: { id: string; name: string };
+  }>;
 };
 
 export function StageList({
   pipelineId,
   stages,
+  automationTemplates,
 }: {
   pipelineId: string;
   stages: Stage[];
+  automationTemplates: AutomationTemplate[];
 }) {
   const [deleting, setDeleting] = useState<string | null>(null);
 
@@ -35,7 +47,7 @@ export function StageList({
   return (
     <div className="space-y-4">
       <div className="flex justify-end">
-        <StageDialog pipelineId={pipelineId} maxPosition={stages.length}>
+        <StageDialog pipelineId={pipelineId} maxPosition={stages.length} automationTemplates={automationTemplates}>
           <Button>
             <Plus className="mr-2 h-4 w-4" />
             Add Stage
@@ -61,9 +73,19 @@ export function StageList({
                   {stage.isWon && <Badge variant="default">Won</Badge>}
                   {stage.isLost && <Badge variant="destructive">Lost</Badge>}
                 </div>
-                <p className="text-sm text-slate-600">Position: {index + 1}</p>
+                <div className="flex items-center gap-2 mt-1">
+                  <p className="text-sm text-slate-600">Position: {index + 1}</p>
+                  {stage.automations && stage.automations.length > 0 && (
+                    <>
+                      <span className="text-slate-400">•</span>
+                      <p className="text-sm text-slate-600">
+                        {stage.automations.length} automation{stage.automations.length !== 1 ? 's' : ''}
+                      </p>
+                    </>
+                  )}
+                </div>
               </div>
-              <StageDialog pipelineId={pipelineId} stage={stage} maxPosition={stages.length}>
+              <StageDialog pipelineId={pipelineId} stage={stage} maxPosition={stages.length} automationTemplates={automationTemplates}>
                 <Button variant="ghost" size="sm">
                   Edit
                 </Button>

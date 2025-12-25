@@ -107,16 +107,17 @@ model Pipeline {
 }
 
 model Stage {
-  id         String   @id @default(cuid())
-  pipelineId String
-  name       String
-  position   Int
-  isWon      Boolean  @default(false)
-  isLost     Boolean  @default(false)
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
-  pipeline   Pipeline @relation(fields: [pipelineId], references: [id], onDelete: Cascade)
-  deals      Deal[]
+  id          String            @id @default(cuid())
+  pipelineId  String
+  name        String
+  position    Int
+  isWon       Boolean           @default(false)
+  isLost      Boolean           @default(false)
+  createdAt   DateTime          @default(now())
+  updatedAt   DateTime          @updatedAt
+  pipeline    Pipeline          @relation(fields: [pipelineId], references: [id], onDelete: Cascade)
+  deals       Deal[]
+  automations StageAutomation[]
 
   @@index([pipelineId])
   @@index([pipelineId, position])
@@ -216,17 +217,33 @@ model CustomFieldValue {
 }
 
 model AutomationTemplate {
-  id              String     @id @default(cuid())
-  tenantId        String
-  name            String
-  messageTemplate String     @db.Text
-  sendTo          String     // "contact" | "custom"
-  customEmail     String?
-  enabled         Boolean    @default(true)
-  createdAt       DateTime   @default(now())
-  updatedAt       DateTime   @updatedAt
-  tenant          Tenant     @relation(fields: [tenantId], references: [id], onDelete: Cascade)
-  activities      Activity[]
+  id               String            @id @default(cuid())
+  tenantId         String
+  name             String
+  messageTemplate  String            @db.Text
+  sendTo           String            // "contact" | "custom"
+  customEmail      String?
+  enabled          Boolean           @default(true)
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime          @updatedAt
+  tenant           Tenant            @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  activities       Activity[]
+  stageAutomations StageAutomation[]
 
   @@index([tenantId])
+}
+
+model StageAutomation {
+  id                   String             @id @default(cuid())
+  stageId              String
+  automationTemplateId String
+  position             Int                @default(0)
+  createdAt            DateTime           @default(now())
+  updatedAt            DateTime           @updatedAt
+  stage                Stage              @relation(fields: [stageId], references: [id], onDelete: Cascade)
+  automationTemplate   AutomationTemplate @relation(fields: [automationTemplateId], references: [id], onDelete: Cascade)
+
+  @@unique([stageId, automationTemplateId])
+  @@index([stageId])
+  @@index([automationTemplateId])
 }

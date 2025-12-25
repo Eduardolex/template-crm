@@ -72,3 +72,8 @@ export type CustomFieldValue = Prisma.CustomFieldValueModel
  * 
  */
 export type AutomationTemplate = Prisma.AutomationTemplateModel
+/**
+ * Model StageAutomation
+ * 
+ */
+export type StageAutomation = Prisma.StageAutomationModel

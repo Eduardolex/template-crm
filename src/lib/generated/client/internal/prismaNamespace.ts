@@ -394,7 +394,8 @@ export const ModelName = {
   Activity: 'Activity',
   CustomField: 'CustomField',
   CustomFieldValue: 'CustomFieldValue',
-  AutomationTemplate: 'AutomationTemplate'
+  AutomationTemplate: 'AutomationTemplate',
+  StageAutomation: 'StageAutomation'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -410,7 +411,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "tenant" | "user" | "contact" | "company" | "pipeline" | "stage" | "deal" | "activity" | "customField" | "customFieldValue" | "automationTemplate"
+    modelProps: "tenant" | "user" | "contact" | "company" | "pipeline" | "stage" | "deal" | "activity" | "customField" | "customFieldValue" | "automationTemplate" | "stageAutomation"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1228,6 +1229,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    StageAutomation: {
+      payload: Prisma.$StageAutomationPayload<ExtArgs>
+      fields: Prisma.StageAutomationFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.StageAutomationFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StageAutomationPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.StageAutomationFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StageAutomationPayload>
+        }
+        findFirst: {
+          args: Prisma.StageAutomationFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StageAutomationPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.StageAutomationFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StageAutomationPayload>
+        }
+        findMany: {
+          args: Prisma.StageAutomationFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StageAutomationPayload>[]
+        }
+        create: {
+          args: Prisma.StageAutomationCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StageAutomationPayload>
+        }
+        createMany: {
+          args: Prisma.StageAutomationCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.StageAutomationCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StageAutomationPayload>[]
+        }
+        delete: {
+          args: Prisma.StageAutomationDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StageAutomationPayload>
+        }
+        update: {
+          args: Prisma.StageAutomationUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StageAutomationPayload>
+        }
+        deleteMany: {
+          args: Prisma.StageAutomationDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.StageAutomationUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.StageAutomationUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StageAutomationPayload>[]
+        }
+        upsert: {
+          args: Prisma.StageAutomationUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StageAutomationPayload>
+        }
+        aggregate: {
+          args: Prisma.StageAutomationAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateStageAutomation>
+        }
+        groupBy: {
+          args: Prisma.StageAutomationGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.StageAutomationGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.StageAutomationCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.StageAutomationCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -1438,6 +1513,18 @@ export const AutomationTemplateScalarFieldEnum = {
 } as const
 
 export type AutomationTemplateScalarFieldEnum = (typeof AutomationTemplateScalarFieldEnum)[keyof typeof AutomationTemplateScalarFieldEnum]
+
+
+export const StageAutomationScalarFieldEnum = {
+  id: 'id',
+  stageId: 'stageId',
+  automationTemplateId: 'automationTemplateId',
+  position: 'position',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type StageAutomationScalarFieldEnum = (typeof StageAutomationScalarFieldEnum)[keyof typeof StageAutomationScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -1676,6 +1763,7 @@ export type GlobalOmitConfig = {
   customField?: Prisma.CustomFieldOmit
   customFieldValue?: Prisma.CustomFieldValueOmit
   automationTemplate?: Prisma.AutomationTemplateOmit
+  stageAutomation?: Prisma.StageAutomationOmit
 }
 
 /* Types for Logging */
