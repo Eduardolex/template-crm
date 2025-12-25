@@ -24,8 +24,28 @@ type Deal = {
 };
 
 type Stage = { id: string; name: string; position: number };
+type Contact = { id: string; firstName: string; lastName: string };
+type Company = { id: string; name: string };
 
-export function DealsKanban({ deals, stages, dealLabel = "deal", dealsLabel = "deals" }: { deals: Deal[]; stages: Stage[]; dealLabel?: string; dealsLabel?: string }) {
+export function DealsKanban({
+  deals,
+  stages,
+  dealLabel = "deal",
+  dealsLabel = "deals",
+  contacts,
+  companies,
+  contactLabel = "Contact",
+  companyLabel = "Company"
+}: {
+  deals: Deal[];
+  stages: Stage[];
+  dealLabel?: string;
+  dealsLabel?: string;
+  contacts: Contact[];
+  companies: Company[];
+  contactLabel?: string;
+  companyLabel?: string;
+}) {
   const [activeId, setActiveId] = useState<string | null>(null);
   const [optimisticDeals, setOptimisticDeals] = useState(deals);
 
@@ -86,12 +106,34 @@ export function DealsKanban({ deals, stages, dealLabel = "deal", dealsLabel = "d
     >
       <div className="flex gap-4 overflow-x-auto pb-4">
         {dealsByStage.map(({ stage, deals }) => (
-          <KanbanColumn key={stage.id} stage={stage} deals={deals} dealLabel={dealLabel} dealsLabel={dealsLabel} />
+          <KanbanColumn
+            key={stage.id}
+            stage={stage}
+            deals={deals}
+            dealLabel={dealLabel}
+            dealsLabel={dealsLabel}
+            stages={stages}
+            contacts={contacts}
+            companies={companies}
+            contactLabel={contactLabel}
+            companyLabel={companyLabel}
+          />
         ))}
       </div>
 
       <DragOverlay>
-        {activeDeal ? <DealCard deal={activeDeal} isDragging dealLabel={dealLabel} /> : null}
+        {activeDeal ? (
+          <DealCard
+            deal={activeDeal}
+            isDragging
+            dealLabel={dealLabel}
+            stages={stages}
+            contacts={contacts}
+            companies={companies}
+            contactLabel={contactLabel}
+            companyLabel={companyLabel}
+          />
+        ) : null}
       </DragOverlay>
     </DndContext>
   );

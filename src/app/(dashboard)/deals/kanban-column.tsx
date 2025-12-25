@@ -6,13 +6,36 @@ type Deal = {
   id: string;
   title: string;
   valueCents: number;
+  stage: { id: string; name: string };
   contact: { id: string; firstName: string; lastName: string } | null;
   company: { id: string; name: string } | null;
 };
 
 type Stage = { id: string; name: string };
+type Contact = { id: string; firstName: string; lastName: string };
+type Company = { id: string; name: string };
 
-export function KanbanColumn({ stage, deals, dealLabel = "deal", dealsLabel = "deals" }: { stage: Stage; deals: Deal[]; dealLabel?: string; dealsLabel?: string }) {
+export function KanbanColumn({
+  stage,
+  deals,
+  dealLabel = "deal",
+  dealsLabel = "deals",
+  stages,
+  contacts,
+  companies,
+  contactLabel = "Contact",
+  companyLabel = "Company"
+}: {
+  stage: Stage;
+  deals: Deal[];
+  dealLabel?: string;
+  dealsLabel?: string;
+  stages: Stage[];
+  contacts: Contact[];
+  companies: Company[];
+  contactLabel?: string;
+  companyLabel?: string;
+}) {
   const { setNodeRef, isOver } = useDroppable({
     id: stage.id,
   });
@@ -36,7 +59,16 @@ export function KanbanColumn({ stage, deals, dealLabel = "deal", dealsLabel = "d
         >
           <SortableContext items={deals.map((d) => d.id)} strategy={verticalListSortingStrategy}>
             {deals.map((deal) => (
-              <DealCard key={deal.id} deal={deal} dealLabel={dealLabel} />
+              <DealCard
+                key={deal.id}
+                deal={deal}
+                dealLabel={dealLabel}
+                stages={stages}
+                contacts={contacts}
+                companies={companies}
+                contactLabel={contactLabel}
+                companyLabel={companyLabel}
+              />
             ))}
           </SortableContext>
           {deals.length === 0 && (

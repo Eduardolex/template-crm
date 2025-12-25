@@ -111,7 +111,16 @@ export function DealsContent({
             companyLabel={companyLabel}
           />
         ) : (
-          <DealsKanban deals={filteredDeals} stages={stages} dealLabel={dealLabel} dealsLabel={dealsLabel} />
+          <DealsKanban
+            deals={filteredDeals}
+            stages={stages}
+            dealLabel={dealLabel}
+            dealsLabel={dealsLabel}
+            contacts={contacts}
+            companies={companies}
+            contactLabel={contactLabel}
+            companyLabel={companyLabel}
+          />
         ))}
 
       {/* No Deals at All */}

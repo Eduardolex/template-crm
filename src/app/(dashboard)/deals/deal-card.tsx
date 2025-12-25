@@ -9,19 +9,43 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Trash2, MoreVertical } from "lucide-react";
+import { Trash2, MoreVertical, Pencil } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { deleteDealAction } from "@/lib/actions/deal-actions";
+import { DealDialog } from "./deal-dialog";
 
 type Deal = {
   id: string;
   title: string;
   valueCents: number;
+  stage: { id: string; name: string };
   contact: { id: string; firstName: string; lastName: string } | null;
   company: { id: string; name: string } | null;
 };
 
-export function DealCard({ deal, isDragging, dealLabel = "deal" }: { deal: Deal; isDragging?: boolean; dealLabel?: string }) {
+type Stage = { id: string; name: string };
+type Contact = { id: string; firstName: string; lastName: string };
+type Company = { id: string; name: string };
+
+export function DealCard({
+  deal,
+  isDragging,
+  dealLabel = "deal",
+  stages,
+  contacts,
+  companies,
+  contactLabel = "Contact",
+  companyLabel = "Company"
+}: {
+  deal: Deal;
+  isDragging?: boolean;
+  dealLabel?: string;
+  stages: Stage[];
+  contacts: Contact[];
+  companies: Company[];
+  contactLabel?: string;
+  companyLabel?: string;
+}) {
   const [contextMenuOpen, setContextMenuOpen] = useState(false);
   const [menuPosition, setMenuPosition] = useState({ x: 0, y: 0 });
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -91,6 +115,20 @@ export function DealCard({ deal, isDragging, dealLabel = "deal" }: { deal: Deal;
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
+              <DealDialog
+                deal={deal}
+                stages={stages}
+                contacts={contacts}
+                companies={companies}
+                dealLabel={dealLabel}
+                contactLabel={contactLabel}
+                companyLabel={companyLabel}
+              >
+                <DropdownMenuItem onSelect={(e) => e.preventDefault()}>
+                  <Pencil className="mr-2 h-4 w-4" />
+                  Edit {dealLabel}
+                </DropdownMenuItem>
+              </DealDialog>
               <DropdownMenuItem onClick={handleDelete} className="text-red-600 cursor-pointer">
                 <Trash2 className="mr-2 h-4 w-4" />
                 Delete {dealLabel}
@@ -122,6 +160,20 @@ export function DealCard({ deal, isDragging, dealLabel = "deal" }: { deal: Deal;
           />
         </DropdownMenuTrigger>
         <DropdownMenuContent>
+          <DealDialog
+            deal={deal}
+            stages={stages}
+            contacts={contacts}
+            companies={companies}
+            dealLabel={dealLabel}
+            contactLabel={contactLabel}
+            companyLabel={companyLabel}
+          >
+            <DropdownMenuItem onSelect={(e) => e.preventDefault()}>
+              <Pencil className="mr-2 h-4 w-4" />
+              Edit {dealLabel}
+            </DropdownMenuItem>
+          </DealDialog>
           <DropdownMenuItem onClick={handleDelete} className="text-red-600 cursor-pointer">
             <Trash2 className="mr-2 h-4 w-4" />
             Delete {dealLabel}
