@@ -471,7 +471,28 @@ return { success: true };
 DATABASE_URL="postgresql://crm_user:crm_password@localhost:5432/crm_db"
 NEXTAUTH_SECRET="<generate-with: openssl rand -base64 32>"
 NEXTAUTH_URL="http://localhost:3000"
+
+# Email (optional - for automation emails)
+# Get your API key from https://resend.com/api-keys
+RESEND_API_KEY="re_xxxxxxxxxxxxx"
+# Optional: Custom from email (requires domain verification in Resend)
+# EMAIL_FROM="CRM Notifications <noreply@yourdomain.com>"
 ```
+
+### Email Automation Setup
+
+The CRM includes email automation for:
+- **Task completions**: Sends email when task marked as "done" (if automation template assigned)
+- **Deal stage changes**: Sends email when deal moves to new stage (if stage has automations)
+
+**Quick Setup:**
+1. Sign up at [resend.com](https://resend.com) (free tier: 3,000 emails/month)
+2. Get API key from dashboard
+3. Add to `.env.local`: `RESEND_API_KEY="re_xxxxxxxxxxxxx"`
+4. For testing, emails will come from `onboarding@resend.dev`
+5. For production, verify your domain in Resend and set `EMAIL_FROM`
+
+**Graceful Degradation:** If `RESEND_API_KEY` is not configured, automations will log warnings but won't crash. Task completions and deal moves will still succeed.
 
 ## Key File Locations
 
@@ -484,6 +505,7 @@ NEXTAUTH_URL="http://localhost:3000"
 **Core Logic:**
 - `src/lib/db/tenant-context.ts` - Tenant isolation helpers
 - `src/lib/prisma.ts` - Prisma client singleton
+- `src/lib/email.ts` - Email service (Resend integration)
 - `src/lib/actions/*` - All server actions
 
 **Documentation:**

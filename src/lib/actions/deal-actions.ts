@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import { z } from "zod";
 import { prisma } from "@/lib/prisma";
 import { getTenantContext } from "@/lib/db/tenant-context";
+import { sendDealAutomationEmail } from "@/lib/email";
 
 const dealSchema = z.object({
   title: z.string().min(1, "Title required"),
@@ -180,25 +181,34 @@ async function triggerDealAutomation(
       return;
     }
 
-    // TODO: In production, send actual email here
-    // Example: await sendEmail({ to: recipient, subject: "New Deal", body: message });
-
-    console.log("📧 Deal automation triggered:", {
+    // Send email via Resend
+    const result = await sendDealAutomationEmail({
+      to: recipient,
       templateName: template.name,
-      recipient,
       message,
-      dealId: deal.id,
+      dealTitle: deal.title,
     });
 
-    // Optional: Create an activity record to track that automation was sent
-    // await prisma.activity.create({
-    //   data: {
-    //     type: "note",
-    //     body: `Automation sent: ${template.name} to ${recipient}`,
-    //     tenantId: deal.tenantId,
-    //     dealId: deal.id,
-    //   },
-    // });
+    if (result.success) {
+      console.log("✅ Deal automation email sent:", {
+        templateName: template.name,
+        recipient,
+        dealId: deal.id,
+      });
+
+      // Optional: Create an activity record to track that automation was sent
+      // await prisma.activity.create({
+      //   data: {
+      //     type: "note",
+      //     body: `Automation sent: ${template.name} to ${recipient}`,
+      //     tenantId: deal.tenantId,
+      //     dealId: deal.id,
+      //   },
+      // });
+    } else {
+      console.error("❌ Deal automation email failed:", result.error);
+      // Don't throw - allow deal stage change to succeed even if email fails
+    }
 
   } catch (error) {
     console.error("Error triggering deal automation:", error);

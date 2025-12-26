@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import { z } from "zod";
 import { prisma } from "@/lib/prisma";
 import { getTenantContext } from "@/lib/db/tenant-context";
+import { sendTaskAutomationEmail } from "@/lib/email";
 
 const taskSchema = z.object({
   body: z.string().min(1, "Task description required"),
@@ -76,6 +77,8 @@ export async function updateTaskStatusAction(
   id: string,
   status: "todo" | "in_progress" | "done"
 ) {
+  console.log("🎯 Updating task status:", { id, status });
+
   const { tenantId } = await getTenantContext();
 
   // Fetch the task with related data
@@ -98,9 +101,9 @@ export async function updateTaskStatusAction(
 
   // Trigger automation if task is marked as done and has an automation template
   if (status === "done" && task?.automationTemplate && task.automationTemplate.enabled) {
+    console.log("🚀 Triggering task automation:", task.automationTemplate.name);
     await triggerAutomation(task, task.automationTemplate, task.contact);
   }
-
   revalidatePath("/activities");
   return { success: true };
 }
@@ -135,32 +138,40 @@ async function triggerAutomation(
       : template.customEmail;
 
     if (!recipient) {
-      console.warn("No recipient email found for automation template:", template.id);
+      console.warn("⚠️ No recipient email found for automation template:", template.id);
       return;
     }
 
-    // TODO: In production, send actual email here
-    // Example: await sendEmail({ to: recipient, subject: "Follow-up", body: message });
-
-    console.log("📧 Automation triggered:", {
+    // Send email via Resend
+    const result = await sendTaskAutomationEmail({
+      to: recipient,
       templateName: template.name,
-      recipient,
       message,
-      taskId: task.id,
     });
 
-    // Optional: Create an activity record to track that automation was sent
-    // await prisma.activity.create({
-    //   data: {
-    //     type: "note",
-    //     body: `Automation sent: ${template.name} to ${recipient}`,
-    //     tenantId: task.tenantId,
-    //     contactId: contact?.id,
-    //   },
-    // });
+    if (result.success) {
+      console.log("✅ Task automation email sent:", {
+        template: template.name,
+        recipient,
+        emailId: result.data?.id,
+      });
+
+      // Optional: Create an activity record to track that automation was sent
+      // await prisma.activity.create({
+      //   data: {
+      //     type: "note",
+      //     body: `Automation sent: ${template.name} to ${recipient}`,
+      //     tenantId: task.tenantId,
+      //     contactId: contact?.id,
+      //   },
+      // });
+    } else {
+      console.error("❌ Task automation email failed:", result.error);
+      // Don't throw - allow task completion to succeed even if email fails
+    }
 
   } catch (error) {
-    console.error("Error triggering automation:", error);
+    console.error("❌ Error triggering automation:", error);
     // Don't fail the task completion if automation fails
   }
 }
