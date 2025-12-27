@@ -10,6 +10,7 @@ import {
   Building2,
   Briefcase,
   CheckSquare,
+  BarChart3,
   Settings,
   X,
 } from "lucide-react";
@@ -23,6 +24,7 @@ const getNavigation = (labels: EntityLabels) => [
   { name: labels.companies.plural, href: "/companies", icon: Building2 },
   { name: labels.deals.plural, href: "/deals", icon: Briefcase },
   { name: "Activities", href: "/activities", icon: CheckSquare },
+  { name: "Analytics", href: "/analytics", icon: BarChart3 },
   { name: "Settings", href: "/settings", icon: Settings, adminOnly: true },
 ];
 

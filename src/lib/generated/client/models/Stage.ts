@@ -28,10 +28,12 @@ export type AggregateStage = {
 
 export type StageAvgAggregateOutputType = {
   position: number | null
+  probabilityPercent: number | null
 }
 
 export type StageSumAggregateOutputType = {
   position: number | null
+  probabilityPercent: number | null
 }
 
 export type StageMinAggregateOutputType = {
@@ -39,6 +41,7 @@ export type StageMinAggregateOutputType = {
   pipelineId: string | null
   name: string | null
   position: number | null
+  probabilityPercent: number | null
   isWon: boolean | null
   isLost: boolean | null
   createdAt: Date | null
@@ -50,6 +53,7 @@ export type StageMaxAggregateOutputType = {
   pipelineId: string | null
   name: string | null
   position: number | null
+  probabilityPercent: number | null
   isWon: boolean | null
   isLost: boolean | null
   createdAt: Date | null
@@ -61,6 +65,7 @@ export type StageCountAggregateOutputType = {
   pipelineId: number
   name: number
   position: number
+  probabilityPercent: number
   isWon: number
   isLost: number
   createdAt: number
@@ -71,10 +76,12 @@ export type StageCountAggregateOutputType = {
 
 export type StageAvgAggregateInputType = {
   position?: true
+  probabilityPercent?: true
 }
 
 export type StageSumAggregateInputType = {
   position?: true
+  probabilityPercent?: true
 }
 
 export type StageMinAggregateInputType = {
@@ -82,6 +89,7 @@ export type StageMinAggregateInputType = {
   pipelineId?: true
   name?: true
   position?: true
+  probabilityPercent?: true
   isWon?: true
   isLost?: true
   createdAt?: true
@@ -93,6 +101,7 @@ export type StageMaxAggregateInputType = {
   pipelineId?: true
   name?: true
   position?: true
+  probabilityPercent?: true
   isWon?: true
   isLost?: true
   createdAt?: true
@@ -104,6 +113,7 @@ export type StageCountAggregateInputType = {
   pipelineId?: true
   name?: true
   position?: true
+  probabilityPercent?: true
   isWon?: true
   isLost?: true
   createdAt?: true
@@ -202,6 +212,7 @@ export type StageGroupByOutputType = {
   pipelineId: string
   name: string
   position: number
+  probabilityPercent: number
   isWon: boolean
   isLost: boolean
   createdAt: Date
@@ -236,6 +247,7 @@ export type StageWhereInput = {
   pipelineId?: Prisma.StringFilter<"Stage"> | string
   name?: Prisma.StringFilter<"Stage"> | string
   position?: Prisma.IntFilter<"Stage"> | number
+  probabilityPercent?: Prisma.IntFilter<"Stage"> | number
   isWon?: Prisma.BoolFilter<"Stage"> | boolean
   isLost?: Prisma.BoolFilter<"Stage"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Stage"> | Date | string
@@ -250,6 +262,7 @@ export type StageOrderByWithRelationInput = {
   pipelineId?: Prisma.SortOrder
   name?: Prisma.SortOrder
   position?: Prisma.SortOrder
+  probabilityPercent?: Prisma.SortOrder
   isWon?: Prisma.SortOrder
   isLost?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -267,6 +280,7 @@ export type StageWhereUniqueInput = Prisma.AtLeast<{
   pipelineId?: Prisma.StringFilter<"Stage"> | string
   name?: Prisma.StringFilter<"Stage"> | string
   position?: Prisma.IntFilter<"Stage"> | number
+  probabilityPercent?: Prisma.IntFilter<"Stage"> | number
   isWon?: Prisma.BoolFilter<"Stage"> | boolean
   isLost?: Prisma.BoolFilter<"Stage"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Stage"> | Date | string
@@ -281,6 +295,7 @@ export type StageOrderByWithAggregationInput = {
   pipelineId?: Prisma.SortOrder
   name?: Prisma.SortOrder
   position?: Prisma.SortOrder
+  probabilityPercent?: Prisma.SortOrder
   isWon?: Prisma.SortOrder
   isLost?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -300,6 +315,7 @@ export type StageScalarWhereWithAggregatesInput = {
   pipelineId?: Prisma.StringWithAggregatesFilter<"Stage"> | string
   name?: Prisma.StringWithAggregatesFilter<"Stage"> | string
   position?: Prisma.IntWithAggregatesFilter<"Stage"> | number
+  probabilityPercent?: Prisma.IntWithAggregatesFilter<"Stage"> | number
   isWon?: Prisma.BoolWithAggregatesFilter<"Stage"> | boolean
   isLost?: Prisma.BoolWithAggregatesFilter<"Stage"> | boolean
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Stage"> | Date | string
@@ -310,6 +326,7 @@ export type StageCreateInput = {
   id?: string
   name: string
   position: number
+  probabilityPercent?: number
   isWon?: boolean
   isLost?: boolean
   createdAt?: Date | string
@@ -324,6 +341,7 @@ export type StageUncheckedCreateInput = {
   pipelineId: string
   name: string
   position: number
+  probabilityPercent?: number
   isWon?: boolean
   isLost?: boolean
   createdAt?: Date | string
@@ -336,6 +354,7 @@ export type StageUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   position?: Prisma.IntFieldUpdateOperationsInput | number
+  probabilityPercent?: Prisma.IntFieldUpdateOperationsInput | number
   isWon?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isLost?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -350,6 +369,7 @@ export type StageUncheckedUpdateInput = {
   pipelineId?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   position?: Prisma.IntFieldUpdateOperationsInput | number
+  probabilityPercent?: Prisma.IntFieldUpdateOperationsInput | number
   isWon?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isLost?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -363,6 +383,7 @@ export type StageCreateManyInput = {
   pipelineId: string
   name: string
   position: number
+  probabilityPercent?: number
   isWon?: boolean
   isLost?: boolean
   createdAt?: Date | string
@@ -373,6 +394,7 @@ export type StageUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   position?: Prisma.IntFieldUpdateOperationsInput | number
+  probabilityPercent?: Prisma.IntFieldUpdateOperationsInput | number
   isWon?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isLost?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -384,6 +406,7 @@ export type StageUncheckedUpdateManyInput = {
   pipelineId?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   position?: Prisma.IntFieldUpdateOperationsInput | number
+  probabilityPercent?: Prisma.IntFieldUpdateOperationsInput | number
   isWon?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isLost?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -405,6 +428,7 @@ export type StageCountOrderByAggregateInput = {
   pipelineId?: Prisma.SortOrder
   name?: Prisma.SortOrder
   position?: Prisma.SortOrder
+  probabilityPercent?: Prisma.SortOrder
   isWon?: Prisma.SortOrder
   isLost?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -413,6 +437,7 @@ export type StageCountOrderByAggregateInput = {
 
 export type StageAvgOrderByAggregateInput = {
   position?: Prisma.SortOrder
+  probabilityPercent?: Prisma.SortOrder
 }
 
 export type StageMaxOrderByAggregateInput = {
@@ -420,6 +445,7 @@ export type StageMaxOrderByAggregateInput = {
   pipelineId?: Prisma.SortOrder
   name?: Prisma.SortOrder
   position?: Prisma.SortOrder
+  probabilityPercent?: Prisma.SortOrder
   isWon?: Prisma.SortOrder
   isLost?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -431,6 +457,7 @@ export type StageMinOrderByAggregateInput = {
   pipelineId?: Prisma.SortOrder
   name?: Prisma.SortOrder
   position?: Prisma.SortOrder
+  probabilityPercent?: Prisma.SortOrder
   isWon?: Prisma.SortOrder
   isLost?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -439,6 +466,7 @@ export type StageMinOrderByAggregateInput = {
 
 export type StageSumOrderByAggregateInput = {
   position?: Prisma.SortOrder
+  probabilityPercent?: Prisma.SortOrder
 }
 
 export type StageScalarRelationFilter = {
@@ -532,6 +560,7 @@ export type StageCreateWithoutPipelineInput = {
   id?: string
   name: string
   position: number
+  probabilityPercent?: number
   isWon?: boolean
   isLost?: boolean
   createdAt?: Date | string
@@ -544,6 +573,7 @@ export type StageUncheckedCreateWithoutPipelineInput = {
   id?: string
   name: string
   position: number
+  probabilityPercent?: number
   isWon?: boolean
   isLost?: boolean
   createdAt?: Date | string
@@ -586,6 +616,7 @@ export type StageScalarWhereInput = {
   pipelineId?: Prisma.StringFilter<"Stage"> | string
   name?: Prisma.StringFilter<"Stage"> | string
   position?: Prisma.IntFilter<"Stage"> | number
+  probabilityPercent?: Prisma.IntFilter<"Stage"> | number
   isWon?: Prisma.BoolFilter<"Stage"> | boolean
   isLost?: Prisma.BoolFilter<"Stage"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Stage"> | Date | string
@@ -596,6 +627,7 @@ export type StageCreateWithoutDealsInput = {
   id?: string
   name: string
   position: number
+  probabilityPercent?: number
   isWon?: boolean
   isLost?: boolean
   createdAt?: Date | string
@@ -609,6 +641,7 @@ export type StageUncheckedCreateWithoutDealsInput = {
   pipelineId: string
   name: string
   position: number
+  probabilityPercent?: number
   isWon?: boolean
   isLost?: boolean
   createdAt?: Date | string
@@ -636,6 +669,7 @@ export type StageUpdateWithoutDealsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   position?: Prisma.IntFieldUpdateOperationsInput | number
+  probabilityPercent?: Prisma.IntFieldUpdateOperationsInput | number
   isWon?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isLost?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -649,6 +683,7 @@ export type StageUncheckedUpdateWithoutDealsInput = {
   pipelineId?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   position?: Prisma.IntFieldUpdateOperationsInput | number
+  probabilityPercent?: Prisma.IntFieldUpdateOperationsInput | number
   isWon?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isLost?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -660,6 +695,7 @@ export type StageCreateWithoutAutomationsInput = {
   id?: string
   name: string
   position: number
+  probabilityPercent?: number
   isWon?: boolean
   isLost?: boolean
   createdAt?: Date | string
@@ -673,6 +709,7 @@ export type StageUncheckedCreateWithoutAutomationsInput = {
   pipelineId: string
   name: string
   position: number
+  probabilityPercent?: number
   isWon?: boolean
   isLost?: boolean
   createdAt?: Date | string
@@ -700,6 +737,7 @@ export type StageUpdateWithoutAutomationsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   position?: Prisma.IntFieldUpdateOperationsInput | number
+  probabilityPercent?: Prisma.IntFieldUpdateOperationsInput | number
   isWon?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isLost?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -713,6 +751,7 @@ export type StageUncheckedUpdateWithoutAutomationsInput = {
   pipelineId?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   position?: Prisma.IntFieldUpdateOperationsInput | number
+  probabilityPercent?: Prisma.IntFieldUpdateOperationsInput | number
   isWon?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isLost?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -724,6 +763,7 @@ export type StageCreateManyPipelineInput = {
   id?: string
   name: string
   position: number
+  probabilityPercent?: number
   isWon?: boolean
   isLost?: boolean
   createdAt?: Date | string
@@ -734,6 +774,7 @@ export type StageUpdateWithoutPipelineInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   position?: Prisma.IntFieldUpdateOperationsInput | number
+  probabilityPercent?: Prisma.IntFieldUpdateOperationsInput | number
   isWon?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isLost?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -746,6 +787,7 @@ export type StageUncheckedUpdateWithoutPipelineInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   position?: Prisma.IntFieldUpdateOperationsInput | number
+  probabilityPercent?: Prisma.IntFieldUpdateOperationsInput | number
   isWon?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isLost?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -758,6 +800,7 @@ export type StageUncheckedUpdateManyWithoutPipelineInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   position?: Prisma.IntFieldUpdateOperationsInput | number
+  probabilityPercent?: Prisma.IntFieldUpdateOperationsInput | number
   isWon?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isLost?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -809,6 +852,7 @@ export type StageSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   pipelineId?: boolean
   name?: boolean
   position?: boolean
+  probabilityPercent?: boolean
   isWon?: boolean
   isLost?: boolean
   createdAt?: boolean
@@ -824,6 +868,7 @@ export type StageSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   pipelineId?: boolean
   name?: boolean
   position?: boolean
+  probabilityPercent?: boolean
   isWon?: boolean
   isLost?: boolean
   createdAt?: boolean
@@ -836,6 +881,7 @@ export type StageSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   pipelineId?: boolean
   name?: boolean
   position?: boolean
+  probabilityPercent?: boolean
   isWon?: boolean
   isLost?: boolean
   createdAt?: boolean
@@ -848,13 +894,14 @@ export type StageSelectScalar = {
   pipelineId?: boolean
   name?: boolean
   position?: boolean
+  probabilityPercent?: boolean
   isWon?: boolean
   isLost?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type StageOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "pipelineId" | "name" | "position" | "isWon" | "isLost" | "createdAt" | "updatedAt", ExtArgs["result"]["stage"]>
+export type StageOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "pipelineId" | "name" | "position" | "probabilityPercent" | "isWon" | "isLost" | "createdAt" | "updatedAt", ExtArgs["result"]["stage"]>
 export type StageInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   pipeline?: boolean | Prisma.PipelineDefaultArgs<ExtArgs>
   deals?: boolean | Prisma.Stage$dealsArgs<ExtArgs>
@@ -880,6 +927,7 @@ export type $StagePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     pipelineId: string
     name: string
     position: number
+    probabilityPercent: number
     isWon: boolean
     isLost: boolean
     createdAt: Date
@@ -1314,6 +1362,7 @@ export interface StageFieldRefs {
   readonly pipelineId: Prisma.FieldRef<"Stage", 'String'>
   readonly name: Prisma.FieldRef<"Stage", 'String'>
   readonly position: Prisma.FieldRef<"Stage", 'Int'>
+  readonly probabilityPercent: Prisma.FieldRef<"Stage", 'Int'>
   readonly isWon: Prisma.FieldRef<"Stage", 'Boolean'>
   readonly isLost: Prisma.FieldRef<"Stage", 'Boolean'>
   readonly createdAt: Prisma.FieldRef<"Stage", 'DateTime'>

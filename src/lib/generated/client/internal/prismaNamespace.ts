@@ -1423,6 +1423,7 @@ export const StageScalarFieldEnum = {
   pipelineId: 'pipelineId',
   name: 'name',
   position: 'position',
+  probabilityPercent: 'probabilityPercent',
   isWon: 'isWon',
   isLost: 'isLost',
   createdAt: 'createdAt',

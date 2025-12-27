@@ -8,6 +8,7 @@ import { requireAdmin } from "@/lib/db/tenant-context";
 const stageSchema = z.object({
   name: z.string().min(1, "Stage name required"),
   position: z.number().min(0),
+  probabilityPercent: z.number().min(0).max(100),
   isWon: z.boolean(),
   isLost: z.boolean(),
 });
@@ -44,6 +45,7 @@ export async function updateStageAction(
 
   revalidatePath("/settings/pipeline");
   revalidatePath("/deals");
+  revalidatePath("/analytics");
   return { success: true };
 }
 

@@ -58,12 +58,12 @@ async function main() {
   });
 
   const stageData = [
-    { name: "Lead", position: 0, isWon: false, isLost: false },
-    { name: "Qualified", position: 1, isWon: false, isLost: false },
-    { name: "Proposal", position: 2, isWon: false, isLost: false },
-    { name: "Negotiation", position: 3, isWon: false, isLost: false },
-    { name: "Closed Won", position: 4, isWon: true, isLost: false },
-    { name: "Closed Lost", position: 5, isWon: false, isLost: true },
+    { name: "Lead", position: 0, probabilityPercent: 10, isWon: false, isLost: false },
+    { name: "Qualified", position: 1, probabilityPercent: 25, isWon: false, isLost: false },
+    { name: "Proposal", position: 2, probabilityPercent: 50, isWon: false, isLost: false },
+    { name: "Negotiation", position: 3, probabilityPercent: 75, isWon: false, isLost: false },
+    { name: "Closed Won", position: 4, probabilityPercent: 100, isWon: true, isLost: false },
+    { name: "Closed Lost", position: 5, probabilityPercent: 0, isWon: false, isLost: true },
   ];
 
   const stages = [];

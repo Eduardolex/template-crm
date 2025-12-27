@@ -107,17 +107,18 @@ model Pipeline {
 }
 
 model Stage {
-  id          String            @id @default(cuid())
-  pipelineId  String
-  name        String
-  position    Int
-  isWon       Boolean           @default(false)
-  isLost      Boolean           @default(false)
-  createdAt   DateTime          @default(now())
-  updatedAt   DateTime          @updatedAt
-  pipeline    Pipeline          @relation(fields: [pipelineId], references: [id], onDelete: Cascade)
-  deals       Deal[]
-  automations StageAutomation[]
+  id                 String            @id @default(cuid())
+  pipelineId         String
+  name               String
+  position           Int
+  probabilityPercent Int               @default(50)
+  isWon              Boolean           @default(false)
+  isLost             Boolean           @default(false)
+  createdAt          DateTime          @default(now())
+  updatedAt          DateTime          @updatedAt
+  pipeline           Pipeline          @relation(fields: [pipelineId], references: [id], onDelete: Cascade)
+  deals              Deal[]
+  automations        StageAutomation[]
 
   @@index([pipelineId])
   @@index([pipelineId, position])

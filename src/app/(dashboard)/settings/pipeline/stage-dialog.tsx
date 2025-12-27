@@ -18,6 +18,7 @@ type Stage = {
   id: string;
   name: string;
   position: number;
+  probabilityPercent: number;
   isWon: boolean;
   isLost: boolean;
   automations?: Array<{
@@ -54,6 +55,7 @@ export function StageDialog({
     const stageData = {
       name: formData.get("name") as string,
       position: parseInt(formData.get("position") as string),
+      probabilityPercent: parseInt(formData.get("probabilityPercent") as string),
       isWon: formData.get("isWon") === "on",
       isLost: formData.get("isLost") === "on",
     };
@@ -114,6 +116,21 @@ export function StageDialog({
               required
               disabled={loading}
             />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="probabilityPercent">Win Probability (%) *</Label>
+            <Input
+              id="probabilityPercent"
+              name="probabilityPercent"
+              type="number"
+              min="0"
+              max="100"
+              step="5"
+              defaultValue={stage?.probabilityPercent ?? 50}
+              required
+              disabled={loading}
+            />
+            <p className="text-xs text-slate-600">Used for weighted pipeline forecasting</p>
           </div>
           <div className="space-y-2">
             <div className="flex items-center gap-2">
