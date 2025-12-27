@@ -17,6 +17,7 @@ type Stage = {
   id: string;
   name: string;
   position: number;
+  probabilityPercent: number;
   isWon: boolean;
   isLost: boolean;
   automations?: Array<{
